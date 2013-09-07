@@ -110,3 +110,4 @@ UpgradeLog*.XML
 # our ignores
 *.pidb
 Library/metadata
+Library/ScriptAssemblies
