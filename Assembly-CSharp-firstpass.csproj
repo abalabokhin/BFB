@@ -44,6 +44,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Standard Assets\Scripts\BFB Scripts\Constants.cs" />
      <Compile Include="Assets\Standard Assets\Scripts\BFB Scripts\MoveAround.cs" />
      <Compile Include="Assets\Standard Assets\Scripts\BFB Scripts\PlanetRotation.cs" />
      <Compile Include="Assets\Standard Assets\Scripts\BFB Scripts\Tags.cs" />
