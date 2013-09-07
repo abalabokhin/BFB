@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public static class CollectionHelpers
+public static class CollectionHelper
 {
 	public static void AddRange<T>(this IList<T> list, IEnumerable<T> toAdd)
 	{
