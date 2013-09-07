@@ -1,9 +1,8 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\MoveAround.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Standard Assets\Scripts\BFB Scripts\MoveAround.cs">
     <Files>
-      <File FileName="Assets\MoveAround.cs" Line="22" Column="3" />
-      <File FileName="Assets\MoveAroundjs.js" Line="17" Column="13" />
+      <File FileName="Assets\Standard Assets\Scripts\BFB Scripts\MoveAround.cs" Line="7" Column="37" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
