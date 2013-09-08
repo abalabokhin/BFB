@@ -1,7 +1,9 @@
 using UnityEngine;
 
-public class ActivateTrigger : MonoBehaviour {
-	public enum Mode {
+public class ActivateTrigger : MonoBehaviour
+{
+	public enum Mode
+	{
 		Trigger   = 0, // Just broadcast the action on to the target
 		Replace   = 1, // replace target with source
 		Activate  = 2, // Activate the target GameObject
@@ -19,7 +21,8 @@ public class ActivateTrigger : MonoBehaviour {
 	public int triggerCount = 1;///
 	public bool repeatTrigger = false;
 	
-	void DoActivateTrigger () {
+	void DoActivateTrigger ()
+	{
 		triggerCount--;
 
 		if (triggerCount == 0 || repeatTrigger) {
@@ -30,33 +33,34 @@ public class ActivateTrigger : MonoBehaviour {
 				targetGameObject = targetBehaviour.gameObject;
 		
 			switch (action) {
-				case Mode.Trigger:
-					targetGameObject.BroadcastMessage ("DoActivateTrigger");
-					break;
-				case Mode.Replace:
-					if (source != null) {
-						Object.Instantiate (source, targetGameObject.transform.position, targetGameObject.transform.rotation);
-						DestroyObject (targetGameObject);
-					}
-					break;
-				case Mode.Activate:
-					targetGameObject.active = true;
-					break;
-				case Mode.Enable:
-					if (targetBehaviour != null)
-						targetBehaviour.enabled = true;
-					break;	
-				case Mode.Animate:
-					targetGameObject.animation.Play ();
-					break;	
-				case Mode.Deactivate:
-					targetGameObject.active = false;
-					break;
+			case Mode.Trigger:
+				targetGameObject.BroadcastMessage ("DoActivateTrigger");
+				break;
+			case Mode.Replace:
+				if (source != null) {
+					Object.Instantiate (source, targetGameObject.transform.position, targetGameObject.transform.rotation);
+					DestroyObject (targetGameObject);
+				}
+				break;
+			case Mode.Activate:
+				targetGameObject.active = true;
+				break;
+			case Mode.Enable:
+				if (targetBehaviour != null)
+					targetBehaviour.enabled = true;
+				break;	
+			case Mode.Animate:
+				targetGameObject.animation.Play ();
+				break;	
+			case Mode.Deactivate:
+				targetGameObject.active = false;
+				break;
 			}
 		}
 	}
 
-	void OnTriggerEnter (Collider other) {
+	void OnTriggerEnter (Collider other)
+	{
 		DoActivateTrigger ();
 	}
 }
