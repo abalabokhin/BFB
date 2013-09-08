@@ -4,15 +4,15 @@ using System.Collections.Generic;
 
 public class MoveAround : MonoBehaviour
 {	
-	IList<GameObject> planets = new List<GameObject>();
+	IList<GameObject> planets = new List<GameObject> ();
 	//float rotateForce = 1f;
 	float rotateSpeed = 3f;
-	float moveForce = 3f;
+	float moveForce = 50f;
 	
 	void Start ()
 	{
-		planets.Clear();
-		planets.AddRange(GameObject.FindGameObjectsWithTag(Tags.planet));
+		planets.Clear ();
+		planets.AddRange (GameObject.FindGameObjectsWithTag (Tags.planet));
 		Debug.Log (string.Format ("Found {0} planets!", planets.Count));
 	}
 	
@@ -21,10 +21,12 @@ public class MoveAround : MonoBehaviour
 		float hInput = Input.GetAxis ("Horizontal");
 		float vInput = Input.GetAxis ("Vertical");
 	
-		gameObject.transform.Rotate(0, hInput * rotateSpeed, 0);
+		gameObject.transform.Rotate (0, hInput * rotateSpeed, 0);
 		
 		//gameObject.rigidbody.AddTorque (gameObject.transform.up * rotateForce * hInput, ForceMode.Force);
-		gameObject.rigidbody.AddForce (gameObject.transform.forward * moveForce * vInput, ForceMode.Force);
+		Vector3 forwardForce = gameObject.transform.forward * moveForce * vInput;
+		gameObject.rigidbody.AddForce (forwardForce, ForceMode.Force);
+		Debug.Log (string.Format ("Added forward force of {0} to ship.", forwardForce));
 		
 	
 		/// gravity force from all the planets.
@@ -36,18 +38,18 @@ public class MoveAround : MonoBehaviour
 			/// TODO: change it.
 			/// temporary hack, it should be described in OnTriggerEnter method.
 			if (distance < 5) {
-				OnTriggerEnter(null);
+				OnTriggerEnter (null);
 			}
 				
-			float planetMass = planet.GetComponent<Rigidbody>().mass;
+			float planetMass = planet.rigidbody.mass;
 			float forceModule = Constants.gravityCoefficient * planetMass / (distance * distance);
 			gameObject.rigidbody.AddForce (direction * forceModule, ForceMode.Force);
 		}
 	}
 	
-	void OnTriggerEnter(Collider other)
+	void OnTriggerEnter (Collider other)
 	{
-		Debug.Log("collided");
-		Application.LoadLevel(Application.loadedLevel);
+		Debug.Log ("collided");
+		Application.LoadLevel (Application.loadedLevel);
 	}
 }
