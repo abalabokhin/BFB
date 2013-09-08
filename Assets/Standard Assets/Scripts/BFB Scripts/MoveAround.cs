@@ -33,6 +33,12 @@ public class MoveAround : MonoBehaviour
 		foreach (GameObject planet in planets) {
 			Vector3 direction = (planet.transform.position - position);
 			var distance = direction.magnitude; 
+			/// TODO: change it.
+			/// temporary hack, it should be described in OnTriggerEnter method.
+			if (distance < 5) {
+				OnTriggerEnter(null);
+			}
+				
 			float planetMass = planet.GetComponent<Rigidbody>().mass;
 			float forceModule = Constants.gravityCoefficient * planetMass / (distance * distance);
 			gameObject.rigidbody.AddForce (direction * forceModule, ForceMode.Force);
@@ -42,5 +48,6 @@ public class MoveAround : MonoBehaviour
 	void OnTriggerEnter(Collider other)
 	{
 		Debug.Log("collided");
+		Application.LoadLevel(Application.loadedLevel);
 	}
 }
