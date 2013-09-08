@@ -111,3 +111,4 @@ UpgradeLog*.XML
 *.pidb
 Library/metadata
 Library/ScriptAssemblies
+BFB.userprefs

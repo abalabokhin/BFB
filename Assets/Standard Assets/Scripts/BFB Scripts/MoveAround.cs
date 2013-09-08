@@ -34,12 +34,13 @@ public class MoveAround : MonoBehaviour
 	
 		foreach (GameObject planet in planets) {
 			Vector3 direction = (planet.transform.position - position);
+			direction.Normalize();
 			var distance = direction.magnitude; 
 			/// TODO: change it.
 			/// temporary hack, it should be described in OnTriggerEnter method.
-			if (distance < 5) {
-				OnTriggerEnter (null);
-			}
+			//if (distance < 5) {
+			//	OnTriggerEnter (null);
+			//}
 				
 			float planetMass = planet.rigidbody.mass;
 			float forceModule = Constants.gravityCoefficient * planetMass / (distance * distance);
