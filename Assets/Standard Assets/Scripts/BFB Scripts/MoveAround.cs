@@ -6,7 +6,7 @@ public class MoveAround : MonoBehaviour
 {	
 	IList<GameObject> planets = new List<GameObject> ();
 	//float rotateForce = 1f;
-	float rotateSpeed = 3f;
+	float rotateSpeed = 0.3f;
 	float moveForce = 50f;
 	
 	void Start ()
