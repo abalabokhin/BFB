@@ -2,15 +2,15 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class MoveAround : MonoBehaviour
+public class ShipMovement : MonoBehaviour
 {	
 	IList<GameObject> planets = new List<GameObject> ();
-	//float rotateForce = 1f;
 	float rotateSpeed = 0.3f;
 	float moveForce = 50f;
 	
 	void Start ()
 	{
+		SetFlamesEnabled(false);
 		planets.Clear ();
 		planets.AddRange (GameObject.FindGameObjectsWithTag (Tags.planet));
 		Debug.Log (string.Format ("Found {0} planets!", planets.Count));
@@ -26,21 +26,17 @@ public class MoveAround : MonoBehaviour
 		//gameObject.rigidbody.AddTorque (gameObject.transform.up * rotateForce * hInput, ForceMode.Force);
 		Vector3 forwardForce = gameObject.transform.forward * moveForce * vInput;
 		gameObject.rigidbody.AddForce (forwardForce, ForceMode.Force);
-		Debug.Log (string.Format ("Added forward force of {0} to ship.", forwardForce));
-		
+		if (forwardForce.magnitude > 0) {
+//			Debug.Log (string.Format ("Added forward force of {0} to ship.", forwardForce));
+			SetFlamesEnabled(true);
+		}
 	
 		/// gravity force from all the planets.
 		Vector3 position = transform.position; 
 	
 		foreach (GameObject planet in planets) {
-			Vector3 direction = (planet.transform.position - position);
-			var distance = direction.magnitude; 
-			/// TODO: change it.
-			/// temporary hack, it should be described in OnTriggerEnter method.
-			if (distance < 5) {
-				OnTriggerEnter (null);
-			}
-				
+			Vector3 direction = planet.transform.position - position;
+			float distance = direction.magnitude; 				
 			float planetMass = planet.rigidbody.mass;
 			float forceModule = Constants.gravityCoefficient * planetMass / (distance * distance);
 			gameObject.rigidbody.AddForce (direction * forceModule, ForceMode.Force);
@@ -51,5 +47,16 @@ public class MoveAround : MonoBehaviour
 	{
 		Debug.Log ("collided");
 		Application.LoadLevel (Application.loadedLevel);
+	}
+	
+	public void SetFlamesEnabled (bool enabled)
+	{
+		IList<GameObject> flameParticleSystems = new List<GameObject>();
+		IList<GameObject> flames = GameObject.FindGameObjectsWithTag (Tags.flame);
+		ParticleSystem particle = gameObject.GetComponent (typeof(ParticleSystem)) as ParticleSystem;
+		GameObject particlesystem = flames[0];
+		if (particlesystem != null) {
+			Debug.Log ("Here");
+		}
 	}
 }

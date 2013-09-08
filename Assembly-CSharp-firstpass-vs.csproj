@@ -45,8 +45,8 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Standard Assets\Scripts\BFB Scripts\Constants.cs" />
-     <Compile Include="Assets\Standard Assets\Scripts\BFB Scripts\MoveAround.cs" />
      <Compile Include="Assets\Standard Assets\Scripts\BFB Scripts\PlanetRotation.cs" />
+     <Compile Include="Assets\Standard Assets\Scripts\BFB Scripts\ShipMovement.cs" />
      <Compile Include="Assets\Standard Assets\Scripts\BFB Scripts\Tags.cs" />
      <Compile Include="Assets\Standard Assets\Scripts\Camera Scripts\MouseOrbit.cs" />
      <Compile Include="Assets\Standard Assets\Scripts\Camera Scripts\SmoothFollow.cs" />
@@ -55,6 +55,7 @@
      <Compile Include="Assets\Standard Assets\Scripts\Utility Scripts\CollectionHelper.cs" />
      <Compile Include="Assets\Standard Assets\Scripts\Utility Scripts\CombineChildren.cs" />
      <Compile Include="Assets\Standard Assets\Scripts\Utility Scripts\MeshCombineUtility.cs" />
+     <None Include="Assets\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
