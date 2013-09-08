@@ -36,7 +36,10 @@ public class ShipMovement : MonoBehaviour
 	
 		foreach (GameObject planet in planets) {
 			Vector3 direction = planet.transform.position - position;
-			float distance = direction.magnitude; 				
+			float distance = direction.magnitude;
+			Vector3 direction = (planet.transform.position - position);
+			direction.Normalize();
+			var distance = direction.magnitude; 
 			float planetMass = planet.rigidbody.mass;
 			float forceModule = Constants.gravityCoefficient * planetMass / (distance * distance);
 			gameObject.rigidbody.AddForce (direction * forceModule, ForceMode.Force);
@@ -51,12 +54,12 @@ public class ShipMovement : MonoBehaviour
 	
 	public void SetFlamesEnabled (bool enabled)
 	{
-		IList<GameObject> flameParticleSystems = new List<GameObject>();
-		IList<GameObject> flames = GameObject.FindGameObjectsWithTag (Tags.flame);
-		ParticleSystem particle = gameObject.GetComponent (typeof(ParticleSystem)) as ParticleSystem;
-		GameObject particlesystem = flames[0];
-		if (particlesystem != null) {
-			Debug.Log ("Here");
-		}
+		//IList<GameObject> flameParticleSystems = new List<GameObject>();
+		//IList<GameObject> flames = GameObject.FindGameObjectsWithTag (Tags.flame);
+		//ParticleSystem particle = gameObject.GetComponent (typeof(ParticleSystem)) as ParticleSystem;
+		//GameObject particlesystem = flames[0];
+		//if (particlesystem != null) {
+		//	Debug.Log ("Here");
+		//}
 	}
 }
