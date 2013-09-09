@@ -2,5 +2,5 @@ using System;
 
 public class Constants
 {
-	public const float gravityCoefficient = 100.0f;
+	public const float gravityCoefficient = 100000.0f;
 }

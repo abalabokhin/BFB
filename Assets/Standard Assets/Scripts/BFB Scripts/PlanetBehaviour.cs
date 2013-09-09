@@ -1,8 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlanetRotation : MonoBehaviour
+public class PlanetBehaviour : MonoBehaviour
 {
+	/// <summary>
+	/// The mass of planet, set up from Unity GUI, we use it in gravity calculations.
+	/// </summary> 
+	public int mass;
+	
 	float rotateForce = 20f;
 	
 	void Start ()

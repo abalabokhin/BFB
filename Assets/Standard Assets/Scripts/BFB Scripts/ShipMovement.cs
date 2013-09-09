@@ -36,9 +36,10 @@ public class ShipMovement : MonoBehaviour
 	
 		foreach (GameObject planet in planets) {
 			Vector3 direction = planet.transform.position - position;
-//			direction.Normalize();
 			float distance = direction.magnitude; 
-			float planetMass = planet.rigidbody.mass;
+			direction.Normalize();
+			//Debug.Log (string.Format ("distance from the center of the ship to the center of the planet is {0}.", distance));
+			float planetMass = planet.GetComponent<PlanetBehaviour>().mass;
 			float forceModule = Constants.gravityCoefficient * planetMass / (distance * distance);
 			gameObject.rigidbody.AddForce (direction * forceModule, ForceMode.Force);
 		}
