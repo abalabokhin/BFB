@@ -112,3 +112,4 @@ UpgradeLog*.XML
 Library/metadata
 Library/ScriptAssemblies
 BFB.userprefs
+*.sln
