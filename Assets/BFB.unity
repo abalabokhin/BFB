@@ -20,7 +20,7 @@ RenderSettings:
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientLight: {r: .200000003, g: .200000003, b: .200000003, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 8e03d514ac1911148962a2700ef8ba40, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: a829b51455e36044e8bdbe6088d9adaf, type: 2}
   m_HaloStrength: .5
   m_FlareStrength: 1
   m_HaloTexture: {fileID: 0}
@@ -2991,6 +2991,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 1670785136}
   - 95: {fileID: 1670785137}
+  - 54: {fileID: 1670785138}
+  - 114: {fileID: 1670785139}
   m_Layer: 0
   m_Name: PlayerSpaceship
   m_TagString: Ship
@@ -3004,8 +3006,8 @@ Transform:
   m_PrefabParentObject: {fileID: 400132, guid: be7062adf8d1e8548b2214329560a83a, type: 3}
   m_PrefabInternal: {fileID: 2105228764}
   m_GameObject: {fileID: 1670785135}
-  m_LocalRotation: {x: -.560646474, y: 0, z: -0, w: .828055263}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -31.1014709, y: -.74407959, z: -537.059082}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1688655579}
@@ -3023,6 +3025,32 @@ Animator:
   m_CullingMode: 1
   m_ApplyRootMotion: 1
   m_AnimatePhysics: 0
+--- !u!54 &1670785138
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1670785135}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: .0500000007
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &1670785139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1670785135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9356cd187cfd48b4096756c0f2e1a543, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1672824907
 GameObject:
   m_ObjectHideFlags: 0
@@ -3539,8 +3567,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2026964181}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: .135508642, y: 0, z: 0, w: .990776241}
+  m_LocalPosition: {x: 26.8595581, y: 294.007111, z: -678.722046}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -3556,8 +3584,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1670785136}
-  distance: 34.1699982
-  height: 5
+  distance: 63.0999985
+  height: 8.19999981
   heightDamping: 2
   rotationDamping: 3
 --- !u!1 &2034935806
@@ -3681,6 +3709,8 @@ GameObject:
   - 33: {fileID: 2068160426}
   - 135: {fileID: 2068160425}
   - 23: {fileID: 2068160424}
+  - 54: {fileID: 2068160428}
+  - 114: {fileID: 2068160429}
   m_Layer: 0
   m_Name: Planet
   m_TagString: Planet
@@ -3700,7 +3730,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d0ad4853668d86747a0c35d734340e59, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -3732,10 +3762,37 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2068160423}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -26.1401367, y: -2.05078125, z: 46.8769531}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 200, y: 200, z: 200}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!54 &2068160428
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2068160423}
+  serializedVersion: 2
+  m_Mass: 50
+  m_Drag: 0
+  m_AngularDrag: .0500000007
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &2068160429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2068160423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42c9f74ed1e27f54d97c584a15290025, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mass: 0
 --- !u!1 &2075468047
 GameObject:
   m_ObjectHideFlags: 0
@@ -3855,19 +3912,19 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400132, guid: be7062adf8d1e8548b2214329560a83a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0
+      value: -31.1014709
       objectReference: {fileID: 0}
     - target: {fileID: 400132, guid: be7062adf8d1e8548b2214329560a83a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -.74407959
       objectReference: {fileID: 0}
     - target: {fileID: 400132, guid: be7062adf8d1e8548b2214329560a83a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -537.059082
       objectReference: {fileID: 0}
     - target: {fileID: 400132, guid: be7062adf8d1e8548b2214329560a83a, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -.560646474
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400132, guid: be7062adf8d1e8548b2214329560a83a, type: 3}
       propertyPath: m_LocalRotation.y
@@ -3875,11 +3932,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400132, guid: be7062adf8d1e8548b2214329560a83a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400132, guid: be7062adf8d1e8548b2214329560a83a, type: 3}
       propertyPath: m_LocalRotation.w
-      value: .828055263
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 100132, guid: be7062adf8d1e8548b2214329560a83a, type: 3}
       propertyPath: m_Name
