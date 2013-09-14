@@ -23,11 +23,9 @@ public class ShipMovement : MonoBehaviour
 	
 		gameObject.transform.Rotate (0, hInput * rotateSpeed, 0);
 		
-		//gameObject.rigidbody.AddTorque (gameObject.transform.up * rotateForce * hInput, ForceMode.Force);
 		Vector3 forwardForce = gameObject.transform.forward * moveForce * vInput;
 		gameObject.rigidbody.AddForce (forwardForce, ForceMode.Force);
 		if (forwardForce.magnitude > 0) {
-//			Debug.Log (string.Format ("Added forward force of {0} to ship.", forwardForce));
 			SetFlamesEnabled(true);
 		}
 	
@@ -38,7 +36,6 @@ public class ShipMovement : MonoBehaviour
 			Vector3 direction = planet.transform.position - position;
 			float distance = direction.magnitude; 
 			direction.Normalize();
-			//Debug.Log (string.Format ("distance from the center of the ship to the center of the planet is {0}.", distance));
 			float planetMass = planet.GetComponent<PlanetBehaviour>().mass;
 			float forceModule = Constants.gravityCoefficient * planetMass / (distance * distance);
 			gameObject.rigidbody.AddForce (direction * forceModule, ForceMode.Force);
