@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class ShipMovement : MonoBehaviour
 {	
 	IList<GameObject> planets = new List<GameObject> ();
-	float rotateSpeed = 0.3f;
+	float rotateForce = 2f;
 	float moveForce = 50f;
 	
 	void Start ()
@@ -21,7 +21,7 @@ public class ShipMovement : MonoBehaviour
 		float hInput = Input.GetAxis ("Horizontal");
 		float vInput = Input.GetAxis ("Vertical");
 	
-		gameObject.transform.Rotate (0, hInput * rotateSpeed, 0);
+		gameObject.rigidbody.AddTorque (0, hInput * rotateForce, 0);
 		
 		Vector3 forwardForce = gameObject.transform.forward * moveForce * vInput;
 		gameObject.rigidbody.AddForce (forwardForce, ForceMode.Force);
@@ -32,14 +32,14 @@ public class ShipMovement : MonoBehaviour
 		/// gravity force from all the planets.
 		Vector3 position = transform.position; 
 	
-		foreach (GameObject planet in planets) {
-			Vector3 direction = planet.transform.position - position;
-			float distance = direction.magnitude; 
-			direction.Normalize();
-			float planetMass = planet.GetComponent<PlanetBehaviour>().mass;
-			float forceModule = Constants.gravityCoefficient * planetMass / (distance * distance);
-			gameObject.rigidbody.AddForce (direction * forceModule, ForceMode.Force);
-		}
+//		foreach (GameObject planet in planets) {
+//			Vector3 direction = planet.transform.position - position;
+//			float distance = direction.magnitude; 
+//			direction.Normalize();
+//			float planetMass = planet.GetComponent<PlanetBehaviour>().mass;
+//			float forceModule = Constants.gravityCoefficient * planetMass / (distance * distance);
+//			gameObject.rigidbody.AddForce (direction * forceModule, ForceMode.Force);
+//		}
 	}
 	
 	void OnTriggerEnter (Collider other)
