@@ -116,6 +116,6 @@ Library/metadata
 *.pidb
 *.unityproj
 .DS_Store
-$PROJDIR/Temp/
-$PROJDIR/Library/
-$PROJDIR/Obj/
+/Temp/
+/Library/
+/Obj/
