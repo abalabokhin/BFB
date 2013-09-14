@@ -62,9 +62,9 @@ namespace BFB
 		
 		public Spaceship GetSpaceship(Guid gId)
 		{
-			if (g_oSpaceships.ContainsKey (gId))
+			if (g_oSpaceshipsHashed.ContainsKey (gId))
 			{
-				return g_oSpaceships[gId];
+				return g_oSpaceshipsHashed[gId];
 			} // else
 			return null;
 		}
@@ -81,7 +81,7 @@ namespace BFB
 			
 		}
 		
-		public SpaceshipWeapons GetSpaceshipWeapon(Guid gId)
+		public SpaceshipWeapon GetSpaceshipWeapon(Guid gId)
 		{
 			if (g_oSpaceshipWeaponsHashed.ContainsKey (gId))
 			{

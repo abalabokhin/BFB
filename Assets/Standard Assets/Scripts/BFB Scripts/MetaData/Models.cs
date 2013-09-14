@@ -61,7 +61,7 @@ namespace BFB.Models
 			{
 				if (m_oWeapons == null)
 				{
-					m_oWeapons = WeaponIds.Select(oItem => MetaCache.Cache.GetSpaceship(ShipId));
+					m_oWeapons = WeaponIds.Select(oItem => MetaCache.Cache.GetSpaceshipWeapon(oItem));
 				}
 				return m_oWeapons;
 			}
