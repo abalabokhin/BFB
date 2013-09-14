@@ -38,14 +38,14 @@ public class ShipMovement : MonoBehaviour
 		/// gravity force from all the planets.
 		Vector3 position = transform.position; 
 	
-//		foreach (GameObject planet in planets) {
-//			Vector3 direction = planet.transform.position - position;
-//			float distance = direction.magnitude; 
-//			direction.Normalize();
-//			float planetMass = planet.GetComponent<PlanetBehaviour>().mass;
-//			float forceModule = Constants.gravityCoefficient * planetMass / (distance * distance);
-//			gameObject.rigidbody.AddForce (direction * forceModule, ForceMode.Force);
-//		}
+		foreach (GameObject planet in planets) {
+			Vector3 direction = planet.transform.position - position;
+			float distance = direction.magnitude; 
+			direction.Normalize();
+			float planetMass = planet.GetComponent<PlanetBehaviour>().mass;
+			float forceModule = Constants.gravityCoefficient * planetMass / (distance * distance);
+			gameObject.rigidbody.AddForce (direction * forceModule, ForceMode.Force);
+		}
 	}
 	
 	void OnTriggerEnter (Collider other)
