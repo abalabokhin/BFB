@@ -18,6 +18,12 @@ public class ShipMovement : MonoBehaviour
 	
 	void Update ()
 	{
+		// show menu if 'esc' key pressed.
+		if (Input.GetKeyDown (KeyCode.Escape)) {
+			gameObject.GetComponent<MainMenu>().enabled = true;
+			LevelInspector.currentState = LevelInspector.GameState.Pause;
+		}
+		
 		float hInput = Input.GetAxis ("Horizontal");
 		float vInput = Input.GetAxis ("Vertical");
 	
