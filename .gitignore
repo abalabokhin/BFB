@@ -116,12 +116,6 @@ Library/metadata
 *.pidb
 *.unityproj
 .DS_Store
-/Library/FailedAssetImports.txt
-/Library/cache/
-/Library/previews/
-/Library/ScriptAssemblies
-/Library/assetDatabase3
-/Library/ScriptMapper
-/Library/guidmapper
-/obj
-/Temp
+$PROJDIR/Temp/
+$PROJDIR/Library/
+$PROJDIR/Obj/
