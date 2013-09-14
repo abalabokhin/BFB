@@ -2992,8 +2992,8 @@ GameObject:
   - 4: {fileID: 1670785136}
   - 95: {fileID: 1670785137}
   m_Layer: 0
-  m_Name: spaceship_01
-  m_TagString: Untagged
+  m_Name: PlayerSpaceship
+  m_TagString: Ship
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3552,14 +3552,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2026964181}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a95a0304932f2ab419cfa8eaf0af69e0, type: 3}
+  m_Script: {fileID: 11500000, guid: 04910f6cf314b8e4f83f20d96a3796a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EditorClassIdentifier: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  distance: 28.7199993
-  height: 7.59000015
+  target: {fileID: 1670785136}
+  distance: 34.1699982
+  height: 5
   heightDamping: 2
   rotationDamping: 3
 --- !u!1 &2034935806
@@ -3672,6 +3670,72 @@ MeshFilter:
   m_PrefabInternal: {fileID: 2105228764}
   m_GameObject: {fileID: 2059905997}
   m_Mesh: {fileID: 4300038, guid: be7062adf8d1e8548b2214329560a83a, type: 3}
+--- !u!1 &2068160423
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 2068160427}
+  - 33: {fileID: 2068160426}
+  - 135: {fileID: 2068160425}
+  - 23: {fileID: 2068160424}
+  m_Layer: 0
+  m_Name: Planet
+  m_TagString: Planet
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!23 &2068160424
+Renderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2068160423}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+--- !u!135 &2068160425
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2068160423}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: .5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!33 &2068160426
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2068160423}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &2068160427
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2068160423}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -26.1401367, y: -2.05078125, z: 46.8769531}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
 --- !u!1 &2075468047
 GameObject:
   m_ObjectHideFlags: 0
@@ -3816,6 +3880,14 @@ Prefab:
     - target: {fileID: 400132, guid: be7062adf8d1e8548b2214329560a83a, type: 3}
       propertyPath: m_LocalRotation.w
       value: .828055263
+      objectReference: {fileID: 0}
+    - target: {fileID: 100132, guid: be7062adf8d1e8548b2214329560a83a, type: 3}
+      propertyPath: m_Name
+      value: PlayerSpaceship
+      objectReference: {fileID: 0}
+    - target: {fileID: 100132, guid: be7062adf8d1e8548b2214329560a83a, type: 3}
+      propertyPath: m_TagString
+      value: Ship
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: be7062adf8d1e8548b2214329560a83a, type: 3}
