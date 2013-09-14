@@ -12,7 +12,4 @@ public class LevelInspector {
 	};
 	
 	public static GameState currentState = LevelInspector.GameState.JustStarted;
-	
-	
-	
 }
