@@ -2994,6 +2994,7 @@ GameObject:
   - 54: {fileID: 1670785138}
   - 114: {fileID: 1670785139}
   - 114: {fileID: 1670785140}
+  - 64: {fileID: 1670785141}
   m_Layer: 0
   m_Name: PlayerSpaceship
   m_TagString: Ship
@@ -3063,6 +3064,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2f0bdcff33c94642a3a3a736ee157d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!64 &1670785141
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1670785135}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_SmoothSphereCollisions: 0
+  m_Convex: 0
+  m_Mesh: {fileID: 4300072, guid: be7062adf8d1e8548b2214329560a83a, type: 3}
 --- !u!1 &1672824907
 GameObject:
   m_ObjectHideFlags: 0
