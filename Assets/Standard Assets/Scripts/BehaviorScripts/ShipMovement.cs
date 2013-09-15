@@ -59,8 +59,10 @@ public class ShipMovement : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         Debug.Log("collided");
-        gameObject.GetComponent<MainMenu>().enabled = true;
-        LevelInspector.currentState = LevelInspector.GameState.Destroyed;
+		if (other.CompareTag(Tags.planet)) {
+        	gameObject.GetComponent<MainMenu>().enabled = true;
+        	LevelInspector.currentState = LevelInspector.GameState.Destroyed;
+		}
     }
 
     public void SetFlamesEnabled(bool enabled)
