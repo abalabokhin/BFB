@@ -2993,6 +2993,7 @@ GameObject:
   - 95: {fileID: 1670785137}
   - 54: {fileID: 1670785138}
   - 114: {fileID: 1670785139}
+  - 114: {fileID: 1670785140}
   m_Layer: 0
   m_Name: PlayerSpaceship
   m_TagString: Ship
@@ -3049,6 +3050,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9356cd187cfd48b4096756c0f2e1a543, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1670785140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1670785135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2f0bdcff33c94642a3a3a736ee157d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1672824907
@@ -3792,7 +3804,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42c9f74ed1e27f54d97c584a15290025, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mass: 0
+  mass: 50
 --- !u!1 &2075468047
 GameObject:
   m_ObjectHideFlags: 0

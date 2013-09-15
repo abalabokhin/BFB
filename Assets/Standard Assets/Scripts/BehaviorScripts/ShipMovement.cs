@@ -55,7 +55,8 @@ public class ShipMovement : MonoBehaviour
 	void OnTriggerEnter (Collider other)
 	{
 		Debug.Log ("collided");
-		Application.LoadLevel (Application.loadedLevel);
+		gameObject.GetComponent<MainMenu>().enabled = true;
+		LevelInspector.currentState = LevelInspector.GameState.Destroyed;
 	}
 	
 	public void SetFlamesEnabled (bool enabled)
