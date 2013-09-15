@@ -8,5 +8,6 @@ namespace BFB.Cache
 		public static string ship = "Ship";
 		public static string planet = "Planet";
 		public static string flame = "Flame";
+		public static string winPoint = "WinPoint";
 	}
 }

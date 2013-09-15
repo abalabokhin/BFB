@@ -12,3 +12,6 @@
 *.userprefs
 *.pidb
 [Uu]nityVS.meta
+# Generated binary and source files.
+bfb_Data
+bfb.exe

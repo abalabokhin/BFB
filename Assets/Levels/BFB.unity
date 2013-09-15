@@ -3544,7 +3544,7 @@ GameObject:
   - 23: {fileID: 1975609245}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: WinPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3593,8 +3593,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1975609244}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.72651672, y: .21701622, z: -443.078552}
-  m_LocalScale: {x: 15.5789614, y: 11.8513527, z: 19.7007122}
+  m_LocalPosition: {x: -38.5887451, y: .21701622, z: -443.078552}
+  m_LocalScale: {x: 58.8297768, y: 44.7534637, z: 74.3944702}
   m_Children: []
   m_Father: {fileID: 0}
 --- !u!1 &2026964181

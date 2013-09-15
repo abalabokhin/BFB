@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using BFB.Cache;
 
@@ -20,6 +20,9 @@ public class MainMenu : MonoBehaviour {
 				break;
 			case LevelInspector.GameState.Destroyed:
 				createDestroyedMenu();
+				break;
+			case LevelInspector.GameState.LevelCompleted:
+				createLevelCompletedMenu();
 				break;
 			case LevelInspector.GameState.Finished:
 				createFinishedMenu();
@@ -69,15 +72,20 @@ public class MainMenu : MonoBehaviour {
 		
 	}
 
-	void createFinishedMenu() {
+	void createLevelCompletedMenu() {
 		// TODO: May be here we should change level? Return to the code when there is more than one level.
 		createWelcomeString("Congretulations!!!");
 		createButtonStartBriefing("Next Level");
 		createButtonExit("Exit");
 	}
-
+	
+	void createFinishedMenu() {
+		createWelcomeString("Congretulations!!! You won the game");
+		createButtonExit("Exit");
+	}
+	
 	void createBriefingMenu() {
-		// TODO: get briefing in spite of the current level.
+		// TODO: get briefing in spite of the current level from XML from MetaCache.
 		GUI.Box(new Rect(left, currentTop, width, briefingHeight), "A long time ago \n in a galaxy far, far away....");
 		currentTop += (briefingHeight + elementDistance);
 		createButtonRestartLevel("Continue");
@@ -110,7 +118,7 @@ public class MainMenu : MonoBehaviour {
 	
 	void createButtonExit(string caption) {
 		if (createButton(caption)) {
-			Debug.Log("Game Finished");
+			Debug.Log("Quit");
 			Application.Quit();
 		};
 	}

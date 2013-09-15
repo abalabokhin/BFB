@@ -58,10 +58,13 @@ public class ShipMovement : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("collided");
+        Debug.Log("collided with " + other.tag);
 		if (other.CompareTag(Tags.planet)) {
         	gameObject.GetComponent<MainMenu>().enabled = true;
         	LevelInspector.currentState = LevelInspector.GameState.Destroyed;
+		} else if (other.CompareTag(Tags.winPoint)) {
+			gameObject.GetComponent<MainMenu>().enabled = true;
+			LevelInspector.NextLevel();
 		}
     }
 
