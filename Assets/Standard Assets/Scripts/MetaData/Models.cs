@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using BFB.Helpers;
 using BFB.Cache;
+using System.Xml.Serialization;
 
 namespace BFB.Models
 {
@@ -31,7 +32,14 @@ namespace BFB.Models
 		
 		public Spaceship Ship 
 		{ 
-			get { return null; } // MetaCache.Cache.GetSpaceshipType(ShipId); } 
+			get
+            {
+                if (m_oSpaceship == null || m_oSpaceship.Id != ShipId)
+                {
+                    m_oSpaceship = SessionCache.Cache.Spaceships.FirstOrDefault(oItem => oItem.Id == ShipId);
+                }
+                return m_oSpaceship;
+            }
 		}
 		#endregion
 		
@@ -39,6 +47,7 @@ namespace BFB.Models
 		private Guid m_gId;
 		private string m_sName;
 		private Guid m_gShipId;
+        private Spaceship m_oSpaceship;
 		#endregion
 	}
 	
@@ -65,9 +74,19 @@ namespace BFB.Models
 	}
 	
 	public class Spaceship
-	{
-		#region Properties
-		public Guid Id 
+    {
+        #region Constructors
+        public Spaceship() { }
+
+        public Spaceship(Guid gTypeId, GameObject oGameObject)
+        {
+            TypeId = gTypeId;
+            GameObject = oGameObject;
+        }
+        #endregion
+
+        #region Properties
+        public Guid Id 
 		{ 
 			get { return m_gId; }
 			set { m_gId = value; }
@@ -79,7 +98,15 @@ namespace BFB.Models
 			set { m_gTypeId = value; }
 		}
 		
+        [XmlIgnore]
 		public SpaceshipType Type { get { return MetaCache.Cache.GetSpaceshipType(TypeId); } }
+
+        [XmlIgnore]
+        public GameObject GameObject
+        {
+            get { return m_oGameObject; }
+            set { m_oGameObject = value; }
+        }
 		
 		public IEnumerable<Guid> WeaponIds 
 		{ 
@@ -105,6 +132,7 @@ namespace BFB.Models
 		private Guid m_gTypeId;
 		private IEnumerable<Guid> m_oWeaponIds = new List<Guid>();
 		private IEnumerable<Weapon> m_oWeapons;
+        private GameObject m_oGameObject;
 		#endregion
 	}
 	
@@ -132,6 +160,16 @@ namespace BFB.Models
 	
 	public class Weapon 
 	{
+        #region Constructors
+        public Weapon() { }
+
+        public Weapon(Guid gTypeId, GameObject oGameObject)
+        {
+            TypeId = gTypeId;
+            GameObject = oGameObject;
+        }
+        #endregion
+
 		#region Properties
 		public Guid Id 
 		{ 
@@ -144,13 +182,22 @@ namespace BFB.Models
 			get { return m_gTypeId; }
 			set { m_gTypeId = value; }
 		}
-		
-		public WeaponType Type { get { return MetaCache.Cache.GetWeaponType(TypeId); } }
+
+        [XmlIgnore]
+        public WeaponType Type { get { return MetaCache.Cache.GetWeaponType(TypeId); } }
+
+        [XmlIgnore]
+        public GameObject GameObject
+        {
+            get { return m_oGameObject; }
+            set { m_oGameObject = value; }
+        }
 		#endregion
 		
 		#region Fields
 		private Guid m_gId;
 		private Guid m_gTypeId;
+        private GameObject m_oGameObject;
 		#endregion
 	}
 	
@@ -178,6 +225,16 @@ namespace BFB.Models
 	
 	public class Planet
 	{
+        #region Constructors
+        public Planet() { }
+
+        public Planet(Guid gTypeId, GameObject oGameObject)
+        {
+            TypeId = gTypeId;
+            GameObject = oGameObject;
+        }
+        #endregion
+
 		#region Properties
 		public Guid Id 
 		{ 
@@ -190,13 +247,22 @@ namespace BFB.Models
 			get { return m_gTypeId; }
 			set { m_gTypeId = value; }
 		}
-		
-		public PlanetType Type { get { return MetaCache.Cache.GetPlanetType(TypeId); } }
+
+        [XmlIgnore]
+        public PlanetType Type { get { return MetaCache.Cache.GetPlanetType(TypeId); } }
+
+        [XmlIgnore]
+        public GameObject GameObject
+        {
+            get { return m_oGameObject; }
+            set { m_oGameObject = value; }
+        }
 		#endregion
 		
 		#region Fields
 		private Guid m_gId;
-		private Guid m_gTypeId;
+        private Guid m_gTypeId;
+        private GameObject m_oGameObject;
 		#endregion
 	}
 }
