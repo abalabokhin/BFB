@@ -10,9 +10,13 @@ using System.Xml.Serialization;
 namespace BFB.Models
 {
 	public class Player
-	{
-		#region Properties
-		public Guid Id 
+    {
+        #region Constructors
+        public Player() { }
+        #endregion
+
+        #region Properties
+        public Guid Id 
 		{ 
 			get { return m_gId; }
 			set { m_gId = value; }
@@ -65,11 +69,25 @@ namespace BFB.Models
 			get { return m_sName; }
 			set { m_sName = value; }
 		}
+
+        public int MaxHealth
+        {
+            get { return m_iMaxHealth; }
+            set { m_iMaxHealth = value; }
+        }
+
+        public int MaxFuel
+        {
+            get { return m_iMaxFuel; }
+            set { m_iMaxFuel = value; }
+        }
 		#endregion
 		
 		#region Fields
 		private Guid m_gId;
 		private string m_sName;
+        private int m_iMaxHealth;
+        private int m_iMaxFuel;
 		#endregion
 	}
 	
@@ -83,21 +101,37 @@ namespace BFB.Models
             Id = new Guid();
             TypeId = gTypeId;
             GameObject = oGameObject;
+
+            //set up initial values based on type
+            Health = Type.MaxHealth;
+            Fuel = Type.MaxFuel;
         }
         #endregion
 
         #region Properties
-        public Guid Id 
+        public Guid Id
 		{ 
 			get { return m_gId; }
 			set { m_gId = value; }
 		}
 		
-		public Guid TypeId 
+		public Guid TypeId
 		{ 
 			get { return m_gTypeId; }
 			set { m_gTypeId = value; }
 		}
+
+        public int Health
+        {
+            get { return m_iHealth; }
+            set { m_iHealth = value; }
+        }
+
+        public int Fuel
+        {
+            get { return m_iFuel; }
+            set { m_iFuel = value; }
+        }
 		
         [XmlIgnore]
 		public SpaceshipType Type { get { return MetaCache.Cache.GetSpaceshipType(TypeId); } }
@@ -134,6 +168,8 @@ namespace BFB.Models
 		private IEnumerable<Guid> m_oWeaponIds = new List<Guid>();
 		private IEnumerable<Weapon> m_oWeapons;
         private GameObject m_oGameObject;
+        private int m_iHealth;
+        private int m_iFuel;
 		#endregion
 	}
 	
