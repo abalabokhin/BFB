@@ -45,6 +45,11 @@ namespace BFB.Helpers
 				Debug.LogError (string.Format ("Error: Could not write to file {0}.\n{1}", sFileName, oExc.Message));
 			}
 		}
+
+        public static Guid GetId(this object oItem)
+        {
+            return Guid.Empty;
+        }
 	}
 
     [XmlRoot(ElementName="Data", IsNullable=true)]
