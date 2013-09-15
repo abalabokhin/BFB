@@ -11,9 +11,9 @@ namespace BFB
 		#region Singleton
 		private MetaCache ()
 		{
-			LoadPlanetCache();
-			LoadSpaceshipCache();
-			LoadSpaceshipWeaponsCache();
+			LoadPlanetTypesCache();
+			LoadSpaceshipTypesCache();
+			LoadWeaponTypesCache();
 		}
 		
 		public static MetaCache Cache
@@ -33,67 +33,67 @@ namespace BFB
 		#endregion
 		
 		#region Planets
-		private void LoadPlanetCache()
+		private void LoadPlanetTypesCache()
 		{
 			//fill in planets list
 			//fill in planets dictionary
 		}
 		
-		public Planet GetPlanet(Guid gId)
+		public PlanetType GetPlanetType(Guid gId)
 		{
-			if (g_oPlanetsHashed.ContainsKey (gId))
+			if (g_oPlanetTypesHashed.ContainsKey (gId))
 			{
-				return g_oPlanetsHashed[gId];
+				return g_oPlanetTypesHashed[gId];
 			} // else
 			return null;
 		}
 		
-		public IEnumerable<Planet> Planets { get { return g_oPlanets; } }
+		public IEnumerable<PlanetType> Planets { get { return g_oPlanetTypes; } }
 		
-		private static IList<Planet> g_oPlanets = new List<Planet>();
-		private static IDictionary<Guid, Planet> g_oPlanetsHashed = new Dictionary<Guid, Planet>();
+		private static IList<PlanetType> g_oPlanetTypes = new List<PlanetType>();
+		private static IDictionary<Guid, PlanetType> g_oPlanetTypesHashed = new Dictionary<Guid, PlanetType>();
 		#endregion
 		
-		#region Spaceships
-		private void LoadSpaceshipCache()
+		#region Spaceship Types
+		private void LoadSpaceshipTypesCache()
 		{
 			
 		}
 		
-		public Spaceship GetSpaceship(Guid gId)
+		public SpaceshipType GetSpaceshipType(Guid gId)
 		{
-			if (g_oSpaceshipsHashed.ContainsKey (gId))
+			if (g_oSpaceshipTypesHashed.ContainsKey (gId))
 			{
-				return g_oSpaceshipsHashed[gId];
+				return g_oSpaceshipTypesHashed[gId];
 			} // else
 			return null;
 		}
 		
-		public IEnumerable<Spaceship> Spaceships { get { return g_oSpaceships; } }
+		public IEnumerable<SpaceshipType> SpaceshipTypes { get { return g_oSpaceshipTypes; } }
 		
-		private static IList<Spaceship> g_oSpaceships = new List<Spaceship>();
-		private static IDictionary<Guid, Spaceship> g_oSpaceshipsHashed = new Dictionary<Guid, Spaceship>();
+		private static IList<SpaceshipType> g_oSpaceshipTypes = new List<SpaceshipType>();
+		private static IDictionary<Guid, SpaceshipType> g_oSpaceshipTypesHashed = new Dictionary<Guid, SpaceshipType>();
 		#endregion
 		
-		#region Spaceship Weapons
-		private void LoadSpaceshipWeaponsCache()
+		#region Weapon Types
+		private void LoadWeaponTypesCache()
 		{
 			
 		}
 		
-		public SpaceshipWeapon GetSpaceshipWeapon(Guid gId)
+		public WeaponType GetWeaponType(Guid gId)
 		{
-			if (g_oSpaceshipWeaponsHashed.ContainsKey (gId))
+			if (g_oWeaponTypesHashed.ContainsKey (gId))
 			{
-				return g_oSpaceshipWeaponsHashed[gId];
+				return g_oWeaponTypesHashed[gId];
 			} // else
 			return null;
 		}
 		
-		public IEnumerable<SpaceshipWeapon> SpaceshipWeapons { get { return g_oSpaceshipWeapons; } }
+		public IEnumerable<WeaponType> WeaponType { get { return g_oWeaponTypes; } }
 		
-		private static IList<SpaceshipWeapon> g_oSpaceshipWeapons = new List<SpaceshipWeapon>();
-		private static IDictionary<Guid, SpaceshipWeapon> g_oSpaceshipWeaponsHashed = new Dictionary<Guid, SpaceshipWeapon>();
+		private static IList<WeaponType> g_oWeaponTypes = new List<WeaponType>();
+		private static IDictionary<Guid, WeaponType> g_oWeaponTypesHashed = new Dictionary<Guid, WeaponType>();
 		#endregion
 	}
 	
@@ -128,6 +128,23 @@ namespace BFB
 		}
 		
 		private static Player g_oCurrentPlayer;
+		#endregion
+		
+		#region Current Level
+		public IList<Spaceship> Spaceships
+		{ 
+			get { return g_oSpaceships; }
+		}
+			
+		private static IList<Spaceship> g_oSpaceships = new List<Spaceship>();
+		
+		
+		public IList<Planet> Planets
+		{ 
+			get { return g_oPlanets; }
+		}
+			
+		private static IList<Planet> g_oPlanets = new List<Planet>();
 		#endregion
 	}
 }
