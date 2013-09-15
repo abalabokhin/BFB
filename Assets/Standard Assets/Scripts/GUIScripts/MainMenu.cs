@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using BFB.Cache;
 
 public class MainMenu : MonoBehaviour {
 
@@ -11,7 +12,8 @@ public class MainMenu : MonoBehaviour {
 				Time.timeScale = 1;
 				enabled = false;
 				break;
-			case LevelInspector.GameState.JustStarted:
+            case LevelInspector.GameState.JustStarted:
+                MetaCache.Cache.Initialize();
 				createJustStartedMenu();
 				break;
 			case LevelInspector.GameState.Pause:
