@@ -40,35 +40,6 @@ namespace BFB.Cache
         }
         #endregion
 
-        private void LoadCollectionCache<T>(string sFilename, IList<T> oCache, IDictionary<Guid, T> oCacheHashed)
-        {
-            //clear old lists, just in case
-            if (oCache != null)
-            {
-                oCache.Clear();
-            }
-            if (oCacheHashed != null)
-            {
-                oCacheHashed.Clear();
-            }
-
-            XMLCollection<T> oXMLCollection = SerializationHelper.LoadXMLDataFromFile<XMLCollection<T>>(PlanetTypesFile, null);
-            if (oXMLCollection != null && oXMLCollection.Collection != null)
-            {
-                foreach (T oItem in oXMLCollection.Collection)
-                {
-                    if (oCache != null)
-                    {
-                        oCache.Add(oItem);
-                    }
-                    if (oCacheHashed != null)
-                    {
-                        oCacheHashed.Add(oItem.GetId(), oItem);
-                    }
-                }
-            }
-        }
-
         #region Planet Types
         private void LoadPlanetTypesCache()
         {
