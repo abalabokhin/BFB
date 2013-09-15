@@ -13,7 +13,6 @@ public class MainMenu : MonoBehaviour {
 				enabled = false;
 				break;
             case LevelInspector.GameState.JustStarted:
-                MetaCache.Cache.Initialize();
 				createJustStartedMenu();
 				break;
 			case LevelInspector.GameState.Pause:
