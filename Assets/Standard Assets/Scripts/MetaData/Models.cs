@@ -3,6 +3,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using BFB.Helpers;
+using BFB.Cache;
 
 namespace BFB.Models
 {
@@ -48,10 +50,17 @@ namespace BFB.Models
 			get { return m_gId; }
 			set { m_gId = value; }
 		}
+		
+		public string Name
+		{
+			get { return m_sName; }
+			set { m_sName = value; }
+		}
 		#endregion
 		
 		#region Fields
 		private Guid m_gId;
+		private string m_sName;
 		#endregion
 	}
 	
@@ -107,10 +116,17 @@ namespace BFB.Models
 			get { return m_gId; }
 			set { m_gId = value; }
 		}
+		
+		public string Name
+		{
+			get { return m_sName; }
+			set { m_sName = value; }
+		}
 		#endregion
 		
 		#region Fields
 		private Guid m_gId;
+		private string m_sName;
 		#endregion
 	}
 	
@@ -146,10 +162,17 @@ namespace BFB.Models
 			get { return m_gId; }
 			set { m_gId = value; }
 		}
+		
+		public string Name
+		{
+			get { return m_sName; }
+			set { m_sName = value; }
+		}
 		#endregion
 		
 		#region Fields
 		private Guid m_gId;
+		private string m_sName;
 		#endregion
 	}
 	

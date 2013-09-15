@@ -2,13 +2,16 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public static class CollectionHelper
+namespace BFB.Helpers
 {
-	public static void AddRange<T>(this IList<T> list, IEnumerable<T> toAdd)
+	public static class CollectionHelper
 	{
-		foreach (T item in toAdd)
+		public static void AddRange<T>(this IList<T> list, IEnumerable<T> toAdd)
 		{
-			list.Add (item);
+			foreach (T item in toAdd)
+			{
+				list.Add (item);
+			}
 		}
 	}
 }

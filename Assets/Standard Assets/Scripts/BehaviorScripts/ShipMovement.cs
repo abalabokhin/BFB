@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using BFB.Helpers;
+using BFB.Cache;
 
 public class ShipMovement : MonoBehaviour
 {	
@@ -10,6 +12,8 @@ public class ShipMovement : MonoBehaviour
 	
 	void Start ()
 	{
+		MetaCache.Cache.Initialize();
+		
 		SetFlamesEnabled(false);
 		planets.Clear ();
 		planets.AddRange (GameObject.FindGameObjectsWithTag (Tags.planet));

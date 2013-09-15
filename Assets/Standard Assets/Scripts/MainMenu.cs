@@ -51,20 +51,20 @@ public class MainMenu : MonoBehaviour {
 	void createJustStartedMenu() {
 		createWelcomeString("Welcome");
 		createButtonStartBriefing("Start New Game");
-		createButtonExit();
+		createButtonExit("Exit");
 	}
 
 	void createPauseMenu() {
 		createWelcomeString("Pause");
-		createButtonContinueLevel();
-		createButtonRestartLevel();
-		createButtonExit();
+		createButtonContinueLevel("Continue");
+		createButtonRestartLevel("Restart");
+		createButtonExit("Exit");
 	}
 
 	void createDestroyedMenu() {
 		createWelcomeString("You were close!");
 		createButtonRestartLevel("Try Again?");
-		createButtonExit();
+		createButtonExit("Exit");
 		
 	}
 
@@ -72,7 +72,7 @@ public class MainMenu : MonoBehaviour {
 		// TODO: May be here we should change level? Return to the code when there is more than one level.
 		createWelcomeString("Congretulations!!!");
 		createButtonStartBriefing("Next Level");
-		createButtonExit();
+		createButtonExit("Exit");
 	}
 
 	void createBriefingMenu() {
@@ -82,14 +82,14 @@ public class MainMenu : MonoBehaviour {
 		createButtonRestartLevel("Continue");
 	}
 	
-	void createButtonStartBriefing(string caption = "Start Level") {
+	void createButtonStartBriefing(string caption) {
 		if (createButton(caption)) {
 			Debug.Log("Start level from the begining");
 			LevelInspector.currentState = LevelInspector.GameState.Briefing;
 		}
 	}
 	
-	void createButtonRestartLevel(string caption = "Restart Level") {
+	void createButtonRestartLevel(string caption) {
 		if (createButton(caption)) {
 			Debug.Log("Restart Level");
 			LevelInspector.currentState = LevelInspector.GameState.InGame;
@@ -99,7 +99,7 @@ public class MainMenu : MonoBehaviour {
 		}
 	}
 	
-	void createButtonContinueLevel(string caption = "Return To Game") {
+	void createButtonContinueLevel(string caption) {
 		if (createButton(caption)) {
 			LevelInspector.currentState = LevelInspector.GameState.InGame;
 			Time.timeScale = 1;
@@ -107,7 +107,7 @@ public class MainMenu : MonoBehaviour {
 		}
 	}
 	
-	void createButtonExit(string caption = "Exit Game") {
+	void createButtonExit(string caption) {
 		if (createButton(caption)) {
 			Debug.Log("Game Finished");
 			Application.Quit();

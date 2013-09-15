@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Data>
+  <Collection>
+    <SpaceshipType>
+      <Id>7ff7a6b2-cf88-4d23-b85b-f72a9979a9e7</Id>
+      <Name>Fighter</Name>
+    </SpaceshipType>
+    <SpaceshipType>
+      <Id>1326ee46-d45d-4f8d-9287-bc881bb0b07c</Id>
+      <Name>Carrier</Name>
+    </SpaceshipType>
+  </Collection>
+</Data>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Data>
+  <Collection>
+	  <WeaponType>
+		  <Id>4e2d0187-cfd6-4bbb-a4ce-7fefe6ce2f21</Id>
+		  <Name>Single Laser</Name>
+	  </WeaponType>
+	  <WeaponType>
+		  <Id>bbf2b60c-b689-429b-8fc2-c99ce21c6f00</Id>
+		  <Name>Double Laser</Name>
+	  </WeaponType>
+  </Collection>
+</Data>
