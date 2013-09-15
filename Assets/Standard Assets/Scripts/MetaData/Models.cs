@@ -80,6 +80,7 @@ namespace BFB.Models
 
         public Spaceship(Guid gTypeId, GameObject oGameObject)
         {
+            Id = new Guid();
             TypeId = gTypeId;
             GameObject = oGameObject;
         }
@@ -165,6 +166,7 @@ namespace BFB.Models
 
         public Weapon(Guid gTypeId, GameObject oGameObject)
         {
+            Id = new Guid();
             TypeId = gTypeId;
             GameObject = oGameObject;
         }
@@ -230,6 +232,7 @@ namespace BFB.Models
 
         public Planet(Guid gTypeId, GameObject oGameObject)
         {
+            Id = new Guid();
             TypeId = gTypeId;
             GameObject = oGameObject;
         }
