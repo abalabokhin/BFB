@@ -14,6 +14,7 @@ namespace BFB.Cache
         #region Singleton
         private MetaCache()
         {
+            Initialize();
         }
 
         public static MetaCache Cache
@@ -31,7 +32,7 @@ namespace BFB.Cache
 
         private static MetaCache g_oCache;
 
-        public void Initialize()
+        private void Initialize()
         {
             LoadPlanetTypesCache();
             LoadSpaceshipTypesCache();
