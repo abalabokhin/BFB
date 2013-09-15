@@ -11,9 +11,7 @@ public class ShipMovement : MonoBehaviour
 	float moveForce = 50f;
 	
 	void Start ()
-	{
-		MetaCache.Cache.Initialize();
-		
+	{		
 		SetFlamesEnabled(false);
 		planets.Clear ();
 		planets.AddRange (GameObject.FindGameObjectsWithTag (Tags.planet));
