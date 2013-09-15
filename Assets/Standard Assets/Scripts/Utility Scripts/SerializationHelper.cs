@@ -8,8 +8,8 @@ using UnityEngine;
 
 namespace BFB.Helpers
 {
-	public static class SerializationHelper
-	{
+    public static class SerializationHelper
+    {
         public static T LoadXMLDataFromFile<T>(string sRelativePath, T oDefaultValue)
         {
             string sFileName = Path.Combine(Application.dataPath, sRelativePath);
@@ -28,26 +28,26 @@ namespace BFB.Helpers
             }
             return oData;
         }
-		
-		public static void SaveXMLDataToFile(object oData, string sRelativePath, Type oType)
-		{			
-			string sFileName = Path.Combine (Application.dataPath, sRelativePath);
-			try
-			{
-				using (StreamWriter oWriter = new StreamWriter(sFileName, false))
-				{
-					XmlSerializer oSrlz = new XmlSerializer(oType);
-					oSrlz.Serialize(oWriter, oData);
-				}
-			}
-			catch (Exception oExc) 
-			{
-				Debug.LogError (string.Format ("Error: Could not write to file {0}.\n{1}", sFileName, oExc.Message));
-			}
-		}
-	}
 
-    [XmlRoot(ElementName="Data", IsNullable=true)]
+        public static void SaveXMLDataToFile(object oData, string sRelativePath, Type oType)
+        {
+            string sFileName = Path.Combine(Application.dataPath, sRelativePath);
+            try
+            {
+                using (StreamWriter oWriter = new StreamWriter(sFileName, false))
+                {
+                    XmlSerializer oSrlz = new XmlSerializer(oType);
+                    oSrlz.Serialize(oWriter, oData);
+                }
+            }
+            catch (Exception oExc)
+            {
+                Debug.LogError(string.Format("Error: Could not write to file {0}.\n{1}", sFileName, oExc.Message));
+            }
+        }
+    }
+
+    [XmlRoot(ElementName = "Data", IsNullable = true)]
     public class XMLCollection<T>
     {
         public XMLCollection() { Collection = new List<T>(); }
