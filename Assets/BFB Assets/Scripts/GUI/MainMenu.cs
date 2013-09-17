@@ -119,7 +119,7 @@ public class MainMenu : MonoBehaviour {
 	void createButtonExit(string caption) {
 		if (createButton(caption)) {
 			Debug.Log("Quit");
-			Application.Quit();
+			Application.LoadLevel(2);
 		};
 	}
 				
