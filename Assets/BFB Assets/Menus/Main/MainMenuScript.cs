@@ -5,7 +5,7 @@ using BFB.Cache;
 public class MainMenuScript : MonoBehaviour
 {
     public GUISkin menuSkin;
-	public int[] levels = {3, 4};
+	public int[] levels = {4, 5};
 
 	void Start ()
 	{

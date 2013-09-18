@@ -3,7 +3,11 @@ using System.Collections;
 using BFB.Cache;
 
 public class MainMenu : MonoBehaviour {
-
+	void Start() {
+		clearDistances();
+	}
+	
+	
 	void OnGUI () {
 		clearDistances();
 		Time.timeScale = 0;
@@ -12,9 +16,6 @@ public class MainMenu : MonoBehaviour {
 				Time.timeScale = 1;
 				enabled = false;
 				break;
-/*            case LevelInspector.GameState.JustStarted:
-				createJustStartedMenu();
-				break;*/
 			case LevelInspector.GameState.Pause:
 				createPauseMenu();
 				break;
@@ -27,37 +28,25 @@ public class MainMenu : MonoBehaviour {
 			case LevelInspector.GameState.Finished:
 				createFinishedMenu();
 				break;
-			case LevelInspector.GameState.Briefing:
-				createBriefingMenu();
-				break;
 		}
 	}		
 	// TODO: Move all the string constants somewhere.
 
-	// TODO: the next should depend on Screen.width & Screen.height, but for testing I hardcoded the values.
-	int currentTop = 20;
-	int buttomHeight = 30;
-	int elementDistance = 20;
-	int left = 300;
-	int width = 200;
-	int briefingHeight = 200;
+	int currentTop;
+	int buttomHeight;
+	int elementDistance;
+	int left;
+	int width;
 	
 	void clearDistances() {
+		// TODO: the next should depend on Screen.width & Screen.height, but for testing I hardcoded some values.
 		currentTop = 20;
 		buttomHeight = 30;
 		elementDistance = 20;
-		left = 300;
+		left = Screen.width / 2 - 100;
 		width = 200;
-		briefingHeight = 200;
 	}
 	
-
-	void createJustStartedMenu() {
-		createWelcomeString("Welcome");
-		createButtonStartBriefing("Start New Game");
-		createButtonExit("Exit");
-	}
-
 	void createPauseMenu() {
 		createWelcomeString("Pause");
 		createButtonContinueLevel("Continue");
@@ -84,20 +73,13 @@ public class MainMenu : MonoBehaviour {
 		createButtonExit("Exit");
 	}
 	
-	void createBriefingMenu() {
-		// TODO: get briefing in spite of the current level from XML from MetaCache.
-		GUI.Box(new Rect(left, currentTop, width, briefingHeight), "A long time ago \n in a galaxy far, far away....");
-		currentTop += (briefingHeight + elementDistance);
-		createButtonRestartLevel("Continue");
-	}
-	
 	void createButtonStartBriefing(string caption) {
 		if (createButton(caption)) {
 			Debug.Log("Start level from the begining");
-			LevelInspector.currentState = LevelInspector.GameState.Briefing;
+			LevelInspector.StartCurrentBriefing();
 		}
 	}
-	
+
 	void createButtonRestartLevel(string caption) {
 		if (createButton(caption)) {
 			Debug.Log("Restart Level");
