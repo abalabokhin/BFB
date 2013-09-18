@@ -166,8 +166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuSkin: {fileID: 0}
-  level1: 3
-  level2: 4
+  levels: 0300000004000000
 --- !u!1 &1913332341
 GameObject:
   m_ObjectHideFlags: 0
