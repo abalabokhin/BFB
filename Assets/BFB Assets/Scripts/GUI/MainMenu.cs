@@ -12,9 +12,9 @@ public class MainMenu : MonoBehaviour {
 				Time.timeScale = 1;
 				enabled = false;
 				break;
-            case LevelInspector.GameState.JustStarted:
+/*            case LevelInspector.GameState.JustStarted:
 				createJustStartedMenu();
-				break;
+				break;*/
 			case LevelInspector.GameState.Pause:
 				createPauseMenu();
 				break;
