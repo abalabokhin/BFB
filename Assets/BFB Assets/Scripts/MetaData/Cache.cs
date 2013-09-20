@@ -238,6 +238,15 @@ namespace BFB.Cache
         public string PlayerFile { get { return Path.Combine(ProfilePath, g_sPlayerFile); } }
         private static string g_sPlayerFile = "player.xml";
         #endregion
+		
+		#region Level Inspector
+        public LevelInspector LevelInspector
+        {
+            get { return g_sLevelInspector; }
+        }
+
+        private static LevelInspector g_sLevelInspector = new LevelInspector();
+        #endregion
     }
 }
 

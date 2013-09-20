@@ -22,7 +22,7 @@ public class ShipMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             gameObject.GetComponent<GameMenu>().enabled = true;
-            LevelInspector.currentState = LevelInspector.GameState.Pause;
+            SessionCache.Cache.LevelInspector.currentState = LevelInspector.GameState.Pause;
         }
 
         float hInput = Input.GetAxis("Horizontal");
@@ -61,10 +61,10 @@ public class ShipMovement : MonoBehaviour
         Debug.Log("collided with " + other.tag);
 		if (other.CompareTag(Tags.planet)) {
         	gameObject.GetComponent<GameMenu>().enabled = true;
-        	LevelInspector.currentState = LevelInspector.GameState.Destroyed;
+        	SessionCache.Cache.LevelInspector.currentState = LevelInspector.GameState.Destroyed;
 		} else if (other.CompareTag(Tags.winPoint)) {
 			gameObject.GetComponent<GameMenu>().enabled = true;
-			LevelInspector.NextLevel();
+			SessionCache.Cache.LevelInspector.NextLevel();
 		}
     }
 

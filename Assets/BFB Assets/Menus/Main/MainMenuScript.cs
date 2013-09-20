@@ -10,7 +10,7 @@ public class MainMenuScript : MonoBehaviour
 	
 	void Start ()
 	{
-		levelAmount = LevelInspector.levelAmount;
+		levelAmount = SessionCache.Cache.LevelInspector.levelAmount;
 	}
 	
     private void Levels()
@@ -24,7 +24,7 @@ public class MainMenuScript : MonoBehaviour
 		for (int i = 0; i < levelAmount; ++i) {
 			if (GUI.Button(new Rect(0, currentTop, 80, height), string.Format("Level {0}", i + 1)))
         	{
-				LevelInspector.LoadGameLevel(i);
+				SessionCache.Cache.LevelInspector.LoadGameLevel(i);
         	}
 			currentTop += (height + elementDistance);
 		}

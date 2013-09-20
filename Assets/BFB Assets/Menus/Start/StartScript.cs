@@ -12,12 +12,12 @@ public class StartScript : MonoBehaviour
             //if no profile, force player to provide name
             if (SessionCache.Cache.PlayerProfileExists() == false)
             {
-				LevelInspector.LoadFirstLaunchMenu();
+				SessionCache.Cache.LevelInspector.LoadFirstLaunchMenu();
             }
             else //otherwise load next menu
             {
                 SessionCache.Cache.LoadCurrentPlayer();
-				LevelInspector.LoadMainMenu();
+				SessionCache.Cache.LevelInspector.LoadMainMenu();
             }
         }
     }

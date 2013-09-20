@@ -19,7 +19,7 @@ public class FirstLaunchScript : MonoBehaviour
             {
                 SessionCache.Cache.CurrentPlayer = new Player() { Id = Guid.NewGuid(), Name = profileName };
                 SessionCache.Cache.SaveCurrentPlayer();
-				LevelInspector.LoadMainMenu();
+				SessionCache.Cache.LevelInspector.LoadMainMenu();
             }
         }
         GUI.EndGroup();
