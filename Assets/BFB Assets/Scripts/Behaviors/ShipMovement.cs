@@ -28,10 +28,10 @@ public class ShipMovement : MonoBehaviour
         float hInput = Input.GetAxis("Horizontal");
         float vInput = Input.GetAxis("Vertical");
 
-        gameObject.transform.Rotate(0, hInput * rotateSpeed, 0);
+        gameObject.transform.Rotate(0, hInput * rotateSpeed * Time.deltaTime, 0);
         //gameObject.rigidbody.AddTorque (0, hInput * rotateForce, 0);
 
-        Vector3 forwardForce = gameObject.transform.forward * moveForce * vInput;
+        Vector3 forwardForce = gameObject.transform.forward * moveForce * vInput * Time.deltaTime;
         gameObject.rigidbody.AddForce(forwardForce, ForceMode.Force);
         if (forwardForce.magnitude > 0)
         {
