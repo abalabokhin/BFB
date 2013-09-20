@@ -4,7 +4,7 @@ using System;
 using BFB.Cache;
 using BFB.Models;
 
-public class RegisterSpaceship : MonoBehaviour
+public class RegisterEnemySpaceship : MonoBehaviour
 {
     public string TypeId;
 

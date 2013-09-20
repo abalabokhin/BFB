@@ -189,22 +189,33 @@ namespace BFB.Cache
         private static SessionCache g_oCache;
         #endregion
 
-        #region Player
+        #region Player		
         public bool PlayerProfileExists()
         {
             string sFileName = Path.Combine(Application.dataPath, PlayerFile);
             return File.Exists(sFileName);
         }
 
-        public void LoadCurrentPlayer()
+        public void LoadCurrentPlayer(bool bCreateOnFail = false)
         {
             CurrentPlayer = SerializationHelper.LoadXMLDataFromFile<Player>(PlayerFile, null);
+			if (CurrentPlayer == null && bCreateOnFail) {
+				CurrentPlayer = new Player("Player1");
+				SaveCurrentPlayer();
+			}
         }
 
         public void SaveCurrentPlayer()
         {
             SerializationHelper.SaveXMLDataToFile<Player>(CurrentPlayer, PlayerFile);
         }
+		
+		public void AssignPlayerShip(Guid gTypeId, GameObject oGameObject) {
+			Player player = SessionCache.Cache.CurrentPlayer;
+			Spaceship oSpaceship = new Spaceship(gTypeId, oGameObject);
+			SessionCache.Cache.Spaceships.Add (oSpaceship);
+			player.ShipId = oSpaceship.Id;
+		}
 
         public Player CurrentPlayer
         {
