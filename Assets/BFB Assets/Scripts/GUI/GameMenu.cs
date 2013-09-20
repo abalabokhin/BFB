@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using BFB.Cache;
 
-public class MainMenu : MonoBehaviour {
+public class GameMenu : MonoBehaviour {
 	void Start() {
 		clearDistances();
 	}
@@ -83,10 +83,9 @@ public class MainMenu : MonoBehaviour {
 	void createButtonRestartLevel(string caption) {
 		if (createButton(caption)) {
 			Debug.Log("Restart Level");
-			LevelInspector.currentState = LevelInspector.GameState.InGame;
+			LevelInspector.StartCurrentLevel();
 			Time.timeScale = 1;
 			enabled = false;
-			Application.LoadLevel (Application.loadedLevel);
 		}
 	}
 	
@@ -101,7 +100,7 @@ public class MainMenu : MonoBehaviour {
 	void createButtonExit(string caption) {
 		if (createButton(caption)) {
 			Debug.Log("Quit");
-			Application.LoadLevel(2);
+			LevelInspector.LoadMainMenu();
 		};
 	}
 				

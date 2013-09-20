@@ -21,7 +21,7 @@ public class ShipMovement : MonoBehaviour
         // show menu if 'esc' key pressed.
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            gameObject.GetComponent<MainMenu>().enabled = true;
+            gameObject.GetComponent<GameMenu>().enabled = true;
             LevelInspector.currentState = LevelInspector.GameState.Pause;
         }
 
@@ -60,10 +60,10 @@ public class ShipMovement : MonoBehaviour
     {
         Debug.Log("collided with " + other.tag);
 		if (other.CompareTag(Tags.planet)) {
-        	gameObject.GetComponent<MainMenu>().enabled = true;
+        	gameObject.GetComponent<GameMenu>().enabled = true;
         	LevelInspector.currentState = LevelInspector.GameState.Destroyed;
 		} else if (other.CompareTag(Tags.winPoint)) {
-			gameObject.GetComponent<MainMenu>().enabled = true;
+			gameObject.GetComponent<GameMenu>().enabled = true;
 			LevelInspector.NextLevel();
 		}
     }

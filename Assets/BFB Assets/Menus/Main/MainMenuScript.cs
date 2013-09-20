@@ -5,26 +5,29 @@ using BFB.Cache;
 public class MainMenuScript : MonoBehaviour
 {
     public GUISkin menuSkin;
-	public int[] levels = {4, 5};
-
+	private int gameLevelAmount;
+	private int levelAmount = 0;
+	
 	void Start ()
 	{
-		LevelInspector.SetLevelNumbers(levels);
+		levelAmount = LevelInspector.levelAmount;
 	}
 	
     private void Levels()
     {
-        GUI.BeginGroup(new Rect(Screen.width - 125, Screen.height - 150, 80, 100));
+		int height = 30;
+		int elementDistance = 10;
+		int currentTop = 0;
 		
-		// TODO: do it in cycle
-        if (GUI.Button(new Rect(0, 0, 80, 30), "Level 1"))
-        {
-			LevelInspector.LoadLevel(levels[0]);
-        }
-        if (GUI.Button(new Rect(0, 40, 80, 30), "Level 2"))
-        {
-			LevelInspector.LoadLevel(levels[1]);
-        }
+        GUI.BeginGroup(new Rect(Screen.width - 125, Screen.height - 150, 80, levelAmount * (elementDistance + height)));
+		
+		for (int i = 0; i < levelAmount; ++i) {
+			if (GUI.Button(new Rect(0, currentTop, 80, height), string.Format("Level {0}", i + 1)))
+        	{
+				LevelInspector.LoadGameLevel(i);
+        	}
+			currentTop += (height + elementDistance);
+		}
         GUI.EndGroup();
     }
 
