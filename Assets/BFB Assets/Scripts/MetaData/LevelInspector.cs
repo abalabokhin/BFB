@@ -50,6 +50,7 @@ public class LevelInspector {
 			currentState = GameState.Finished;
 			return;
 		}
+		++currentLevelIndex;
 		currentState = GameState.LevelCompleted;
 	}
 	

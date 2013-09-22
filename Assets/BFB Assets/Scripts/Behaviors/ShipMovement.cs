@@ -8,8 +8,8 @@ using BFB.Models;
 
 public class ShipMovement : MonoBehaviour
 {
-    float moveForce = 100f;
-    float rotateSpeed = 10f;
+    public float moveForce = 1000f;
+    public float rotateSpeed = 100f;
 
     void Start()
     {
