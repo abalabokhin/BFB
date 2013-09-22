@@ -43,10 +43,10 @@ public class ShipMovement : MonoBehaviour
 		
 		if (dFluel <= SessionCache.Cache.CurrentPlayer.Ship.Fuel) {
 			SessionCache.Cache.CurrentPlayer.Ship.Fuel -= dFluel;
-	        gameObject.transform.Rotate(0, hInput * rotateSpeed * Time.deltaTime, 0);
-    	    //gameObject.rigidbody.AddTorque (0, hInput * rotateForce, 0);
-        	Vector3 forwardForce = gameObject.transform.forward * moveForce * vInput * Time.deltaTime;
-        	gameObject.rigidbody.AddForce(forwardForce, ForceMode.Force);
+	        target.transform.Rotate(0, hInput * rotateSpeed * Time.deltaTime, 0);
+    	    //target.rigidbody.AddTorque (0, hInput * rotateForce, 0);
+        	Vector3 forwardForce = target.transform.forward * moveForce * vInput;
+        	target.rigidbody.AddForce(forwardForce, ForceMode.Force);
         	if (forwardForce.magnitude > 0)
         	{
 	            SetFlamesEnabled(true);
