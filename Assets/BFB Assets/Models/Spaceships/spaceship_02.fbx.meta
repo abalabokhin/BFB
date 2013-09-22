@@ -1,0 +1,78 @@
+fileFormatVersion: 2
+guid: e776eae06fff4cb45b4d63a633312b5e
+ModelImporter:
+  serializedVersion: 15
+  fileIDToRecycleName:
+    100000: Spaceship
+    100002: //RootNode
+    100004: weapon_left
+    100006: weapon_right
+    400000: Spaceship
+    400002: //RootNode
+    400004: weapon_left
+    400006: weapon_right
+    2300000: Spaceship
+    2300002: weapon_left
+    2300004: weapon_right
+    3300000: Spaceship
+    3300002: weapon_left
+    3300004: weapon_right
+    4300000: weapon_left
+    4300002: weapon_right
+    4300004: Spaceship
+    6400000: Spaceship
+    6400002: weapon_left
+    6400004: weapon_right
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 1
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    handles: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  additionalBone: 1
+  animationType: 2
+  userData: 

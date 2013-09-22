@@ -11,12 +11,17 @@ public class ShipMovement : MonoBehaviour
 {
     public float moveForce = 1000f;
     public float rotateSpeed = 100f;
-	
-	public float fuelConsamptionToRotate = 5f;
-	public float fuelConsamptionToAccelerate = 5f;
+    public float fuelConsamptionToRotate = 5f;
+    public float fuelConsamptionToAccelerate = 5f;
+
+    public GameObject target;
 
     void Start()
     {
+        if (target == null)
+        {
+            target = gameObject;
+        }
         SetFlamesEnabled(false);
     }
 
@@ -25,7 +30,7 @@ public class ShipMovement : MonoBehaviour
         // show menu if 'esc' key pressed.
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            gameObject.GetComponent<GameMenu>().enabled = true;
+            target.GetComponent<GameMenu>().enabled = true;
             SessionCache.Cache.LevelInspector.currentState = LevelInspector.GameState.Pause;
         }
 
@@ -49,7 +54,6 @@ public class ShipMovement : MonoBehaviour
 		} else {
 			Debug.Log("Not enough fuel for movement or/and rotation");	
 		}
-
         /// gravity force from all the planets.
         Vector3 position = transform.position;
 
@@ -63,7 +67,7 @@ public class ShipMovement : MonoBehaviour
                 direction.Normalize();
                 float planetMass = planetObject.GetComponent<PlanetBehaviour>().mass;
                 float forceModule = Constants.gravityCoefficient * planetMass / (distance * distance);
-                gameObject.rigidbody.AddForce(direction * forceModule, ForceMode.Force);
+                target.rigidbody.AddForce(direction * forceModule, ForceMode.Force);
             }
         }
     }
@@ -72,10 +76,20 @@ public class ShipMovement : MonoBehaviour
     {
         Debug.Log("collided with " + other.tag);
 		if (other.CompareTag(Tags.planet)) {
-        	gameObject.GetComponent<GameMenu>().enabled = true;
+            GameMenu menu = target.GetComponent<GameMenu>();
+            if (menu != null) 
+            {
+                menu.enabled = true;
+            }
         	SessionCache.Cache.LevelInspector.currentState = LevelInspector.GameState.Destroyed;
-		} else if (other.CompareTag(Tags.winPoint)) {
-			gameObject.GetComponent<GameMenu>().enabled = true;
+        }
+        else if (other.CompareTag(Tags.winPoint))
+        {
+            GameMenu menu = target.GetComponent<GameMenu>();
+            if (menu != null)
+            {
+                menu.enabled = true;
+            }
 			SessionCache.Cache.LevelInspector.NextLevel();
 		}
     }
@@ -84,7 +98,7 @@ public class ShipMovement : MonoBehaviour
     {
         //IList<GameObject> flameParticleSystems = new List<GameObject>();
         //IList<GameObject> flames = GameObject.FindGameObjectsWithTag (Tags.flame);
-        //ParticleSystem particle = gameObject.GetComponent (typeof(ParticleSystem)) as ParticleSystem;
+        //ParticleSystem particle = target.GetComponent (typeof(ParticleSystem)) as ParticleSystem;
         //GameObject particlesystem = flames[0];
         //if (particlesystem != null) {
         //	Debug.Log ("Here");
