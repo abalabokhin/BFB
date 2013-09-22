@@ -36,7 +36,7 @@ public class ShipMovement : MonoBehaviour
         target.transform.Rotate(0, hInput * rotateSpeed * Time.deltaTime, 0);
         //target.rigidbody.AddTorque (0, hInput * rotateForce, 0);
 
-        Vector3 forwardForce = target.transform.forward * moveForce * vInput * Time.deltaTime;
+        Vector3 forwardForce = target.transform.forward * moveForce * vInput;
         target.rigidbody.AddForce(forwardForce, ForceMode.Force);
         if (forwardForce.magnitude > 0)
         {
@@ -65,10 +65,20 @@ public class ShipMovement : MonoBehaviour
     {
         Debug.Log("collided with " + other.tag);
 		if (other.CompareTag(Tags.planet)) {
-        	target.GetComponent<GameMenu>().enabled = true;
+            GameMenu menu = target.GetComponent<GameMenu>();
+            if (menu != null) 
+            {
+                menu.enabled = true;
+            }
         	SessionCache.Cache.LevelInspector.currentState = LevelInspector.GameState.Destroyed;
-		} else if (other.CompareTag(Tags.winPoint)) {
-			target.GetComponent<GameMenu>().enabled = true;
+        }
+        else if (other.CompareTag(Tags.winPoint))
+        {
+            GameMenu menu = target.GetComponent<GameMenu>();
+            if (menu != null)
+            {
+                menu.enabled = true;
+            }
 			SessionCache.Cache.LevelInspector.NextLevel();
 		}
     }
