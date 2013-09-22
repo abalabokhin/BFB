@@ -139,7 +139,7 @@ namespace BFB.Models
             set { m_iHealth = value; }
         }
 
-        public int Fuel
+        public float Fuel
         {
             get { return m_iFuel; }
             set { m_iFuel = value; }
@@ -181,7 +181,7 @@ namespace BFB.Models
 		private IEnumerable<Weapon> m_oWeapons;
         private GameObject m_oGameObject;
         private int m_iHealth;
-        private int m_iFuel;
+        private float m_iFuel;
 		#endregion
 	}
 	

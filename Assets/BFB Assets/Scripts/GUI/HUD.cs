@@ -21,8 +21,9 @@ public class HUD : MonoBehaviour {
 	
 	private void OnGUI()
     {
+		
 		GUI.BeginGroup(new Rect(Screen.width - 150, Screen.height - 50, 150, 50));
-		GUI.Label(new Rect(0,0,150,50),"Fuel: XXX");
+		GUI.Label(new Rect(0,0,150,50),string.Format("Fuel: {0}", SessionCache.Cache.CurrentPlayer.Ship.Fuel));
         GUI.EndGroup();
     }
 }

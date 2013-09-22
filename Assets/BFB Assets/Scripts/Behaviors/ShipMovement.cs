@@ -5,11 +5,15 @@ using System.Linq;
 using BFB.Helpers;
 using BFB.Cache;
 using BFB.Models;
+using System;
 
 public class ShipMovement : MonoBehaviour
 {
     public float moveForce = 1000f;
     public float rotateSpeed = 100f;
+	
+	public float fuelConsamptionToRotate = 1f;
+	public float fuelConsamptionToAccelerate = 1f;
 
     void Start()
     {
@@ -27,16 +31,24 @@ public class ShipMovement : MonoBehaviour
 
         float hInput = Input.GetAxis("Horizontal");
         float vInput = Input.GetAxis("Vertical");
-
-        gameObject.transform.Rotate(0, hInput * rotateSpeed * Time.deltaTime, 0);
-        //gameObject.rigidbody.AddTorque (0, hInput * rotateForce, 0);
-
-        Vector3 forwardForce = gameObject.transform.forward * moveForce * vInput * Time.deltaTime;
-        gameObject.rigidbody.AddForce(forwardForce, ForceMode.Force);
-        if (forwardForce.magnitude > 0)
-        {
-            SetFlamesEnabled(true);
-        }
+		
+		/// calculate fuel consumption.
+		float dFluel = Math.Abs(hInput) * Time.deltaTime * fuelConsamptionToRotate;
+		dFluel += Math.Abs(vInput) * Time.deltaTime * fuelConsamptionToAccelerate;
+		
+		if (dFluel <= SessionCache.Cache.CurrentPlayer.Ship.Fuel) {
+			SessionCache.Cache.CurrentPlayer.Ship.Fuel -= dFluel;
+	        gameObject.transform.Rotate(0, hInput * rotateSpeed * Time.deltaTime, 0);
+    	    //gameObject.rigidbody.AddTorque (0, hInput * rotateForce, 0);
+        	Vector3 forwardForce = gameObject.transform.forward * moveForce * vInput * Time.deltaTime;
+        	gameObject.rigidbody.AddForce(forwardForce, ForceMode.Force);
+        	if (forwardForce.magnitude > 0)
+        	{
+	            SetFlamesEnabled(true);
+        	}
+		} else {
+			Debug.Log("Not enough fuel for movement or/and rotation");	
+		}
 
         /// gravity force from all the planets.
         Vector3 position = transform.position;
