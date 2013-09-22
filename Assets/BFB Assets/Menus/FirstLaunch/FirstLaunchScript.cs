@@ -7,7 +7,6 @@ using System;
 public class FirstLaunchScript : MonoBehaviour
 {
     public GUISkin menuSkin;
-    public int mainMenuLevel;
     private string profileName = null;
 
     private void EnterName()
@@ -20,7 +19,7 @@ public class FirstLaunchScript : MonoBehaviour
             {
                 SessionCache.Cache.CurrentPlayer = new Player() { Id = Guid.NewGuid(), Name = profileName };
                 SessionCache.Cache.SaveCurrentPlayer();
-                Application.LoadLevel(mainMenuLevel);
+				SessionCache.Cache.LevelInspector.LoadMainMenu();
             }
         }
         GUI.EndGroup();

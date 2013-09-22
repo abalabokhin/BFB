@@ -21,17 +21,17 @@ public class ShipMovement : MonoBehaviour
         // show menu if 'esc' key pressed.
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            gameObject.GetComponent<MainMenu>().enabled = true;
-            LevelInspector.currentState = LevelInspector.GameState.Pause;
+            gameObject.GetComponent<GameMenu>().enabled = true;
+            SessionCache.Cache.LevelInspector.currentState = LevelInspector.GameState.Pause;
         }
 
         float hInput = Input.GetAxis("Horizontal");
         float vInput = Input.GetAxis("Vertical");
 
-        gameObject.transform.Rotate(0, hInput * rotateSpeed, 0);
+        gameObject.transform.Rotate(0, hInput * rotateSpeed * Time.deltaTime, 0);
         //gameObject.rigidbody.AddTorque (0, hInput * rotateForce, 0);
 
-        Vector3 forwardForce = gameObject.transform.forward * moveForce * vInput;
+        Vector3 forwardForce = gameObject.transform.forward * moveForce * vInput * Time.deltaTime;
         gameObject.rigidbody.AddForce(forwardForce, ForceMode.Force);
         if (forwardForce.magnitude > 0)
         {
@@ -60,11 +60,11 @@ public class ShipMovement : MonoBehaviour
     {
         Debug.Log("collided with " + other.tag);
 		if (other.CompareTag(Tags.planet)) {
-        	gameObject.GetComponent<MainMenu>().enabled = true;
-        	LevelInspector.currentState = LevelInspector.GameState.Destroyed;
+        	gameObject.GetComponent<GameMenu>().enabled = true;
+        	SessionCache.Cache.LevelInspector.currentState = LevelInspector.GameState.Destroyed;
 		} else if (other.CompareTag(Tags.winPoint)) {
-			gameObject.GetComponent<MainMenu>().enabled = true;
-			LevelInspector.NextLevel();
+			gameObject.GetComponent<GameMenu>().enabled = true;
+			SessionCache.Cache.LevelInspector.NextLevel();
 		}
     }
 

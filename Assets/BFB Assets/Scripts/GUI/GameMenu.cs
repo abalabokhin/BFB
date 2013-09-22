@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using BFB.Cache;
 
-public class MainMenu : MonoBehaviour {
+public class GameMenu : MonoBehaviour {
 	void Start() {
 		clearDistances();
 	}
@@ -11,7 +11,7 @@ public class MainMenu : MonoBehaviour {
 	void OnGUI () {
 		clearDistances();
 		Time.timeScale = 0;
-		switch (LevelInspector.currentState) {
+		switch (SessionCache.Cache.LevelInspector.currentState) {
 			case LevelInspector.GameState.InGame:
 				Time.timeScale = 1;
 				enabled = false;
@@ -76,32 +76,27 @@ public class MainMenu : MonoBehaviour {
 	void createButtonStartBriefing(string caption) {
 		if (createButton(caption)) {
 			Debug.Log("Start level from the begining");
-			LevelInspector.StartCurrentBriefing();
+			SessionCache.Cache.LevelInspector.StartCurrentBriefing();
 		}
 	}
 
 	void createButtonRestartLevel(string caption) {
 		if (createButton(caption)) {
 			Debug.Log("Restart Level");
-			LevelInspector.currentState = LevelInspector.GameState.InGame;
-			Time.timeScale = 1;
-			enabled = false;
-			Application.LoadLevel (Application.loadedLevel);
+			SessionCache.Cache.LevelInspector.StartCurrentLevel();
 		}
 	}
 	
 	void createButtonContinueLevel(string caption) {
 		if (createButton(caption)) {
-			LevelInspector.currentState = LevelInspector.GameState.InGame;
-			Time.timeScale = 1;
-			enabled = false;
+			SessionCache.Cache.LevelInspector.currentState = LevelInspector.GameState.InGame;
 		}
 	}
 	
 	void createButtonExit(string caption) {
 		if (createButton(caption)) {
 			Debug.Log("Quit");
-			Application.LoadLevel(2);
+			SessionCache.Cache.LevelInspector.LoadMainMenu();
 		};
 	}
 				

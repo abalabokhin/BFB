@@ -11,56 +11,67 @@ public class LevelInspector {
 		Finished
 	};
 	
-	public static GameState currentState = LevelInspector.GameState.InGame;
+	public GameState currentState = LevelInspector.GameState.InGame;
 	
-	public static void SetLevelNumbers(int[] levelNumbers) {
-		levels = levelNumbers;
+	public void SetLevelNumbers(int[] levelNumbers) {
+		gameLevels = levelNumbers;
 	}
 	
-	private static int[] levels = new int[] {4, 5};
+	private int[] gameLevels = new int[] {4, 5};
+	private int briefingLevel = 3;
+	private int mainLevel = 2;
+	private int firstLaunchLevel = 1;
+	private int currentLevelIndex = 0;
 	
-	public static int currentLevel = levels[0];
+	private string[] levelBriefings = new string[] {"A long time ago \n in a galaxy far, far away....", "Your journey \n continues"};
 	
-	private static int briefingLevel = 3;
+	public int levelAmount
+	{ 
+		get { return gameLevels.Length; }
+	}
 	
-	private static string[] levelBriefings = new string[] {"A long time ago \n in a galaxy far, far away....", "Your journey \n continues"};
-	
-	static public string GetCurrentBriefingText() { 
-		if (!levels.Contains(currentLevel))
+	public string GetCurrentBriefingText() { 
+		if (currentLevelIndex >= gameLevels.Length)
 			return "";
-		return levelBriefings[levels.ToList().IndexOf(currentLevel)];
+		return levelBriefings[currentLevelIndex];
 	}
 	
-	static public void LoadLevel(int levelNumber) {
-		Debug.Log("Loading level" + levelNumber);
-		if (!levels.Contains(levelNumber))
+	public void LoadGameLevel(int gameLevelIndex) {
+		Debug.Log("Loading level " + gameLevelIndex);
+		if (gameLevelIndex >= gameLevels.Length)
 			return;
-		currentLevel = levelNumber;
+		currentLevelIndex = gameLevelIndex;
 		currentState = GameState.InGame;
 		Application.LoadLevel(briefingLevel);
 	}
 	
-	static public void NextLevel() {
-		if (!levels.Contains(currentLevel))
+	public void NextLevel() {
+		if (currentLevelIndex >= gameLevels.Length - 1) {
 			currentState = GameState.Finished;
-		int currentLevelIndex = levels.ToList().IndexOf(currentLevel);
-		if (currentLevelIndex < levels.Length - 1) {
-			currentLevel = levels[currentLevelIndex + 1];
-			currentState = GameState.LevelCompleted;
-		} else {
-			currentState = GameState.Finished;
+			return;
 		}
+		currentState = GameState.LevelCompleted;
 	}
 	
-	static public void StartCurrentLevel() {
-		Debug.Log("Start level: " + currentLevel);
+	public void StartCurrentLevel() {
+		Time.timeScale = 1;
+		Debug.Log("Start level: " + currentLevelIndex);
 		currentState = GameState.InGame;
-		Application.LoadLevel(currentLevel);
+		Application.LoadLevel(gameLevels[currentLevelIndex]);
 	}
 	
-	static public void StartCurrentBriefing() {
-		Debug.Log("Start breafing: " + currentLevel);
+	public void StartCurrentBriefing() {
+		Debug.Log("Start breafing: " + currentLevelIndex);
 		currentState = GameState.InGame;
 		Application.LoadLevel(briefingLevel);
+	}
+	
+	public void LoadMainMenu() {
+		Application.LoadLevel(mainLevel);
+	}
+	
+	public void LoadFirstLaunchMenu ()
+	{
+		Application.LoadLevel(firstLaunchLevel);
 	}
 }

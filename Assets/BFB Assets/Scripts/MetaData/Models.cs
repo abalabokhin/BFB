@@ -12,7 +12,16 @@ namespace BFB.Models
 	public class Player
     {
         #region Constructors
-        public Player() { }
+        public Player() 
+		{ 
+			Id = Guid.NewGuid();
+		}
+		
+        public Player(string sName) 
+			: base()
+		{ 
+			Name = sName;
+		}
         #endregion
 
         #region Properties
@@ -94,11 +103,14 @@ namespace BFB.Models
 	public class Spaceship
     {
         #region Constructors
-        public Spaceship() { }
+        public Spaceship() 
+		{ 
+            Id = new Guid();
+		}
 
         public Spaceship(Guid gTypeId, GameObject oGameObject)
+			: base()
         {
-            Id = new Guid();
             TypeId = gTypeId;
             GameObject = oGameObject;
 
