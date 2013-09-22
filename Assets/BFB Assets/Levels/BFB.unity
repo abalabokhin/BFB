@@ -3154,6 +3154,7 @@ GameObject:
   - 114: {fileID: 1670785140}
   - 64: {fileID: 1670785141}
   - 114: {fileID: 1670785142}
+  - 114: {fileID: 1670785143}
   m_Layer: 0
   m_Name: PlayerSpaceship
   m_TagString: Ship
@@ -3215,6 +3216,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveForce: 10000
   rotateSpeed: 200
+  fuelConsamptionToRotate: 10
+  fuelConsamptionToAccelerate: 10
 --- !u!114 &1670785140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3251,6 +3254,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TypeId: 7ff7a6b2-cf88-4d23-b85b-f72a9979a9e7
+--- !u!114 &1670785143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1670785135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bf4575ee942b3d4cb87fbcc2127eded, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShipName: {fileID: 1028863907}
 --- !u!1 &1672824907
 GameObject:
   m_ObjectHideFlags: 0
@@ -3770,7 +3785,6 @@ GameObject:
   - 92: {fileID: 2026964184}
   - 124: {fileID: 2026964183}
   - 81: {fileID: 2026964182}
-  - 114: {fileID: 2026964188}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -3834,22 +3848,10 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2026964181}
   m_LocalRotation: {x: .135508642, y: 0, z: 0, w: .990776241}
-  m_LocalPosition: {x: -4.61448669, y: 34.6452026, z: -87.4107666}
+  m_LocalPosition: {x: 0, y: 34.6452026, z: -87.4107666}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1670785136}
---- !u!114 &2026964188
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2026964181}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3bf4575ee942b3d4cb87fbcc2127eded, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShipName: {fileID: 1028863907}
 --- !u!1 &2034935806
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Linq;
+using BFB.Cache;
 
 public class LevelInspector {
 	public enum GameState {
@@ -55,6 +56,7 @@ public class LevelInspector {
 	}
 	
 	public void StartCurrentLevel() {
+		SessionCache.Cache.CurrentPlayer.Ship.ResetParameters();
 		Time.timeScale = 1;
 		Debug.Log("Start level: " + currentLevelIndex);
 		currentState = GameState.InGame;

@@ -107,7 +107,7 @@ namespace BFB.Models
 		{ 
             Id = new Guid();
 		}
-
+		
         public Spaceship(Guid gTypeId, GameObject oGameObject)
 			: base()
         {
@@ -120,6 +120,12 @@ namespace BFB.Models
         }
         #endregion
 
+		public void ResetParameters() {
+			//set up initial values based on type
+            Health = Type.MaxHealth;
+            Fuel = Type.MaxFuel;
+		}
+		
         #region Properties
         public Guid Id
 		{ 

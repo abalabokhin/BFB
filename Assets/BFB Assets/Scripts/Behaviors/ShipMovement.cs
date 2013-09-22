@@ -12,8 +12,8 @@ public class ShipMovement : MonoBehaviour
     public float moveForce = 1000f;
     public float rotateSpeed = 100f;
 	
-	public float fuelConsamptionToRotate = 1f;
-	public float fuelConsamptionToAccelerate = 1f;
+	public float fuelConsamptionToRotate = 5f;
+	public float fuelConsamptionToAccelerate = 5f;
 
     void Start()
     {
