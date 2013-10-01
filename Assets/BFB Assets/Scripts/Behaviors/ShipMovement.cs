@@ -54,27 +54,11 @@ public class ShipMovement : MonoBehaviour
 		} else {
 			Debug.Log("Not enough fuel for movement or/and rotation");	
 		}
-        /// gravity force from all the planets.
-        Vector3 position = transform.position;
-
-        foreach (Planet planet in SessionCache.Cache.Planets)
-        {
-            GameObject planetObject = planet.GameObject;
-            if (planetObject != null)
-            {
-                Vector3 direction = planetObject.transform.position - position;
-                float distance = direction.magnitude;
-                direction.Normalize();
-                float planetMass = planetObject.GetComponent<PlanetBehaviour>().mass;
-                float forceModule = Constants.gravityCoefficient * planetMass / (distance * distance);
-                target.rigidbody.AddForce(direction * forceModule, ForceMode.Force);
-            }
-        }
     }
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("collided with " + other.tag);
+        /*Debug.Log("collided with " + other.tag);
 		if (other.CompareTag(Tags.planet)) {
             GameMenu menu = target.GetComponent<GameMenu>();
             if (menu != null) 
@@ -83,7 +67,7 @@ public class ShipMovement : MonoBehaviour
             }
         	SessionCache.Cache.LevelInspector.currentState = LevelInspector.GameState.Destroyed;
         }
-        else if (other.CompareTag(Tags.winPoint))
+        else*/ if (other.CompareTag(Tags.winPoint))
         {
             GameMenu menu = target.GetComponent<GameMenu>();
             if (menu != null)

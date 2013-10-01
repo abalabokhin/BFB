@@ -388,6 +388,8 @@ GameObject:
   - 114: {fileID: 1290328253}
   - 114: {fileID: 1290328254}
   - 114: {fileID: 1290328255}
+  - 114: {fileID: 1290328257}
+  - 114: {fileID: 1290328256}
   m_Layer: 0
   m_Name: Player
   m_TagString: Planet
@@ -494,6 +496,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShipName: {fileID: 0}
+--- !u!114 &1290328256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400008, guid: 1e511a48cf121d84590e8bac513ff38f,
+    type: 2}
+  m_PrefabInternal: {fileID: 248482402}
+  m_GameObject: {fileID: 1290328248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37a2ac7bd6cebc945827942e0d1cb0cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1290328257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400010, guid: 1e511a48cf121d84590e8bac513ff38f,
+    type: 2}
+  m_PrefabInternal: {fileID: 248482402}
+  m_GameObject: {fileID: 1290328248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88072b4d5a9eae6438804ba2765ed20e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1498170710
 GameObject:
   m_ObjectHideFlags: 0
@@ -614,6 +640,7 @@ GameObject:
   - 54: {fileID: 1610731995}
   - 114: {fileID: 1610731994}
   - 114: {fileID: 1610731993}
+  - 114: {fileID: 1610732000}
   m_Layer: 0
   m_Name: Mercury
   m_TagString: Planet
@@ -708,6 +735,18 @@ Transform:
   m_LocalScale: {x: 200, y: 200, z: 200}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!114 &1610732000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1610731992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e59ad93ab1bfa749b4674de0b9ee4f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageToDeal: 500
 --- !u!1 &2026964181
 GameObject:
   m_ObjectHideFlags: 0
@@ -805,6 +844,7 @@ GameObject:
   - 54: {fileID: 2068160428}
   - 114: {fileID: 2068160429}
   - 114: {fileID: 2068160430}
+  - 114: {fileID: 2068160431}
   m_Layer: 0
   m_Name: Gumpy
   m_TagString: Planet
@@ -899,3 +939,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TypeId: be100f40-c6a4-41f2-b3a3-e8082873b728
+--- !u!114 &2068160431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2068160423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e59ad93ab1bfa749b4674de0b9ee4f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageToDeal: 500

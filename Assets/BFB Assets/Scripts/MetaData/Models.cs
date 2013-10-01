@@ -139,7 +139,7 @@ namespace BFB.Models
 			set { m_gTypeId = value; }
 		}
 
-        public int Health
+        public float Health
         {
             get { return m_iHealth; }
             set { m_iHealth = value; }
@@ -186,7 +186,7 @@ namespace BFB.Models
 		private IEnumerable<Guid> m_oWeaponIds = new List<Guid>();
 		private IEnumerable<Weapon> m_oWeapons;
         private GameObject m_oGameObject;
-        private int m_iHealth;
+        private float m_iHealth;
         private float m_iFuel;
 		#endregion
 	}
