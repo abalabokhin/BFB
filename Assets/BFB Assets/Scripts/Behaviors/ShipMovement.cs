@@ -15,9 +15,12 @@ public class ShipMovement : MonoBehaviour
     public float fuelConsamptionToAccelerate = 5f;
 
     public GameObject target;
+	private GameObject levelManager;
 
     void Start()
     {
+		levelManager = GameObject.Find("LevelManager");
+
         if (target == null)
         {
             target = gameObject;
@@ -27,13 +30,6 @@ public class ShipMovement : MonoBehaviour
 
     void Update()
     {
-        // show menu if 'esc' key pressed.
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            target.GetComponent<GameMenu>().enabled = true;
-            SessionCache.Cache.LevelInspector.currentState = LevelInspector.GameState.Pause;
-        }
-
         float hInput = Input.GetAxis("Horizontal");
         float vInput = Input.GetAxis("Vertical");
 		
@@ -77,7 +73,12 @@ public class ShipMovement : MonoBehaviour
 			SessionCache.Cache.LevelInspector.NextLevel();
 		}
     }
-
+	
+	void OnDestroy () {
+		if(levelManager != null)
+			levelManager.SendMessage("OnPlayerDestroyed");
+	}
+	
     public void SetFlamesEnabled(bool enabled)
     {
         //IList<GameObject> flameParticleSystems = new List<GameObject>();

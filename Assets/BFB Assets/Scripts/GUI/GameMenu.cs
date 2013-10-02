@@ -7,7 +7,6 @@ public class GameMenu : MonoBehaviour {
 		clearDistances();
 	}
 	
-	
 	void OnGUI () {
 		clearDistances();
 		Time.timeScale = 0;
@@ -33,18 +32,13 @@ public class GameMenu : MonoBehaviour {
 	// TODO: Move all the string constants somewhere.
 
 	int currentTop;
-	int buttomHeight;
-	int elementDistance;
-	int left;
-	int width;
+	int buttomHeight = 30;
+	int elementDistance = 20;
+	int left = Screen.width / 2 - 100;
+	int width = 200;
 	
 	void clearDistances() {
-		// TODO: the next should depend on Screen.width & Screen.height, but for testing I hardcoded some values.
 		currentTop = 20;
-		buttomHeight = 30;
-		elementDistance = 20;
-		left = Screen.width / 2 - 100;
-		width = 200;
 	}
 	
 	void createPauseMenu() {
