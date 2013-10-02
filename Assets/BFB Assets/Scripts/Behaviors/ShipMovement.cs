@@ -13,6 +13,7 @@ public class ShipMovement : MonoBehaviour
     public float rotateSpeed = 100f;
     public float fuelConsamptionToRotate = 5f;
     public float fuelConsamptionToAccelerate = 5f;
+	public float fuel = 100f;
 
     public GameObject target;
 	private GameObject levelManager;
@@ -37,8 +38,8 @@ public class ShipMovement : MonoBehaviour
 		float dFluel = Math.Abs(hInput) * Time.deltaTime * fuelConsamptionToRotate;
 		dFluel += Math.Abs(vInput) * Time.deltaTime * fuelConsamptionToAccelerate;
 		
-		if (dFluel <= SessionCache.Cache.CurrentPlayer.Ship.Fuel) {
-			SessionCache.Cache.CurrentPlayer.Ship.Fuel -= dFluel;
+		if (dFluel <= fuel) {
+			fuel -= dFluel;
 	        target.transform.Rotate(0, hInput * rotateSpeed * Time.deltaTime, 0);
     	    //target.rigidbody.AddTorque (0, hInput * rotateForce, 0);
         	Vector3 forwardForce = target.transform.forward * moveForce * vInput;
@@ -54,16 +55,7 @@ public class ShipMovement : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        /*Debug.Log("collided with " + other.tag);
-		if (other.CompareTag(Tags.planet)) {
-            GameMenu menu = target.GetComponent<GameMenu>();
-            if (menu != null) 
-            {
-                menu.enabled = true;
-            }
-        	SessionCache.Cache.LevelInspector.currentState = LevelInspector.GameState.Destroyed;
-        }
-        else*/ if (other.CompareTag(Tags.winPoint))
+		if (other.CompareTag(Tags.winPoint))
         {
             GameMenu menu = target.GetComponent<GameMenu>();
             if (menu != null)

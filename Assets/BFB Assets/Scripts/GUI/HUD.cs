@@ -23,8 +23,8 @@ public class HUD : MonoBehaviour {
     {
 		
 		GUI.BeginGroup(new Rect(Screen.width - 320, Screen.height - 50, 320, 50));
-		GUI.Label(new Rect(0,0,150,50),string.Format("Fuel: {0}", SessionCache.Cache.CurrentPlayer.Ship.Fuel));
-		GUI.Label(new Rect(170,0,150,50),string.Format("Health: {0}", SessionCache.Cache.CurrentPlayer.Ship.Health));
+		GUI.Label(new Rect(0,0,150,50),string.Format("Fuel: {0}", gameObject.GetComponent<ShipMovement>().fuel));
+		GUI.Label(new Rect(170,0,150,50),string.Format("Health: {0}", gameObject.GetComponent<CollisionDamageDelt>().health));
         GUI.EndGroup();
     }
 }
