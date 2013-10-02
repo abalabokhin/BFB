@@ -251,10 +251,10 @@ namespace BFB.Cache
         #endregion
 		
 		#region Level Inspector
-        public LevelInspector LevelInspector
-        {
-            get { return g_sLevelInspector; }
-        }
+        //public LevelInspector LevelInspector
+        //{
+        //    get { return g_sLevelInspector; }
+        //}
 
         private static LevelInspector g_sLevelInspector = new LevelInspector();
         #endregion

@@ -16,11 +16,11 @@ public class ShipMovement : MonoBehaviour
 	public float fuel = 100f;
 
     public GameObject target;
-	private GameObject levelManager;
+	private LevelInspector levelInspector = null;
 
     void Start()
     {
-		levelManager = GameObject.Find("LevelManager");
+		levelInspector = GlobalManagerInstance.GetLevelInspector();
 
         if (target == null)
         {
@@ -57,19 +57,15 @@ public class ShipMovement : MonoBehaviour
     {
 		if (other.CompareTag(Tags.winPoint))
         {
+			Debug.Log("Winpoint reached");
             GameMenu menu = target.GetComponent<GameMenu>();
             if (menu != null)
             {
                 menu.enabled = true;
             }
-			SessionCache.Cache.LevelInspector.NextLevel();
+			levelInspector.NextLevel();
 		}
     }
-	
-	void OnDestroy () {
-		if(levelManager != null)
-			levelManager.SendMessage("OnPlayerDestroyed");
-	}
 	
     public void SetFlamesEnabled(bool enabled)
     {

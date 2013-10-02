@@ -457,6 +457,7 @@ MonoBehaviour:
   rotateSpeed: 100
   fuelConsamptionToRotate: 5
   fuelConsamptionToAccelerate: 5
+  fuel: 100
   target: {fileID: 0}
 --- !u!114 &11400002
 MonoBehaviour:
@@ -504,6 +505,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37a2ac7bd6cebc945827942e0d1cb0cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 100
 --- !u!114 &11400010
 MonoBehaviour:
   m_ObjectHideFlags: 1

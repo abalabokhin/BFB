@@ -6,11 +6,11 @@ public class MainMenuScript : MonoBehaviour
 {
     public GUISkin menuSkin;
 	private int gameLevelAmount;
-	private int levelAmount = 0;
-	
-	void Start ()
-	{
-		levelAmount = SessionCache.Cache.LevelInspector.levelAmount;
+	private LevelInspector levelInspector = null;
+
+    void Start()
+    {
+		levelInspector = GlobalManagerInstance.GetLevelInspector();
 	}
 	
     private void Levels()
@@ -19,12 +19,12 @@ public class MainMenuScript : MonoBehaviour
 		int elementDistance = 10;
 		int currentTop = 0;
 		
-        GUI.BeginGroup(new Rect(Screen.width - 125, Screen.height - 150, 80, levelAmount * (elementDistance + height)));
+        GUI.BeginGroup(new Rect(Screen.width - 125, Screen.height - 150, 80, levelInspector.levelAmount * (elementDistance + height)));
 		
-		for (int i = 0; i < levelAmount; ++i) {
+		for (int i = 0; i < levelInspector.levelAmount; ++i) {
 			if (GUI.Button(new Rect(0, currentTop, 80, height), string.Format("Level {0}", i + 1)))
         	{
-				SessionCache.Cache.LevelInspector.LoadGameLevel(i);
+				levelInspector.LoadGameLevel(i);
         	}
 			currentTop += (height + elementDistance);
 		}

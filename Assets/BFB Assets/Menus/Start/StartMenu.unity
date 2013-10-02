@@ -266,5 +266,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuSkin: {fileID: 11400000, guid: 4f233406f30d89e45851d2f76252e49e, type: 2}
-  firstLaunchLevel: 1
-  mainMenuLevel: 2

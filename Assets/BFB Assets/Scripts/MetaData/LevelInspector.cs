@@ -3,7 +3,7 @@ using System.Collections;
 using System.Linq;
 using BFB.Cache;
 
-public class LevelInspector {
+public class LevelInspector : MonoBehaviour {
 	public enum GameState {
 		InGame,
 		Pause,
@@ -26,6 +26,25 @@ public class LevelInspector {
 	
 	private string[] levelBriefings = new string[] {"A long time ago \n in a galaxy far, far away....", "Your journey \n continues"};
 	
+	void Update () {
+	    // show menu if 'esc' key pressed.
+        if (Input.GetKeyDown(KeyCode.Escape) && currentState == GameState.InGame)
+        {
+            gameObject.GetComponent<GameMenu>().enabled = true;
+            currentState = GameState.Pause;
+        }
+	}
+	
+	public void OnPlayerDestroyed() {
+		GameMenu menu = gameObject.GetComponent<GameMenu>();
+        if (menu != null)
+        {
+        	menu.enabled = true;
+        }
+		Debug.Log ("Player Destroyed");
+        currentState = GameState.Destroyed;
+	}
+	
 	public int levelAmount
 	{ 
 		get { return gameLevels.Length; }
@@ -47,6 +66,7 @@ public class LevelInspector {
 	}
 	
 	public void NextLevel() {
+		gameObject.GetComponent<GameMenu>().enabled = true;
 		if (currentLevelIndex >= gameLevels.Length - 1) {
 			currentState = GameState.Finished;
 			return;
@@ -56,10 +76,8 @@ public class LevelInspector {
 	}
 	
 	public void StartCurrentLevel() {
-		SessionCache.Cache.CurrentPlayer.Ship.ResetParameters();
-		Time.timeScale = 1;
-		Debug.Log("Start level: " + currentLevelIndex);
 		currentState = GameState.InGame;
+		Debug.Log("Start level: " + currentLevelIndex);
 		Application.LoadLevel(gameLevels[currentLevelIndex]);
 	}
 	
@@ -70,11 +88,13 @@ public class LevelInspector {
 	}
 	
 	public void LoadMainMenu() {
+		gameObject.GetComponent<GameMenu>().enabled = false;
 		Application.LoadLevel(mainLevel);
 	}
 	
 	public void LoadFirstLaunchMenu ()
 	{
+		gameObject.GetComponent<GameMenu>().enabled = false;
 		Application.LoadLevel(firstLaunchLevel);
 	}
 }

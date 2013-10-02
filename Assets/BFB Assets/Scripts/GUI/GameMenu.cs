@@ -3,14 +3,18 @@ using System.Collections;
 using BFB.Cache;
 
 public class GameMenu : MonoBehaviour {
-	void Start() {
+	private LevelInspector levelInspector = null;
+
+    void Start()
+    {
+		levelInspector = GlobalManagerInstance.GetLevelInspector();
 		clearDistances();
 	}
 	
 	void OnGUI () {
 		clearDistances();
 		Time.timeScale = 0;
-		switch (SessionCache.Cache.LevelInspector.currentState) {
+		switch (levelInspector.currentState) {
 			case LevelInspector.GameState.InGame:
 				Time.timeScale = 1;
 				enabled = false;
@@ -70,27 +74,27 @@ public class GameMenu : MonoBehaviour {
 	void createButtonStartBriefing(string caption) {
 		if (createButton(caption)) {
 			Debug.Log("Start level from the begining");
-			SessionCache.Cache.LevelInspector.StartCurrentBriefing();
+			levelInspector.StartCurrentBriefing();
 		}
 	}
 
 	void createButtonRestartLevel(string caption) {
 		if (createButton(caption)) {
 			Debug.Log("Restart Level");
-			SessionCache.Cache.LevelInspector.StartCurrentLevel();
+			levelInspector.StartCurrentLevel();
 		}
 	}
 	
 	void createButtonContinueLevel(string caption) {
 		if (createButton(caption)) {
-			SessionCache.Cache.LevelInspector.currentState = LevelInspector.GameState.InGame;
+			levelInspector.currentState = LevelInspector.GameState.InGame;
 		}
 	}
 	
 	void createButtonExit(string caption) {
 		if (createButton(caption)) {
 			Debug.Log("Quit");
-			SessionCache.Cache.LevelInspector.LoadMainMenu();
+			levelInspector.LoadMainMenu();
 		};
 	}
 				

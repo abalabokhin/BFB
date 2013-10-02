@@ -4,6 +4,14 @@ using BFB.Cache;
 
 public class StartScript : MonoBehaviour
 {
+	private LevelInspector levelInspector = null;
+
+    void Start()
+    {
+		levelInspector = levelInspector = GlobalManagerInstance.GetLevelInspector();
+		MetaCache.Cache.Init();
+	}
+	
     public GUISkin menuSkin;
     private void StartButton()
     {
@@ -12,12 +20,12 @@ public class StartScript : MonoBehaviour
             //if no profile, force player to provide name
             if (SessionCache.Cache.PlayerProfileExists() == false)
             {
-				SessionCache.Cache.LevelInspector.LoadFirstLaunchMenu();
+				levelInspector.LoadFirstLaunchMenu();
             }
             else //otherwise load next menu
             {
                 SessionCache.Cache.LoadCurrentPlayer();
-				SessionCache.Cache.LevelInspector.LoadMainMenu();
+				levelInspector.LoadMainMenu();
             }
         }
     }
@@ -26,10 +34,5 @@ public class StartScript : MonoBehaviour
     {
         GUI.skin = menuSkin;
         this.StartButton();
-    }
-
-    private void Start()
-    {
-        MetaCache.Cache.Init();
     }
 }

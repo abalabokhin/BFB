@@ -3670,6 +3670,8 @@ MonoBehaviour:
   rotateSpeed: 200
   fuelConsamptionToRotate: 10
   fuelConsamptionToAccelerate: 10
+  fuel: 100
+  target: {fileID: 0}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1

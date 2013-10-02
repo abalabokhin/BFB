@@ -8,7 +8,13 @@ public class FirstLaunchScript : MonoBehaviour
 {
     public GUISkin menuSkin;
     private string profileName = null;
+	private LevelInspector levelInspector = null;
 
+    void Start()
+    {
+		levelInspector = levelInspector = GlobalManagerInstance.GetLevelInspector();
+	}
+	
     private void EnterName()
     {
         GUI.BeginGroup(new Rect(Screen.width / 2 - 100, Screen.height / 2 - 25, 400, 25));
@@ -19,7 +25,7 @@ public class FirstLaunchScript : MonoBehaviour
             {
                 SessionCache.Cache.CurrentPlayer = new Player() { Id = Guid.NewGuid(), Name = profileName };
                 SessionCache.Cache.SaveCurrentPlayer();
-				SessionCache.Cache.LevelInspector.LoadMainMenu();
+				levelInspector.LoadMainMenu();
             }
         }
         GUI.EndGroup();
