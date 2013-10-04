@@ -6,12 +6,10 @@ using System;
 
 public class RegisterPlanet : MonoBehaviour
 {
-    public string TypeId;
-
     // Use this for initialization
     void Start()
     {
-        SessionCache.Cache.Planets.Add(new Planet(new Guid(TypeId), gameObject));
+        SessionCache.Cache.Planets.Add(new Planet(gameObject));
     }
 
     // Update is called once per frame

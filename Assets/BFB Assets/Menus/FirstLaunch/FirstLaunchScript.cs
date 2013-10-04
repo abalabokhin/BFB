@@ -12,7 +12,7 @@ public class FirstLaunchScript : MonoBehaviour
 
     void Start()
     {
-		levelInspector = levelInspector = GlobalManagerInstance.GetLevelInspector();
+		levelInspector = GlobalManagerInstance.GetLevelInspector();
 	}
 	
     private void EnterName()
@@ -22,9 +22,9 @@ public class FirstLaunchScript : MonoBehaviour
         if (GUI.Button(new Rect(110, 0, 90, 25), "Enter"))
         {
             if (!string.IsNullOrEmpty(profileName))
-            {
-                SessionCache.Cache.CurrentPlayer = new Player() { Id = Guid.NewGuid(), Name = profileName };
-                SessionCache.Cache.SaveCurrentPlayer();
+			{
+				SessionCache.Cache.CurrentPlayer.Name = profileName;
+				SessionCache.Cache.CurrentPlayer.Save ();
 				levelInspector.LoadMainMenu();
             }
         }

@@ -9,17 +9,16 @@ public class AppendPlayerName : MonoBehaviour
 
     private void Start()
     {
-        if (SessionCache.Cache.CurrentPlayer == null && SessionCache.Cache.PlayerProfileExists())
+        if (!string.IsNullOrEmpty(SessionCache.Cache.CurrentPlayer.Name))
         {
-            SessionCache.Cache.LoadCurrentPlayer();
-        }
-        if (target != null && SessionCache.Cache.CurrentPlayer != null)
-        {
-            if (target.text == null)
-            {
-                target.text = string.Empty;
-            }
-            target.text += SessionCache.Cache.CurrentPlayer.Name + appendText;
-        }
+	        if (target != null)
+	        {
+	            if (target.text == null)
+	            {
+	                target.text = string.Empty;
+	            }
+	            target.text += SessionCache.Cache.CurrentPlayer.Name + appendText;
+	        }
+		}
     }
 }

@@ -8,62 +8,7 @@ using BFB.Cache;
 using System.Xml.Serialization;
 
 namespace BFB.Models
-{
-	public class Player
-    {
-        #region Constructors
-        public Player() 
-		{ 
-			Id = Guid.NewGuid();
-		}
-		
-        public Player(string sName) 
-			: base()
-		{ 
-			Name = sName;
-		}
-        #endregion
-
-        #region Properties
-        public Guid Id 
-		{ 
-			get { return m_gId; }
-			set { m_gId = value; }
-		}
-		
-		public string Name
-		{
-			get { return m_sName; }
-			set { m_sName = value; }
-		}
-		
-		public Guid ShipId 
-		{ 
-			get { return m_gShipId; }
-			set { m_gShipId = value; }
-		}
-		
-		public Spaceship Ship 
-		{ 
-			get
-            {
-                if (m_oSpaceship == null || m_oSpaceship.Id != ShipId)
-                {
-                    m_oSpaceship = SessionCache.Cache.Spaceships.FirstOrDefault(oItem => oItem.Id == ShipId);
-                }
-                return m_oSpaceship;
-            }
-		}
-		#endregion
-		
-		#region Fields
-		private Guid m_gId;
-		private string m_sName;
-		private Guid m_gShipId;
-        private Spaceship m_oSpaceship;
-		#endregion
-	}
-	
+{	
 	public class SpaceshipType
 	{
 		#region Properties
@@ -284,10 +229,9 @@ namespace BFB.Models
         #region Constructors
         public Planet() { }
 
-        public Planet(Guid gTypeId, GameObject oGameObject)
+        public Planet(GameObject oGameObject)
         {
             Id = new Guid();
-            TypeId = gTypeId;
             GameObject = oGameObject;
         }
         #endregion
@@ -298,15 +242,6 @@ namespace BFB.Models
 			get { return m_gId; }
 			set { m_gId = value; }
 		}
-				
-		public Guid TypeId 
-		{ 
-			get { return m_gTypeId; }
-			set { m_gTypeId = value; }
-		}
-
-        [XmlIgnore]
-        public PlanetType Type { get { return MetaCache.Cache.GetPlanetType(TypeId); } }
 
         [XmlIgnore]
         public GameObject GameObject
@@ -318,7 +253,6 @@ namespace BFB.Models
 		
 		#region Fields
 		private Guid m_gId;
-        private Guid m_gTypeId;
         private GameObject m_oGameObject;
 		#endregion
 	}

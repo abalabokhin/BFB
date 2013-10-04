@@ -8,7 +8,7 @@ public class StartScript : MonoBehaviour
 
     void Start()
     {
-		levelInspector = levelInspector = GlobalManagerInstance.GetLevelInspector();
+		levelInspector = GlobalManagerInstance.GetLevelInspector();
 		MetaCache.Cache.Init();
 	}
 	
@@ -18,13 +18,12 @@ public class StartScript : MonoBehaviour
         if (GUI.Button(new Rect(Screen.width / 2 - 60, Screen.height - 150, 120, 50), "Start"))
         {
             //if no profile, force player to provide name
-            if (SessionCache.Cache.PlayerProfileExists() == false)
+            if (string.IsNullOrEmpty(SessionCache.Cache.CurrentPlayer.Name))
             {
 				levelInspector.LoadFirstLaunchMenu();
             }
             else //otherwise load next menu
             {
-                SessionCache.Cache.LoadCurrentPlayer();
 				levelInspector.LoadMainMenu();
             }
         }

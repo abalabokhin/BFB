@@ -190,37 +190,22 @@ namespace BFB.Cache
         #endregion
 
         #region Player		
-        public bool PlayerProfileExists()
+        private void LoadCurrentPlayer()
         {
-            string sFileName = Path.Combine(Application.dataPath, PlayerFile);
-            return File.Exists(sFileName);
+            g_oCurrentPlayer = new Player();
+			CurrentPlayer.Load ();
         }
-
-        public void LoadCurrentPlayer(bool bCreateOnFail = false)
-        {
-            CurrentPlayer = SerializationHelper.LoadXMLDataFromFile<Player>(PlayerFile, null);
-			if (CurrentPlayer == null && bCreateOnFail) {
-				CurrentPlayer = new Player("Player1");
-				SaveCurrentPlayer();
-			}
-        }
-
-        public void SaveCurrentPlayer()
-        {
-            SerializationHelper.SaveXMLDataToFile<Player>(CurrentPlayer, PlayerFile);
-        }
-		
-		public void AssignPlayerShip(Guid gTypeId, GameObject oGameObject) {
-			Player player = SessionCache.Cache.CurrentPlayer;
-			Spaceship oSpaceship = new Spaceship(gTypeId, oGameObject);
-			SessionCache.Cache.Spaceships.Add (oSpaceship);
-			player.ShipId = oSpaceship.Id;
-		}
 
         public Player CurrentPlayer
         {
-            get { return g_oCurrentPlayer; }
-            set { g_oCurrentPlayer = value; }
+            get 
+			{ 
+				if (g_oCurrentPlayer == null)
+				{
+					LoadCurrentPlayer();
+				}
+				return g_oCurrentPlayer; 
+			}
         }
 
         private static Player g_oCurrentPlayer;
@@ -241,14 +226,6 @@ namespace BFB.Cache
 
         private static IList<Planet> g_oPlanets = new List<Planet>();
         #endregion
-
-        #region Serialization Helpers
-        public string ProfilePath { get { return g_sProfilePath; } }
-        private static string g_sProfilePath = "gamedata/profile";
-
-        public string PlayerFile { get { return Path.Combine(ProfilePath, g_sPlayerFile); } }
-        private static string g_sPlayerFile = "player.xml";
-        #endregion
 		
 		#region Level Inspector
         //public LevelInspector LevelInspector
@@ -256,7 +233,7 @@ namespace BFB.Cache
         //    get { return g_sLevelInspector; }
         //}
 
-        private static LevelInspector g_sLevelInspector = new LevelInspector();
+        //private static LevelInspector g_sLevelInspector = new LevelInspector();
         #endregion
     }
 }

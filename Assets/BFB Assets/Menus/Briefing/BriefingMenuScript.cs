@@ -8,7 +8,7 @@ public class BriefingMenuScript : MonoBehaviour {
 
     void Start()
     {
-		levelInspector = levelInspector = GlobalManagerInstance.GetLevelInspector();
+		levelInspector = GlobalManagerInstance.GetLevelInspector();
 	}
 	
 	private void OnGUI()
