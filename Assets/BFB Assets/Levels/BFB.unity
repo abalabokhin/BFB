@@ -270,7 +270,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 1e659462e9ded8f4e8b395810d63b0f7, type: 2}
+  - {fileID: 2100000, guid: 31ead3322299bfb499c5e78a44190e68, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -443,7 +443,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a2711be3624e3a4bb42e57c0ea16cb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TypeId: 7ff7a6b2-cf88-4d23-b85b-f72a9979a9e7
 --- !u!114 &1290328255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -623,6 +622,10 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2300004, guid: 1e511a48cf121d84590e8bac513ff38f, type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 31ead3322299bfb499c5e78a44190e68, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1e511a48cf121d84590e8bac513ff38f, type: 2}
   m_RootGameObject: {fileID: 1290328248}
