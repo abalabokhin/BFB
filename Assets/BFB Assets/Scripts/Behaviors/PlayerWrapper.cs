@@ -35,26 +35,11 @@ public class PlayerWrapper : MonoBehaviour
         Debug.Log("collided with " + other.tag);
         if (other.CompareTag(Tags.winPoint))
         {
-            Debug.Log("Winpoint reached");
-            GameMenu menu = gameObject.GetComponent<GameMenu>();
-            if (menu != null)
-            {
-                menu.enabled = true;
-            }
-            levelInspector.NextLevel();
+            WinLevel();
         }
         else
         {
-            CollisionDamageDealer damageDealer = other.gameObject.GetComponent<CollisionDamageDealer>();
-            if (damageDealer != null)
-            {
-                TakeDamage(damageDealer.damageToDeal);
-                if (Health <= 0)
-                {
-                    DestroyPlayer(other.gameObject);
-                    SendMessage("DestroyObject", other.gameObject, SendMessageOptions.DontRequireReceiver);
-                }
-            }
+            TryDealDamage(other);
         }
     }
 
@@ -100,6 +85,31 @@ public class PlayerWrapper : MonoBehaviour
             float planetMass = planet.rigidbody.mass;
             float forceModule = Constants.gravityCoefficient * planetMass / (distance * distance);
             gameObject.rigidbody.AddForce(direction * forceModule, ForceMode.Force);
+        }
+    }
+
+    private void WinLevel()
+    {
+        Debug.Log("Winpoint reached");
+        GameMenu menu = gameObject.GetComponent<GameMenu>();
+        if (menu != null)
+        {
+            menu.enabled = true;
+        }
+        levelInspector.NextLevel();
+    }
+
+    private void TryDealDamage(Collider other)
+    {
+        CollisionDamageDealer damageDealer = other.gameObject.GetComponent<CollisionDamageDealer>();
+        if (damageDealer != null)
+        {
+            TakeDamage(damageDealer.damageToDeal);
+            if (Health <= 0)
+            {
+                DestroyPlayer(other.gameObject);
+                SendMessage("DestroyObject", other.gameObject, SendMessageOptions.DontRequireReceiver);
+            }
         }
     }
 
