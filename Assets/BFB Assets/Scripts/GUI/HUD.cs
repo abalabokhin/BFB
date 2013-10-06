@@ -26,7 +26,7 @@ public class HUD : MonoBehaviour
     {
         GUI.BeginGroup(new Rect(Screen.width - 320, Screen.height - 50, 320, 50));
         GUI.Label(new Rect(0, 0, 150, 50), string.Format("Fuel: {0}", gameObject.GetComponent<PlayerWrapper>().Fuel));
-        GUI.Label(new Rect(170, 0, 150, 50), string.Format("Health: {0}", gameObject.GetComponent<PlayerWrapper>().Health));
+        GUI.Label(new Rect(170, 0, 150, 50), string.Format("Health: {0}", gameObject.GetComponent<CollisionDamageController>().health));
         GUI.EndGroup();
     }
 }

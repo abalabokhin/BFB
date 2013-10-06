@@ -64,15 +64,14 @@ GameObject:
   - 4: {fileID: 400006}
   - 54: {fileID: 5400000}
   - 64: {fileID: 6400006}
-  - 114: {fileID: 11400000}
-  - 114: {fileID: 11400004}
   - 114: {fileID: 11400006}
-  - 114: {fileID: 11400010}
-  - 114: {fileID: 11400008}
+  - 114: {fileID: 11400004}
+  - 114: {fileID: 11400000}
   - 114: {fileID: 11400002}
+  - 114: {fileID: 11400008}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Planet
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -287,7 +286,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 1e659462e9ded8f4e8b395810d63b0f7, type: 2}
+  - {fileID: 2100000, guid: 31ead3322299bfb499c5e78a44190e68, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -450,15 +449,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 100006}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9356cd187cfd48b4096756c0f2e1a543, type: 3}
+  m_Script: {fileID: 11500000, guid: 622cab30389f69846aac01669d52659b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveForce: 1000
-  rotateSpeed: 100
-  fuelConsamptionToRotate: 5
-  fuelConsamptionToAccelerate: 5
-  fuel: 100
-  target: {fileID: 0}
+  health: 50
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -467,7 +461,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 100006}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82aef422cdb4e4c4b88211e5add080bf, type: 3}
+  m_Script: {fileID: 11500000, guid: 58d4e7789285ded40a2ee912fa7e0789, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &11400004
@@ -478,10 +472,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 100006}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a2711be3624e3a4bb42e57c0ea16cb4, type: 3}
+  m_Script: {fileID: 11500000, guid: b1c876f6c01f6b84ebff61f3163e8eda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TypeId: 7ff7a6b2-cf88-4d23-b85b-f72a9979a9e7
+  spaceshipGameObject: {fileID: 100010}
 --- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -493,7 +487,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bf4575ee942b3d4cb87fbcc2127eded, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShipName: {fileID: 0}
+  shipName: {fileID: 0}
 --- !u!114 &11400008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -502,19 +496,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 100006}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37a2ac7bd6cebc945827942e0d1cb0cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 100
---- !u!114 &11400010
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100006}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88072b4d5a9eae6438804ba2765ed20e, type: 3}
+  m_Script: {fileID: 11500000, guid: 08f244e1e480b5e4daa3a6705715e416, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!124 &12400000

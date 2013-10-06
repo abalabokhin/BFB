@@ -21,13 +21,16 @@ public class PlayerWrapper : MonoBehaviour
     {
         player = SessionCache.Cache.CurrentPlayer;
         spaceship = new Spaceship(player.ShipTypeId, spaceshipGameObject);
-        levelInspector = GlobalManagerInstance.GetLevelInspector();
+		/// send message here to set up amount of health in other script. If we want to controll this parameter from this class, 
+		/// we can add another message from damageController class.
+		SendMessage("setHealth", spaceship.Health, SendMessageOptions.DontRequireReceiver);
+
+		levelInspector = GlobalManagerInstance.GetLevelInspector();
     }
 
     private void Update()
     {
         HandleShipMovement();
-        HandlePlanetAttraction();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -36,10 +39,6 @@ public class PlayerWrapper : MonoBehaviour
         if (other.CompareTag(Tags.winPoint))
         {
             WinLevel();
-        }
-        else
-        {
-            TryDealDamage(other);
         }
     }
 
@@ -73,21 +72,6 @@ public class PlayerWrapper : MonoBehaviour
         SetFlamesEnabled(bFlamesEnabled);
     }
 
-    private void HandlePlanetAttraction()
-    {
-        /// gravity force from all the planets.
-        Vector3 position = transform.position;
-        foreach (GameObject planet in GameObject.FindGameObjectsWithTag(Tags.planet))
-        {
-            Vector3 direction = planet.transform.position - position;
-            float distance = direction.magnitude;
-            direction.Normalize();
-            float planetMass = planet.rigidbody.mass;
-            float forceModule = Constants.gravityCoefficient * planetMass / (distance * distance);
-            gameObject.rigidbody.AddForce(direction * forceModule, ForceMode.Force);
-        }
-    }
-
     private void WinLevel()
     {
         Debug.Log("Winpoint reached");
@@ -97,20 +81,6 @@ public class PlayerWrapper : MonoBehaviour
             menu.enabled = true;
         }
         levelInspector.NextLevel();
-    }
-
-    private void TryDealDamage(Collider other)
-    {
-        CollisionDamageDealer damageDealer = other.gameObject.GetComponent<CollisionDamageDealer>();
-        if (damageDealer != null)
-        {
-            TakeDamage(damageDealer.damageToDeal);
-            if (Health <= 0)
-            {
-                DestroyPlayer(other.gameObject);
-                SendMessage("DestroyObject", other.gameObject, SendMessageOptions.DontRequireReceiver);
-            }
-        }
     }
 
     public void SetFlamesEnabled(bool bEnabled)
@@ -124,15 +94,6 @@ public class PlayerWrapper : MonoBehaviour
         //}
     }
 
-    public void TakeDamage(float fAmount)
-    {
-        spaceship.Health -= fAmount;
-        if (spaceship.Health <= 0)
-        {
-            spaceship.Health = 0;
-        }
-    }
-
     public void TakeFuel(float fAmount)
     {
         spaceship.Fuel -= fAmount;
@@ -140,12 +101,6 @@ public class PlayerWrapper : MonoBehaviour
         {
             spaceship.Fuel = 0;
         }
-    }
-
-    public void DestroyPlayer(GameObject collidedObject)
-    {
-        Destroy(gameObject);
-        GlobalManagerInstance.GetLevelInspector().OnPlayerDestroyed();
     }
 
     #endregion
@@ -158,7 +113,7 @@ public class PlayerWrapper : MonoBehaviour
 
     public float Fuel { get { return spaceship.Fuel; } }
 
-    public float Health { get { return spaceship.Health; } }
+    //public float Health { get { return spaceship.Health; } }
 
     public float FuelConsumptionToAccelerate { get { return spaceship.Type.FuelConsumptionToAccelerate; } }
 
