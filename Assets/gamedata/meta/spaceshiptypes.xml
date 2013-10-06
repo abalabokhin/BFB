@@ -4,8 +4,8 @@
     <SpaceshipType>
       <Id>7ff7a6b2-cf88-4d23-b85b-f72a9979a9e7</Id>
       <Name>Fighter</Name>
-      <MaxHealth>100</MaxHealth>
-      <MaxFuel>100</MaxFuel>
+      <MaxHealth>1000</MaxHealth>
+      <MaxFuel>200</MaxFuel>
       <FuelConsumptionToAccelerate>5</FuelConsumptionToAccelerate>
       <FuelConsumptionToRotate>5</FuelConsumptionToRotate>
       <AccelerationForce>1000</AccelerationForce>

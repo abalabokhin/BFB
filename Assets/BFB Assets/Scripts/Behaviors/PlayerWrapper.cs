@@ -31,6 +31,23 @@ public class PlayerWrapper : MonoBehaviour
     private void Update()
     {
         HandleShipMovement();
+        HandleShoot();
+    }
+
+    private void HandleShoot()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hitInfo;
+            if (Physics.Raycast(ray, out hitInfo))
+            {
+                if (hitInfo.collider.tag == Tags.planet)
+                {
+                    GameObject.Destroy(hitInfo.collider.gameObject);
+                }
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider other)
