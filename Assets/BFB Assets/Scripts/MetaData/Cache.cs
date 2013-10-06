@@ -34,51 +34,15 @@ namespace BFB.Cache
 
         private void Initialize()
         {
-            LoadPlanetTypesCache();
             LoadSpaceshipTypesCache();
             LoadWeaponTypesCache();
-            Debug.Log(string.Format("[Loaded]Planet Types: {0}, Spaceship Types: {1}, Weapon Types: {2}.", WeaponTypes.Count(), SpaceshipTypes.Count(), WeaponTypes.Count()));
+            Debug.Log(string.Format("[Loaded]Spaceship Types: {0}, Weapon Types: {1}.", SpaceshipTypes.Count(), WeaponTypes.Count()));
         }
 
         public void Init()
         {
             //dummy method to trigger private initialize
         }
-        #endregion
-
-        #region Planet Types
-        private void LoadPlanetTypesCache()
-        {
-            //clear old lists, just in case
-            g_oPlanetTypes.Clear();
-            g_oPlanetTypesHashed.Clear();
-
-            //get fresh types from xml file
-            XMLCollection<PlanetType> oTypes = SerializationHelper.LoadXMLDataFromFile<XMLCollection<PlanetType>>(PlanetTypesFile, null);
-            if (oTypes != null && oTypes.Collection != null)
-            {
-                //add types to list and dictionary
-                foreach (PlanetType oType in oTypes.Collection)
-                {
-                    g_oPlanetTypes.Add(oType);
-                    g_oPlanetTypesHashed.Add(oType.Id, oType);
-                }
-            }
-        }
-
-        public PlanetType GetPlanetType(Guid gId)
-        {
-            if (g_oPlanetTypesHashed.ContainsKey(gId))
-            {
-                return g_oPlanetTypesHashed[gId];
-            } // else
-            return null;
-        }
-
-        public IEnumerable<PlanetType> Planets { get { return g_oPlanetTypes; } }
-
-        private static IList<PlanetType> g_oPlanetTypes = new List<PlanetType>();
-        private static IDictionary<Guid, PlanetType> g_oPlanetTypesHashed = new Dictionary<Guid, PlanetType>();
         #endregion
 
         #region Spaceship Types
@@ -155,9 +119,6 @@ namespace BFB.Cache
         public string MetaDataPath { get { return g_sMetaDataPath; } }
         private static string g_sMetaDataPath = "gamedata/meta";
 
-        public string PlanetTypesFile { get { return Path.Combine(MetaDataPath, g_sPlanetTypesFile); } }
-        private static string g_sPlanetTypesFile = "planettypes.xml";
-
         public string SpaceshipTypesFile { get { return Path.Combine(MetaDataPath, g_sSpaceshipTypesFile); } }
         private static string g_sSpaceshipTypesFile = "spaceshiptypes.xml";
 
@@ -189,51 +150,26 @@ namespace BFB.Cache
         private static SessionCache g_oCache;
         #endregion
 
-        #region Player		
+        #region Player
         private void LoadCurrentPlayer()
         {
             g_oCurrentPlayer = new Player();
-			CurrentPlayer.Load ();
+            CurrentPlayer.Load();
         }
 
         public Player CurrentPlayer
         {
-            get 
-			{ 
-				if (g_oCurrentPlayer == null)
-				{
-					LoadCurrentPlayer();
-				}
-				return g_oCurrentPlayer; 
-			}
+            get
+            {
+                if (g_oCurrentPlayer == null)
+                {
+                    LoadCurrentPlayer();
+                }
+                return g_oCurrentPlayer;
+            }
         }
 
         private static Player g_oCurrentPlayer;
-        #endregion
-
-        #region Current Level
-        public IList<Spaceship> Spaceships
-        {
-            get { return g_oSpaceships; }
-        }
-
-        private static IList<Spaceship> g_oSpaceships = new List<Spaceship>();
-
-        public IList<Planet> Planets
-        {
-            get { return g_oPlanets; }
-        }
-
-        private static IList<Planet> g_oPlanets = new List<Planet>();
-        #endregion
-		
-		#region Level Inspector
-        //public LevelInspector LevelInspector
-        //{
-        //    get { return g_sLevelInspector; }
-        //}
-
-        //private static LevelInspector g_sLevelInspector = new LevelInspector();
         #endregion
     }
 }

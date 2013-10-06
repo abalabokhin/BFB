@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 namespace BFB.Models {
 	
@@ -47,6 +48,8 @@ namespace BFB.Models {
 			get { return m_fCurrency; }
 			set { m_fCurrency = value; }
 		}
+
+        public Guid ShipTypeId { get { return m_gShipTypeId; } }
 		
 		#endregion
 		
@@ -54,6 +57,7 @@ namespace BFB.Models {
 		
 		private string m_sName;
 		private float m_fCurrency;
+        private Guid m_gShipTypeId = new Guid("7ff7a6b2-cf88-4d23-b85b-f72a9979a9e7");
 		
 		#endregion
 	}
