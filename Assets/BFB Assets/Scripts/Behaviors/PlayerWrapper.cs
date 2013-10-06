@@ -11,6 +11,7 @@ public class PlayerWrapper : MonoBehaviour
     public GameObject spaceshipGameObject;
     private Player player;
     private Spaceship spaceship;
+    private LevelInspector levelInspector;
 
     #endregion
 
@@ -20,6 +21,7 @@ public class PlayerWrapper : MonoBehaviour
     {
         player = SessionCache.Cache.CurrentPlayer;
         spaceship = new Spaceship(player.ShipTypeId, spaceshipGameObject);
+        levelInspector = GlobalManagerInstance.GetLevelInspector();
     }
 
     private void Update()
@@ -31,14 +33,27 @@ public class PlayerWrapper : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("collided with " + other.tag);
-        CollisionDamageDealer damageDealer = other.gameObject.GetComponent<CollisionDamageDealer>();
-        if (damageDealer != null)
+        if (other.CompareTag(Tags.winPoint))
         {
-            TakeDamage(damageDealer.damageToDeal);
-            if (Health <= 0)
+            Debug.Log("Winpoint reached");
+            GameMenu menu = gameObject.GetComponent<GameMenu>();
+            if (menu != null)
             {
-                DestroyPlayer(other.gameObject);
-                SendMessage("DestroyObject", other.gameObject, SendMessageOptions.DontRequireReceiver);
+                menu.enabled = true;
+            }
+            levelInspector.NextLevel();
+        }
+        else
+        {
+            CollisionDamageDealer damageDealer = other.gameObject.GetComponent<CollisionDamageDealer>();
+            if (damageDealer != null)
+            {
+                TakeDamage(damageDealer.damageToDeal);
+                if (Health <= 0)
+                {
+                    DestroyPlayer(other.gameObject);
+                    SendMessage("DestroyObject", other.gameObject, SendMessageOptions.DontRequireReceiver);
+                }
             }
         }
     }
@@ -57,17 +72,19 @@ public class PlayerWrapper : MonoBehaviour
         if (Fuel > 0)
         {
             TakeFuel(dFuel);
+            bFlamesEnabled = true;
+            //rotate
             gameObject.transform.Rotate(0, hInput * RotationSpeed * Time.deltaTime, 0);
+            //accelerate
             Vector3 forwardForce = gameObject.transform.forward * AccelerationForce * vInput;
             gameObject.rigidbody.AddForce(forwardForce, ForceMode.Force);
-            //flamesEnabled = forwardForce.magnitude > 0;
-            bFlamesEnabled = true;
         }
         else
         {
             Debug.Log("Not enough fuel for movement or/and rotation");
         }
 
+        //flamesEnabled = forwardForce.magnitude > 0;
         SetFlamesEnabled(bFlamesEnabled);
     }
 
@@ -88,7 +105,13 @@ public class PlayerWrapper : MonoBehaviour
 
     public void SetFlamesEnabled(bool bEnabled)
     {
-
+        //IList<GameObject> flameParticleSystems = new List<GameObject>();
+        //IList<GameObject> flames = GameObject.FindGameObjectsWithTag (Tags.flame);
+        //ParticleSystem particle = target.GetComponent (typeof(ParticleSystem)) as ParticleSystem;
+        //GameObject particlesystem = flames[0];
+        //if (particlesystem != null) {
+        //	Debug.Log ("Here");
+        //}
     }
 
     public void TakeDamage(float fAmount)

@@ -61,13 +61,13 @@ public class GameMenu : MonoBehaviour {
 
 	void createLevelCompletedMenu() {
 		// TODO: May be here we should change level? Return to the code when there is more than one level.
-		createWelcomeString("Congretulations!!!");
+        createWelcomeString("Congratulations!!!");
 		createButtonStartBriefing("Next Level");
 		createButtonExit("Exit");
 	}
 	
 	void createFinishedMenu() {
-		createWelcomeString("Congretulations!!! You won the game");
+		createWelcomeString("Congratulations!!! You won the game");
 		createButtonExit("Exit");
 	}
 	
