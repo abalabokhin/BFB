@@ -18,7 +18,7 @@ public class CollisionDamageController : MonoBehaviour {
 		health = newHealth;
 	}
 	
-	 private void OnTriggerEnter(Collider other)
+	private void OnTriggerEnter(Collider other)
     {
 		CollisionDamageDealer damageDealer = other.gameObject.GetComponent<CollisionDamageDealer>();
         if (damageDealer != null)
@@ -26,7 +26,6 @@ public class CollisionDamageController : MonoBehaviour {
             health -= damageDealer.damageToDeal;
             if (health <= 0)
             {
-                //DestroyPlayer(other.gameObject);
                 SendMessage("DestroyObject", other.gameObject, SendMessageOptions.DontRequireReceiver);
             }
         }
