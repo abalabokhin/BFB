@@ -12,10 +12,12 @@ public class PlayerWrapper : MonoBehaviour
     private Player player;
     private Spaceship spaceship;
     private LevelInspector levelInspector;
+    public GameObject boundary;
 
     #endregion
 
     #region Methods
+
 
     private void Start()
     {
@@ -56,6 +58,17 @@ public class PlayerWrapper : MonoBehaviour
         if (other.CompareTag(Tags.winPoint))
         {
             WinLevel();
+        }
+     }
+
+    void OnTriggerExit(Collider colliInfo)
+    {
+        if (colliInfo.CompareTag(Tags.boundary))
+        {
+            Debug.Log("Out of bounds");
+            transform.position = (boundary.transform.position);
+            rigidbody.velocity = Vector3.zero;
+
         }
     }
 
