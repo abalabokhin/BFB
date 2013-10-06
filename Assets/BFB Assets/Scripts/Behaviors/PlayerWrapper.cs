@@ -8,9 +8,9 @@ public class PlayerWrapper : MonoBehaviour
 {
     #region Fields
 
-    public Player player;
-    public Spaceship spaceship;
     public GameObject spaceshipGameObject;
+    private Player player;
+    private Spaceship spaceship;
 
     #endregion
 
@@ -18,14 +18,8 @@ public class PlayerWrapper : MonoBehaviour
 
     private void Start()
     {
-        if (player == null)
-        {
-            player = SessionCache.Cache.CurrentPlayer;
-        }
-        if (spaceship == null)
-        {
-            spaceship = new Spaceship(player.ShipTypeId, spaceshipGameObject);
-        }
+        player = SessionCache.Cache.CurrentPlayer;
+        spaceship = new Spaceship(player.ShipTypeId, spaceshipGameObject);
     }
 
     private void Update()
@@ -94,6 +88,7 @@ public class PlayerWrapper : MonoBehaviour
 
     public void SetFlamesEnabled(bool bEnabled)
     {
+
     }
 
     public void TakeDamage(float fAmount)
