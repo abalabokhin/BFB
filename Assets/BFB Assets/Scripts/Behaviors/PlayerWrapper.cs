@@ -61,7 +61,13 @@ public class PlayerWrapper : MonoBehaviour
 	{
 		float hInput = Input.GetAxis ("Horizontal");
 		float vInput = Input.GetAxis ("Vertical");
-
+		
+		
+		float lookSpeed = 1000;
+		transform.Rotate (transform.up, lookSpeed * Time.deltaTime * Input.GetAxis("Mouse X"), Space.World);
+		transform.Rotate (transform.right, -lookSpeed * Time.deltaTime * Input.GetAxis("Mouse Y"), Space.World);
+		//cameraObj.transform.Rotate(Vector3.right, -lookSpeed * Time.deltaTime * Input.GetAxis ("Mouse X"));
+		
 		bool bFlamesEnabled = false;
 
 		/// calculate fuel consumption.

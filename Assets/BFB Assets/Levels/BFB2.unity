@@ -259,7 +259,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 116
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!4 &442518971
 Transform:
@@ -405,6 +405,10 @@ Prefab:
     - target: {fileID: 400006, guid: 1e511a48cf121d84590e8bac513ff38f, type: 2}
       propertyPath: m_LocalRotation.w
       value: -4.37113883e-08
+      objectReference: {fileID: 0}
+    - target: {fileID: 5400000, guid: 1e511a48cf121d84590e8bac513ff38f, type: 2}
+      propertyPath: m_Constraints
+      value: 112
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1e511a48cf121d84590e8bac513ff38f, type: 2}
@@ -591,7 +595,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minimumDistanceFromThePlayerToMeteors: 100
   maximumDistanceFromThePlayerToMeteors: 500
-  dtInSecs: 5
+  dtInSecs: 1
   maxMeteorInitialForce: 50
   maxScalling: 3
 --- !u!1 &1514322182

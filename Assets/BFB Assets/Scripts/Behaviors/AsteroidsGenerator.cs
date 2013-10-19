@@ -33,14 +33,16 @@ public class AsteroidsGenerator : MonoBehaviour {
 		Vector3 playerPosition = player.transform.position;
 		Vector3 meteorPosition = playerPosition;
 		while ((meteorPosition - playerPosition).magnitude < minimumDistanceFromThePlayerToMeteors) {
-			Vector2 randomPosition = Random.insideUnitCircle * maximumDistanceFromThePlayerToMeteors;
+			Vector3 randomPosition = Random.insideUnitSphere * maximumDistanceFromThePlayerToMeteors;
 			meteorPosition.x = randomPosition.x;
-			meteorPosition.x = 0;
-			meteorPosition.x = randomPosition.y;
+			meteorPosition.y = randomPosition.y;
+			meteorPosition.z = randomPosition.z;
 		}
 		
 		GameObject newAsteroid = Instantiate(Resources.Load("Asteroid1"), meteorPosition, Random.rotation) as GameObject;
-
+		
+		float meteorSize = Random.value * maxScalling;
+		newAsteroid.transform.localScale += new Vector3(meteorSize,  meteorSize, meteorSize);
 		newAsteroid.rigidbody.AddTorque(Random.insideUnitSphere * maxRotationForce);
 		newAsteroid.rigidbody.AddForce(Random.insideUnitSphere * maxMeteorInitialForce);
 	}
