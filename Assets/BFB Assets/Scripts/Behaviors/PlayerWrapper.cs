@@ -13,7 +13,8 @@ public class PlayerWrapper : MonoBehaviour
 	private Spaceship spaceship;
 	private LevelInspector levelInspector;
 	public GameObject boundary;
-
+	
+	private bool useAlternativeControls = false;
     #endregion
 
     #region Methods
@@ -35,14 +36,24 @@ public class PlayerWrapper : MonoBehaviour
 		HandleShipMovement ();
 		HandleShoot ();
 	}
-
+	
+	private void OnGUI() {
+		if (useAlternativeControls)
+			GUI.Box(new Rect (Screen.width / 2 - 10, Screen.height / 2 - 10, 20, 20), "O");
+	}
+	
 	private void HandleShoot ()
 	{
+		
 		if (Input.GetMouseButtonDown (0)) {
 			var ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+			//Debug.Log(Input.mousePosition);
+			if (useAlternativeControls)
+				ray = Camera.main.ScreenPointToRay (new Vector3(Screen.width / 2, Screen.height / 2, 0));
 			RaycastHit hitInfo;
 			if (Physics.Raycast (ray, out hitInfo)) {
-				if (hitInfo.collider.tag == Tags.planet) {
+				Debug.Log ("clicked on " + hitInfo.collider.tag);
+				if (hitInfo.collider.tag == Tags.asteroid) {
 					GameObject.Destroy (hitInfo.collider.gameObject);
 				}
 			}
@@ -62,13 +73,70 @@ public class PlayerWrapper : MonoBehaviour
 		float hInput = Input.GetAxis ("Horizontal");
 		float vInput = Input.GetAxis ("Vertical");
 		
+		int upDownDirection = 0;
+		if (Input.GetKey(KeyCode.Q))
+		{
+			upDownDirection = 1; 
+		}
+		if (Input.GetKey(KeyCode.E))
+		{
+			upDownDirection = -1; 
+		}
 		
-		float lookSpeed = 1000;
-		transform.Rotate (transform.up, lookSpeed * Time.deltaTime * Input.GetAxis("Mouse X"), Space.World);
-		transform.Rotate (transform.right, -lookSpeed * Time.deltaTime * Input.GetAxis("Mouse Y"), Space.World);
-		//cameraObj.transform.Rotate(Vector3.right, -lookSpeed * Time.deltaTime * Input.GetAxis ("Mouse X"));
+		if (Input.GetKey(KeyCode.Z))
+		{
+			useAlternativeControls = true; 
+			Screen.showCursor = false;
+			
+		}
+		if (Input.GetKey(KeyCode.X))
+		{
+			useAlternativeControls = false; 
+			Screen.showCursor = true;
+		}
 		
-		bool bFlamesEnabled = false;
+		if (!useAlternativeControls) {
+			
+			bool bFlamesEnabled = false;
+
+			/// calculate fuel consumption.
+			float dFuel = Math.Abs (vInput) * Time.deltaTime * FuelConsumptionToAccelerate;
+			dFuel += Math.Abs (hInput) * Time.deltaTime * FuelConsumptionToRotate;
+	
+			if (Fuel > 0) {
+				TakeFuel (dFuel);
+				bFlamesEnabled = true;
+				//rotate
+				//gameObject.transform.Rotate (0, hInput * RotationSpeed * Time.deltaTime, 0);
+				transform.Rotate(transform.up, hInput * RotationSpeed * Time.deltaTime, Space.World);
+				transform.Rotate(transform.right, upDownDirection * RotationSpeed * Time.deltaTime, Space.World);
+				//accelerate
+				Vector3 forwardForce = gameObject.transform.forward * AccelerationForce * vInput;
+				gameObject.rigidbody.AddForce (forwardForce, ForceMode.Force);
+			} else {
+				Debug.Log ("Not enough fuel for movement or/and rotation");
+			}
+
+		
+		} else {
+			float lookSpeed = 500;
+			transform.Rotate (transform.up, lookSpeed * Time.deltaTime * Input.GetAxis("Mouse X"), Space.World);
+			transform.Rotate (transform.right, -lookSpeed * Time.deltaTime * Input.GetAxis("Mouse Y"), Space.World);
+			Vector3 forwardForce = gameObject.transform.forward * AccelerationForce * vInput;
+			Vector3 rightForce = gameObject.transform.right * AccelerationForce * hInput;
+			gameObject.rigidbody.AddForce (forwardForce, ForceMode.Force);
+			gameObject.rigidbody.AddForce (rightForce, ForceMode.Force);
+			transform.Rotate(transform.right, upDownDirection * RotationSpeed * Time.deltaTime, Space.World);
+			
+			
+			
+		}
+		
+		//float lookSpeed = 1000;
+		//transform.Rotate (transform.up, lookSpeed * Time.deltaTime * Input.GetAxis("Mouse X"), Space.World);
+		//transform.Rotate (transform.right, -lookSpeed * Time.deltaTime * Input.GetAxis("Mouse Y"), Space.World);
+		
+		/*bool bFlamesEnabled = false;
 
 		/// calculate fuel consumption.
 		float dFuel = Math.Abs (vInput) * Time.deltaTime * FuelConsumptionToAccelerate;
@@ -78,16 +146,19 @@ public class PlayerWrapper : MonoBehaviour
 			TakeFuel (dFuel);
 			bFlamesEnabled = true;
 			//rotate
-			gameObject.transform.Rotate (0, hInput * RotationSpeed * Time.deltaTime, 0);
+			//gameObject.transform.Rotate (0, hInput * RotationSpeed * Time.deltaTime, 0);
+			transform.Rotate(transform.up, hInput * RotationSpeed * Time.deltaTime, Space.World);
+			transform.Rotate(transform.right, upDownDirection * RotationSpeed * Time.deltaTime, Space.World);
 			//accelerate
 			Vector3 forwardForce = gameObject.transform.forward * AccelerationForce * vInput;
 			gameObject.rigidbody.AddForce (forwardForce, ForceMode.Force);
 		} else {
 			Debug.Log ("Not enough fuel for movement or/and rotation");
-		}
+		}*/
+		
 
 		//flamesEnabled = forwardForce.magnitude > 0;
-		SetFlamesEnabled (bFlamesEnabled);
+		//SetFlamesEnabled (bFlamesEnabled);
 	}
 
 	private void WinLevel ()
