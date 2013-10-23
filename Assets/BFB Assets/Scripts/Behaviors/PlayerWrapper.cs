@@ -12,8 +12,7 @@ public class PlayerWrapper : MonoBehaviour
 	private Player player;
 	private Spaceship spaceship;
 	private LevelInspector levelInspector;
-	public GameObject boundary;
-	
+	//public GameObject boundary;
 	private bool useAlternativeControls = false;
     #endregion
 
@@ -37,9 +36,10 @@ public class PlayerWrapper : MonoBehaviour
 		HandleShoot ();
 	}
 	
-	private void OnGUI() {
+	private void OnGUI ()
+	{
 		if (useAlternativeControls)
-			GUI.Box(new Rect (Screen.width / 2 - 10, Screen.height / 2 - 10, 20, 20), "O");
+			GUI.Box (new Rect (Screen.width / 2 - 10, Screen.height / 2 - 10, 20, 20), "O");
 	}
 	
 	private void HandleShoot ()
@@ -49,7 +49,7 @@ public class PlayerWrapper : MonoBehaviour
 			var ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 			//Debug.Log(Input.mousePosition);
 			if (useAlternativeControls)
-				ray = Camera.main.ScreenPointToRay (new Vector3(Screen.width / 2, Screen.height / 2, 0));
+				ray = Camera.main.ScreenPointToRay (new Vector3 (Screen.width / 2, Screen.height / 2, 0));
 			RaycastHit hitInfo;
 			if (Physics.Raycast (ray, out hitInfo)) {
 				Debug.Log ("clicked on " + hitInfo.collider.tag);
@@ -62,7 +62,9 @@ public class PlayerWrapper : MonoBehaviour
 
 	private void OnTriggerEnter (Collider other)
 	{
-		Debug.Log ("collided with " + other.tag);
+		if (other.tag != Tags.boundary) {
+			Debug.Log ("collided with " + other.tag);
+		}
 		if (other.CompareTag (Tags.winPoint)) {
 			WinLevel ();
 		}
@@ -74,23 +76,19 @@ public class PlayerWrapper : MonoBehaviour
 		float vInput = Input.GetAxis ("Vertical");
 		
 		int upDownDirection = 0;
-		if (Input.GetKey(KeyCode.Q))
-		{
+		if (Input.GetKey (KeyCode.Q)) {
 			upDownDirection = 1; 
 		}
-		if (Input.GetKey(KeyCode.E))
-		{
+		if (Input.GetKey (KeyCode.E)) {
 			upDownDirection = -1; 
 		}
 		
-		if (Input.GetKey(KeyCode.Z))
-		{
+		if (Input.GetKey (KeyCode.Z)) {
 			useAlternativeControls = true; 
 			Screen.showCursor = false;
 			
 		}
-		if (Input.GetKey(KeyCode.X))
-		{
+		if (Input.GetKey (KeyCode.X)) {
 			useAlternativeControls = false; 
 			Screen.showCursor = true;
 		}
@@ -108,8 +106,8 @@ public class PlayerWrapper : MonoBehaviour
 				bFlamesEnabled = true;
 				//rotate
 				//gameObject.transform.Rotate (0, hInput * RotationSpeed * Time.deltaTime, 0);
-				transform.Rotate(transform.up, hInput * RotationSpeed * Time.deltaTime, Space.World);
-				transform.Rotate(transform.right, upDownDirection * RotationSpeed * Time.deltaTime, Space.World);
+				transform.Rotate (transform.up, hInput * RotationSpeed * Time.deltaTime, Space.World);
+				transform.Rotate (transform.right, upDownDirection * RotationSpeed * Time.deltaTime, Space.World);
 				//accelerate
 				Vector3 forwardForce = gameObject.transform.forward * AccelerationForce * vInput;
 				gameObject.rigidbody.AddForce (forwardForce, ForceMode.Force);
@@ -120,13 +118,13 @@ public class PlayerWrapper : MonoBehaviour
 		
 		} else {
 			float lookSpeed = 500;
-			transform.Rotate (transform.up, lookSpeed * Time.deltaTime * Input.GetAxis("Mouse X"), Space.World);
-			transform.Rotate (transform.right, -lookSpeed * Time.deltaTime * Input.GetAxis("Mouse Y"), Space.World);
+			transform.Rotate (transform.up, lookSpeed * Time.deltaTime * Input.GetAxis ("Mouse X"), Space.World);
+			transform.Rotate (transform.right, -lookSpeed * Time.deltaTime * Input.GetAxis ("Mouse Y"), Space.World);
 			Vector3 forwardForce = gameObject.transform.forward * AccelerationForce * vInput;
 			Vector3 rightForce = gameObject.transform.right * AccelerationForce * hInput;
 			gameObject.rigidbody.AddForce (forwardForce, ForceMode.Force);
 			gameObject.rigidbody.AddForce (rightForce, ForceMode.Force);
-			transform.Rotate(transform.right, upDownDirection * RotationSpeed * Time.deltaTime, Space.World);
+			transform.Rotate (transform.right, upDownDirection * RotationSpeed * Time.deltaTime, Space.World);
 			
 			
 			

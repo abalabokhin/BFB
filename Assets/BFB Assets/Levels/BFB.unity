@@ -496,7 +496,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spaceshipGameObject: {fileID: 1535624603}
-  boundary: {fileID: 386039910}
 --- !u!114 &1290328255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -556,7 +555,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 3
   m_audioClip: {fileID: 8300000, guid: 4d20ef08b0adff848b3bcb78913a819a, type: 3}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: .5
   m_Pitch: 1
   Loop: 1

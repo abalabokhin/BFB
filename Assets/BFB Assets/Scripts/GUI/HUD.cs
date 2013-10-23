@@ -29,7 +29,7 @@ public class HUD : MonoBehaviour
 		float currX = (Screen.width - stdW) / 2;
 		float currY = Screen.height - stdH;
 		GUI.BeginGroup (new Rect (currX, currY, stdW, stdH));
-		if (GUI.Button (new Rect (10, 0, 100, 20), "Play/Stop")) {
+		if (GUI.Button (new Rect (10, 0, 100, 20), "Mute")) {
 			playClicks++;
 			AudioPlays (playClicks);
 		}
@@ -40,11 +40,11 @@ public class HUD : MonoBehaviour
 	
 	private void AudioPlays (int hits)
 	{
-		if (hits % 2 == 1) {
-				GetComponent<AudioSource> ().Play ();
-		}
 		if (hits % 2 == 0) {
-				GetComponent<AudioSource> ().Stop ();
+			GetComponent<AudioSource> ().mute = false;
+		}
+		if (hits % 2 == 1) {
+			GetComponent<AudioSource> ().mute = true;
 		}
 	}
 }
