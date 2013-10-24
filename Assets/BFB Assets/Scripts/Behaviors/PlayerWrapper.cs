@@ -9,6 +9,7 @@ public class PlayerWrapper : MonoBehaviour
     #region Fields
 
 	public GameObject spaceshipGameObject;
+	public float lookSpeed = 300;
 	private Player player;
 	private Spaceship spaceship;
 	private LevelInspector levelInspector;
@@ -74,89 +75,57 @@ public class PlayerWrapper : MonoBehaviour
 	{
 		float hInput = Input.GetAxis ("Horizontal");
 		float vInput = Input.GetAxis ("Vertical");
+
+		bool bFlamesEnabled = false;
+		float dFuel = 0;
 		
-		int upDownDirection = 0;
-		if (Input.GetKey (KeyCode.Q)) {
+		/*int upDownDirection = 0;
+		if (Input.GetKey (KeyCode.R)) {
 			upDownDirection = 1; 
 		}
-		if (Input.GetKey (KeyCode.E)) {
+		if (Input.GetKey (KeyCode.F)) {
 			upDownDirection = -1; 
 		}
-		
-		if (Input.GetKey (KeyCode.Z)) {
-			useAlternativeControls = true; 
-			Screen.showCursor = false;
-			
-		}
-		if (Input.GetKey (KeyCode.X)) {
-			useAlternativeControls = false; 
-			Screen.showCursor = true;
-		}
-		
-		if (!useAlternativeControls) {
-			
-			bool bFlamesEnabled = false;
-
-			/// calculate fuel consumption.
-			float dFuel = Math.Abs (vInput) * Time.deltaTime * FuelConsumptionToAccelerate;
-			dFuel += Math.Abs (hInput) * Time.deltaTime * FuelConsumptionToRotate;
-	
-			if (Fuel > 0) {
-				TakeFuel (dFuel);
-				bFlamesEnabled = true;
-				//rotate
-				//gameObject.transform.Rotate (0, hInput * RotationSpeed * Time.deltaTime, 0);
-				transform.Rotate (transform.up, hInput * RotationSpeed * Time.deltaTime, Space.World);
-				transform.Rotate (transform.right, upDownDirection * RotationSpeed * Time.deltaTime, Space.World);
-				//accelerate
-				Vector3 forwardForce = gameObject.transform.forward * AccelerationForce * vInput;
-				gameObject.rigidbody.AddForce (forwardForce, ForceMode.Force);
-			} else {
-				Debug.Log ("Not enough fuel for movement or/and rotation");
-			}
-
-		
-		} else {
-			float lookSpeed = 500;
-			transform.Rotate (transform.up, lookSpeed * Time.deltaTime * Input.GetAxis ("Mouse X"), Space.World);
-			transform.Rotate (transform.right, -lookSpeed * Time.deltaTime * Input.GetAxis ("Mouse Y"), Space.World);
-			Vector3 forwardForce = gameObject.transform.forward * AccelerationForce * vInput;
-			Vector3 rightForce = gameObject.transform.right * AccelerationForce * hInput;
-			gameObject.rigidbody.AddForce (forwardForce, ForceMode.Force);
-			gameObject.rigidbody.AddForce (rightForce, ForceMode.Force);
-			transform.Rotate (transform.right, upDownDirection * RotationSpeed * Time.deltaTime, Space.World);
-			
-			
-			
-		}
-		
-		//float lookSpeed = 1000;
-		//transform.Rotate (transform.up, lookSpeed * Time.deltaTime * Input.GetAxis("Mouse X"), Space.World);
-		//transform.Rotate (transform.right, -lookSpeed * Time.deltaTime * Input.GetAxis("Mouse Y"), Space.World);
-		
-		/*bool bFlamesEnabled = false;
 
 		/// calculate fuel consumption.
-		float dFuel = Math.Abs (vInput) * Time.deltaTime * FuelConsumptionToAccelerate;
+		dFuel += Math.Abs (vInput) * Time.deltaTime * FuelConsumptionToAccelerate;
+		dFuel += Math.Abs (upDownDirection) * Time.deltaTime * FuelConsumptionToRotate;
 		dFuel += Math.Abs (hInput) * Time.deltaTime * FuelConsumptionToRotate;
 
 		if (Fuel > 0) {
 			TakeFuel (dFuel);
-			bFlamesEnabled = true;
 			//rotate
-			//gameObject.transform.Rotate (0, hInput * RotationSpeed * Time.deltaTime, 0);
-			transform.Rotate(transform.up, hInput * RotationSpeed * Time.deltaTime, Space.World);
-			transform.Rotate(transform.right, upDownDirection * RotationSpeed * Time.deltaTime, Space.World);
+			transform.Rotate (transform.up, hInput * RotationSpeed * Time.deltaTime, Space.World);
+			transform.Rotate (transform.right, upDownDirection * RotationSpeed * Time.deltaTime, Space.World);
 			//accelerate
 			Vector3 forwardForce = gameObject.transform.forward * AccelerationForce * vInput;
 			gameObject.rigidbody.AddForce (forwardForce, ForceMode.Force);
-		} else {
-			Debug.Log ("Not enough fuel for movement or/and rotation");
 		}*/
 		
+		
+		useAlternativeControls = true;
+		float mouseX = Input.GetAxis("Mouse X");
+		float mouseY = Input.GetAxis("Mouse Y");
+		
+		dFuel += Math.Abs (vInput) * Time.deltaTime * FuelConsumptionToAccelerate;
+		dFuel += Math.Abs (hInput) * Time.deltaTime * FuelConsumptionToAccelerate;
+		dFuel += Math.Abs (mouseX) * Time.deltaTime * FuelConsumptionToRotate;
+		dFuel += Math.Abs (mouseY) * Time.deltaTime * FuelConsumptionToRotate;
+		
+		if (Fuel > 0) {
+			TakeFuel (dFuel);
+			transform.Rotate (transform.up, lookSpeed * Time.deltaTime * Input.GetAxis ("Mouse X"), Space.World);
+			transform.Rotate (transform.right, -lookSpeed * Time.deltaTime * Input.GetAxis ("Mouse Y"), Space.World);
+			Vector3 forwardForce = gameObject.transform.forward * AccelerationForce * vInput;
+			Vector3 rightForce = gameObject.transform.right * AccelerationForce * hInput;
+		
+			gameObject.rigidbody.AddForce (forwardForce, ForceMode.Force);
+			gameObject.rigidbody.AddForce (rightForce, ForceMode.Force);
+		}
 
-		//flamesEnabled = forwardForce.magnitude > 0;
-		//SetFlamesEnabled (bFlamesEnabled);
+		if (dFuel > 0)
+			bFlamesEnabled = true;
+		SetFlamesEnabled (bFlamesEnabled);
 	}
 
 	private void WinLevel ()

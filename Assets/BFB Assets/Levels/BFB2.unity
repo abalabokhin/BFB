@@ -257,7 +257,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spaceshipGameObject: {fileID: 2136899884}
-  boundary: {fileID: 0}
+  lookSpeed: 300
 --- !u!114 &442518968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -519,6 +519,10 @@ Prefab:
       propertyPath: m_Constraints
       value: 112
       objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 1e511a48cf121d84590e8bac513ff38f, type: 2}
+      propertyPath: lookSpeed
+      value: 300
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1e511a48cf121d84590e8bac513ff38f, type: 2}
   m_RootGameObject: {fileID: 442518963}
@@ -704,7 +708,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minimumDistanceFromThePlayerToMeteors: 100
   maximumDistanceFromThePlayerToMeteors: 500
-  dtInSecs: 1
+  dtInSecs: 5
   maxMeteorInitialForce: 50
   maxScalling: 3
 --- !u!1 &1514322182

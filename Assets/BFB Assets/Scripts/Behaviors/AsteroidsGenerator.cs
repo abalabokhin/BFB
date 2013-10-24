@@ -42,6 +42,7 @@ public class AsteroidsGenerator : MonoBehaviour {
 		GameObject newAsteroid = Instantiate(Resources.Load("Asteroid1"), meteorPosition, Random.rotation) as GameObject;
 		
 		float meteorSize = Random.value * maxScalling;
+		newAsteroid.transform.localScale += new Vector3(3, 3, 3);
 		newAsteroid.transform.localScale += new Vector3(meteorSize,  meteorSize, meteorSize);
 		newAsteroid.rigidbody.AddTorque(Random.insideUnitSphere * maxRotationForce);
 		newAsteroid.rigidbody.AddForce(Random.insideUnitSphere * maxMeteorInitialForce);
