@@ -19,9 +19,19 @@ public class AsteroidsGenerator : MonoBehaviour {
 		player = GameObject.FindGameObjectWithTag("Player");
 	}
 	
+	void onGUI() {
+		
+		
+	}
+	
 	// Update is called once per frame
 	void Update () {
 		tryToGeneratenewAsteroid();
+		
+		
+		
+		
+		
 	}
 	
 	void tryToGeneratenewAsteroid() {

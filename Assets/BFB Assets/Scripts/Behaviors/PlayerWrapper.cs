@@ -55,7 +55,7 @@ public class PlayerWrapper : MonoBehaviour
 			if (Physics.Raycast (ray, out hitInfo)) {
 				Debug.Log ("clicked on " + hitInfo.collider.tag);
 				if (hitInfo.collider.tag == Tags.asteroid) {
-					GameObject.Destroy (hitInfo.collider.gameObject);
+					hitInfo.collider.gameObject.SendMessage("DestroyObject", gameObject, SendMessageOptions.DontRequireReceiver);
 				}
 			}
 		}

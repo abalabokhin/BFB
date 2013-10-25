@@ -6,7 +6,7 @@ public class CollisionWithBoundary : MonoBehaviour
 {
 	
 	//public GameObject player;
-	public GameObject boundary;
+	/*public*/ GameObject boundary;
 	float timer = 20;
 	float countdown;
 	bool showText = false;
@@ -16,8 +16,8 @@ public class CollisionWithBoundary : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
+		boundary = GameObject.FindGameObjectWithTag(Tags.boundary);
 		countdown = timer;
-	
 	}
 	
 	// Update is called once per frame
@@ -26,8 +26,7 @@ public class CollisionWithBoundary : MonoBehaviour
 		if (countdown <= 0) {
 			countdown = 0;
 			//Debug.Log ("DEAD");
-			Destroy (gameObject);
-			Application.LoadLevel ("BriefingMenu");
+			SendMessage("DestroyObject", boundary, SendMessageOptions.DontRequireReceiver);
 		}
 		
 //		if(showText){
@@ -42,11 +41,7 @@ public class CollisionWithBoundary : MonoBehaviour
 	void KeepInBounds ()
 	{		
 		BoxCollider box = boundary.GetComponent<BoxCollider> ();
-		float playerXCoord = transform.position.x, playerZCoord = transform.position.z;
-		float upperBoundX = boundary.transform.position.x + (box.size.x / 2), lowerBoundX = boundary.transform.position.x - (box.size.x / 2);
-		float upperBoundZ = boundary.transform.position.z + (box.size.z / 2), lowerBoundZ = boundary.transform.position.z - (box.size.z / 2);
-		
-		if (playerXCoord >= upperBoundX || playerXCoord <= lowerBoundX || playerZCoord >= upperBoundZ || playerZCoord <= lowerBoundZ) {
+		if (!box.bounds.Contains(transform.position)) {
 			//Debug.Log ("Out of bounds");
 			countdown -= Time.deltaTime;
 			showText = true;
