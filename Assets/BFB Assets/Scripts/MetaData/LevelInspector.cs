@@ -74,6 +74,7 @@ public class LevelInspector : MonoBehaviour
 
     public void NextLevel()
     {
+		Debug.Log("curr level index " + currentLevelIndex);
         gameObject.GetComponent<GameMenu>().enabled = true;
         if (currentLevelIndex >= gameLevels.Length - 1)
         {
@@ -81,6 +82,7 @@ public class LevelInspector : MonoBehaviour
             return;
         }
         ++currentLevelIndex;
+		//StartCurrentBriefing();
         currentState = GameState.LevelCompleted;
     }
 

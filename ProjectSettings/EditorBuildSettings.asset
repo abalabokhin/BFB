@@ -14,6 +14,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/BFB Assets/Menus/Briefing/BriefingMenu.unity
   - enabled: 1
-    path: Assets/BFB Assets/Levels/BFB.unity
-  - enabled: 1
     path: Assets/BFB Assets/Levels/BFB2.unity
+  - enabled: 1
+    path: Assets/BFB Assets/Levels/BFB.unity

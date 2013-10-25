@@ -130,7 +130,6 @@ public class PlayerWrapper : MonoBehaviour
 
 	private void WinLevel ()
 	{
-		Debug.Log ("Winpoint reached");
 		GameMenu menu = gameObject.GetComponent<GameMenu> ();
 		if (menu != null) {
 			menu.enabled = true;

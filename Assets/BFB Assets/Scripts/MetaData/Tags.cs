@@ -11,5 +11,6 @@ namespace BFB.Cache
         public static string winPoint = "WinPoint";
         public static string boundary = "Boundary";
 		public static string asteroid = "Asteroid";
+		public static string player = "Player";
     }
 }

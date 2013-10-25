@@ -1,37 +1,52 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class AsteroidsGenerator : MonoBehaviour {
-	public float minimumDistanceFromThePlayerToMeteors = 100;
-	public float maximumDistanceFromThePlayerToMeteors = 500;
+public class AsteroidsAttackLevelLogic : MonoBehaviour {
+	public float minimumDistanceFromPlanetToMeteors = 100;
+	public float maximumDistanceFromPlanetToMeteors = 500;
 	/// time between next meteor generation.
 	public float dtInSecs = 5;
 	public float maxMeteorInitialForce = 50;
 	public float maxScalling = 3;
 	
+	
 	private float maxRotationForce = 3;
 	float generatedAt = 0;
 	
-	GameObject player;
+	GameObject planet;
+	
+	public float timeToSurvive = 100;
+	private float startTime = 0;
 	
 	// Use this for initialization
 	void Start () {
-		player = GameObject.FindGameObjectWithTag("Player");
+		startTime = Time.time;
+		planet = GameObject.FindGameObjectWithTag(BFB.Cache.Tags.planet);
 	}
 	
-	void onGUI() {
+	void OnGUI() {
+		//if (GlobalManagerInstance.GetLevelInspector().currentState != LevelInspector.GameState.InGame)
+		//	return;
+		float stdW = 320;
+		float stdH = 30;
+		float currX = 10;
+		float currY = Screen.height - 30 - 10;
 		
+		float secondsLeft = timeToSurvive + startTime - Time.time;
 		
+		if (secondsLeft <= 0)
+		{
+			//Debug.Log (Environment.StackTrace);
+			//GlobalManagerInstance.GetLevelInspector().NextLevel();
+			GameObject.FindGameObjectWithTag(BFB.Cache.Tags.player).SendMessage("WinLevel");
+		}
+		
+		GUI.Label (new Rect (currX, currY, stdW, stdH), string.Format("Seconds left to survive {0}", secondsLeft));
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		tryToGeneratenewAsteroid();
-		
-		
-		
-		
-		
 	}
 	
 	void tryToGeneratenewAsteroid() {
@@ -40,10 +55,10 @@ public class AsteroidsGenerator : MonoBehaviour {
 			
 		generatedAt = Time.time;
 		
-		Vector3 playerPosition = player.transform.position;
-		Vector3 meteorPosition = playerPosition;
-		while ((meteorPosition - playerPosition).magnitude < minimumDistanceFromThePlayerToMeteors) {
-			Vector3 randomPosition = Random.insideUnitSphere * maximumDistanceFromThePlayerToMeteors;
+		Vector3 planetPosition = planet.transform.position;
+		Vector3 meteorPosition = planetPosition;
+		while ((meteorPosition - planetPosition).magnitude < minimumDistanceFromPlanetToMeteors) {
+			Vector3 randomPosition = Random.insideUnitSphere * maximumDistanceFromPlanetToMeteors;
 			meteorPosition.x = randomPosition.x;
 			meteorPosition.y = randomPosition.y;
 			meteorPosition.z = randomPosition.z;
