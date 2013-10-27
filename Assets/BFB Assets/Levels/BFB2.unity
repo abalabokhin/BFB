@@ -202,6 +202,7 @@ GameObject:
   - 114: {fileID: 442518972}
   - 114: {fileID: 442518974}
   - 82: {fileID: 442518973}
+  - 120: {fileID: 442518975}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -259,6 +260,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spaceshipGameObject: {fileID: 2136899884}
+  leftWeapon: {fileID: 1369314435}
+  rightWeapon: {fileID: 1113028906}
   lookSpeed: 300
 --- !u!114 &442518968
 MonoBehaviour:
@@ -401,6 +404,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fee07c45ae732a46a6e6f818a892ecd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!120 &442518975
+LineRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 442518963}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_Positions:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 1}
+  m_Parameters:
+    startWidth: 1
+    endWidth: 1
+    m_StartColor:
+      serializedVersion: 2
+      rgba: 4294967295
+    m_EndColor:
+      serializedVersion: 2
+      rgba: 4294967295
+  m_UseWorldSpace: 1
 --- !u!1 &475382964
 GameObject:
   m_ObjectHideFlags: 0
@@ -636,6 +670,14 @@ Prefab:
       propertyPath: lookSpeed
       value: 300
       objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 1e511a48cf121d84590e8bac513ff38f, type: 2}
+      propertyPath: rightWeapon
+      value: 
+      objectReference: {fileID: 1113028906}
+    - target: {fileID: 11400004, guid: 1e511a48cf121d84590e8bac513ff38f, type: 2}
+      propertyPath: leftWeapon
+      value: 
+      objectReference: {fileID: 1369314435}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1e511a48cf121d84590e8bac513ff38f, type: 2}
   m_RootGameObject: {fileID: 442518963}
