@@ -24,16 +24,8 @@ public class PlayerWrapper : MonoBehaviour
 
     #region Methods
 
-
     private void Start()
     {
-        leftLaser = GetComponent<LineRenderer>(); ;
-        leftLaser.SetVertexCount(2);
-        leftLaser.SetWidth(0.1f, 0.25f);
-        rightLaser = GetComponent<LineRenderer>();
-        rightLaser.SetVertexCount(2);
-        rightLaser.SetWidth(0.1f, 0.25f);
-
         player = SessionCache.Cache.CurrentPlayer;
         spaceship = new Spaceship(player.ShipTypeId, spaceshipGameObject);
         /// send message here to set up amount of health in other script. If we want to controll this parameter from this class, 
@@ -46,13 +38,15 @@ public class PlayerWrapper : MonoBehaviour
     private void Update()
     {
         HandleShipMovement();
-        HandleShoot();
+        //HandleShoot();
     }
 
     private void OnGUI()
     {
         if (useAlternativeControls)
+        {
             GUI.Box(new Rect(Screen.width / 2 - 10, Screen.height / 2 - 10, 20, 20), "O");
+        }
     }
 
     private void HandleShoot()
