@@ -8,7 +8,6 @@ public class WeaponWrapper : MonoBehaviour
 {
     #region Fields
 
-    public string typeId;
     public GameObject weaponObject;
     public GameObject parentGameObject;
     private Weapon weapon;
@@ -22,7 +21,7 @@ public class WeaponWrapper : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        weapon = new Weapon(new Guid(typeId), weaponObject);
+        weapon = new Weapon(weaponObject);
 
         laserLine = GetComponent<LineRenderer>(); ;
         laserLine.SetVertexCount(2);

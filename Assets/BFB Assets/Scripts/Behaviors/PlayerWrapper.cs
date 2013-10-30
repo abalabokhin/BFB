@@ -27,7 +27,7 @@ public class PlayerWrapper : MonoBehaviour
     private void Start()
     {
         player = SessionCache.Cache.CurrentPlayer;
-        spaceship = new Spaceship(player.ShipTypeId, spaceshipGameObject);
+        spaceship = new Spaceship(new SpaceshipType(), spaceshipGameObject);
         /// send message here to set up amount of health in other script. If we want to controll this parameter from this class, 
         /// we can add another message from damageController class.
         SendMessage("setHealth", spaceship.Health, SendMessageOptions.DontRequireReceiver);
@@ -38,7 +38,6 @@ public class PlayerWrapper : MonoBehaviour
     private void Update()
     {
         HandleShipMovement();
-        //HandleShoot();
     }
 
     private void OnGUI()
@@ -46,41 +45,6 @@ public class PlayerWrapper : MonoBehaviour
         if (useAlternativeControls)
         {
             GUI.Box(new Rect(Screen.width / 2 - 10, Screen.height / 2 - 10, 20, 20), "O");
-        }
-    }
-
-    private void HandleShoot()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            leftLaser.enabled = true;
-            //rightLaser.enabled = true;
-        }
-        if (Input.GetMouseButton(0))
-        {
-            leftLaser.SetPosition(0, leftWeapon.transform.position);
-            //rightLaser.SetPosition(0, rightWeapon.transform.position);
-            var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (useAlternativeControls)
-            {
-                ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
-            }
-            leftLaser.SetPosition(1, ray.direction * 500);
-            //rightLaser.SetPosition(1, ray.direction * 500);
-            RaycastHit hitInfo;
-            if (Physics.Raycast(ray, out hitInfo))
-            {
-                Debug.Log("clicked on " + hitInfo.collider.tag);
-                if (hitInfo.collider.tag == Tags.asteroid)
-                {
-                    hitInfo.collider.gameObject.SendMessage("DestroyObject", gameObject, SendMessageOptions.DontRequireReceiver);
-                }
-            }
-        }
-        if (Input.GetMouseButtonUp(0))
-        {
-            leftLaser.enabled = false;
-            //rightLaser.enabled = false;
         }
     }
 

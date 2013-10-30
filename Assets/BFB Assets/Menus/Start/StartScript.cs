@@ -9,7 +9,6 @@ public class StartScript : MonoBehaviour
     void Start()
     {
 		levelInspector = GlobalManagerInstance.GetLevelInspector();
-		MetaCache.Cache.Init();
 	}
 	
     public GUISkin menuSkin;
