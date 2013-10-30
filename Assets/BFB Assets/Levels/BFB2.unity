@@ -848,7 +848,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   typeId: 4e2d0187-cfd6-4bbb-a4ce-7fefe6ce2f21
   weaponObject: {fileID: 1369314435}
-  parentGameObject: {fileID: 442518963}
+  parentGameObject: {fileID: 739005190}
 --- !u!120 &1171168167
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -1098,7 +1098,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   typeId: 4e2d0187-cfd6-4bbb-a4ce-7fefe6ce2f21
   weaponObject: {fileID: 1113028906}
-  parentGameObject: {fileID: 442518963}
+  parentGameObject: {fileID: 739005190}
 --- !u!120 &1596148794
 LineRenderer:
   m_ObjectHideFlags: 0

@@ -51,7 +51,7 @@ public class WeaponWrapper : MonoBehaviour
             {
                 ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
             }
-            laserLine.SetPosition(1, parentGameObject.transform.forward * 1000);
+            laserLine.SetPosition(1, parentGameObject.camera.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, 1000)));
             //rightLaser.SetPosition(1, ray.direction * 500);
             RaycastHit hitInfo;
             if (Physics.Raycast(ray, out hitInfo))

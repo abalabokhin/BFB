@@ -98,6 +98,7 @@ public class PlayerWrapper : MonoBehaviour
 
     public void HandleShipMovement()
     {
+		int upDownDirection = 0;
         float hInput = Input.GetAxis("Horizontal");
         float vInput = Input.GetAxis("Vertical");
 
@@ -136,23 +137,25 @@ public class PlayerWrapper : MonoBehaviour
         dFuel += Math.Abs(hInput) * Time.deltaTime * FuelConsumptionToAccelerate;
         dFuel += Math.Abs(mouseX) * Time.deltaTime * FuelConsumptionToRotate;
         dFuel += Math.Abs(mouseY) * Time.deltaTime * FuelConsumptionToRotate;
-
+		
+		
         if (Fuel > 0)
         {
             TakeFuel(dFuel);
-            transform.Rotate(transform.up, lookSpeed * Time.deltaTime * Input.GetAxis("Mouse X"), Space.World);
-            transform.Rotate(transform.right, -lookSpeed * Time.deltaTime * Input.GetAxis("Mouse Y"), Space.World);
+            transform.Rotate(transform.up, lookSpeed * Time.deltaTime * mouseX, Space.World);
+            transform.Rotate(transform.right, -lookSpeed * Time.deltaTime * mouseY, Space.World);
             Vector3 forwardForce = gameObject.transform.forward * AccelerationForce * vInput;
             Vector3 rightForce = gameObject.transform.right * AccelerationForce * hInput;
 
             gameObject.rigidbody.AddForce(forwardForce, ForceMode.Force);
             gameObject.rigidbody.AddForce(rightForce, ForceMode.Force);
-        }
 
-        if (dFuel > 0)
-            bFlamesEnabled = true;
-        SetFlamesEnabled(bFlamesEnabled);
-    }
+			if (dFuel > 0)
+            	bFlamesEnabled = true;
+        	
+			SetFlamesEnabled(bFlamesEnabled);
+        }
+	}
 
     private void WinLevel()
     {
