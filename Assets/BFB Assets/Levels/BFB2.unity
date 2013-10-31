@@ -319,8 +319,6 @@ Transform:
   - {fileID: 1514322183}
   - {fileID: 739005191}
   - {fileID: 2136899885}
-  - {fileID: 1596148792}
-  - {fileID: 1171168165}
   m_Father: {fileID: 0}
 --- !u!114 &442518972
 MonoBehaviour:
@@ -830,11 +828,11 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1171168164}
-  m_LocalRotation: {x: 0, y: -1, z: 0, w: -4.37113883e-08}
-  m_LocalPosition: {x: 2.20068336, y: -.552240014, z: 2.51464868}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: -4.37113883e-08}
+  m_LocalPosition: {x: -.146247879, y: .0125921303, z: .249755844}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 442518971}
+  m_Father: {fileID: 2136899885}
 --- !u!114 &1171168166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -846,7 +844,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25bb802a2888c46459c25c01a2c3c0b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  typeId: 4e2d0187-cfd6-4bbb-a4ce-7fefe6ce2f21
   weaponObject: {fileID: 1369314435}
   parentGameObject: {fileID: 739005190}
 --- !u!120 &1171168167
@@ -861,24 +858,24 @@ LineRenderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 17336915a3e78c343baf1ed73e363a4b, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 0
-  m_LightProbeAnchor: {fileID: 0}
+  m_UseLightProbes: 1
+  m_LightProbeAnchor: {fileID: 1171168165}
   m_ScaleInLightmap: 1
   m_Positions:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 1}
   m_Parameters:
-    startWidth: 1
-    endWidth: 1
+    startWidth: .75
+    endWidth: .75
     m_StartColor:
       serializedVersion: 2
-      rgba: 4294967295
+      rgba: 4286429164
     m_EndColor:
       serializedVersion: 2
-      rgba: 4294967295
+      rgba: 4284769531
   m_UseWorldSpace: 1
 --- !u!1 &1369314435
 GameObject:
@@ -1080,11 +1077,11 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1596148791}
-  m_LocalRotation: {x: 0, y: -1, z: 0, w: -4.37113883e-08}
-  m_LocalPosition: {x: 2.20068336, y: -.552240372, z: 2.51464868}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: -4.37113883e-08}
+  m_LocalPosition: {x: .146247849, y: .0125921303, z: .249755874}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 442518971}
+  m_Father: {fileID: 2136899885}
 --- !u!114 &1596148793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1096,7 +1093,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25bb802a2888c46459c25c01a2c3c0b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  typeId: 4e2d0187-cfd6-4bbb-a4ce-7fefe6ce2f21
   weaponObject: {fileID: 1113028906}
   parentGameObject: {fileID: 739005190}
 --- !u!120 &1596148794
@@ -1111,7 +1107,7 @@ LineRenderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 670037c36481ba24ba807be9add5b321, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -1121,8 +1117,8 @@ LineRenderer:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 1}
   m_Parameters:
-    startWidth: 1
-    endWidth: 1
+    startWidth: .75
+    endWidth: .75
     m_StartColor:
       serializedVersion: 2
       rgba: 4294967295
@@ -1412,6 +1408,8 @@ Transform:
   - {fileID: 100598293}
   - {fileID: 1369314436}
   - {fileID: 1113028907}
+  - {fileID: 1171168165}
+  - {fileID: 1596148792}
   m_Father: {fileID: 442518971}
 --- !u!95 &2136899886
 Animator:
