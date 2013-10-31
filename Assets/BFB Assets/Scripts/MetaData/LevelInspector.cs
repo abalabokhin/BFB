@@ -34,6 +34,7 @@ public class LevelInspector : MonoBehaviour
         // show menu if 'esc' key pressed.
         if (Input.GetKeyDown(KeyCode.Escape) && currentState == GameState.InGame)
         {
+			Screen.showCursor = true;
             gameObject.GetComponent<GameMenu>().enabled = true;
             currentState = GameState.Pause;
         }
@@ -41,6 +42,7 @@ public class LevelInspector : MonoBehaviour
 
     public void OnPlayerDestroyed()
     {
+		Screen.showCursor = true;
         GameMenu menu = gameObject.GetComponent<GameMenu>();
         if (menu != null)
         {
@@ -57,6 +59,7 @@ public class LevelInspector : MonoBehaviour
 
     public string GetCurrentBriefingText()
     {
+		Screen.showCursor = true;
         if (currentLevelIndex >= gameLevels.Length)
             return "";
         return levelBriefings[currentLevelIndex];
@@ -64,6 +67,7 @@ public class LevelInspector : MonoBehaviour
 
     public void LoadGameLevel(int gameLevelIndex)
     {
+		Screen.showCursor = true;
         Debug.Log("Loading level " + gameLevelIndex);
         if (gameLevelIndex >= gameLevels.Length)
             return;
@@ -74,6 +78,7 @@ public class LevelInspector : MonoBehaviour
 
     public void NextLevel()
     {
+		Screen.showCursor = true;
 		Debug.Log("curr level index " + currentLevelIndex);
         gameObject.GetComponent<GameMenu>().enabled = true;
         if (currentLevelIndex >= gameLevels.Length - 1)
@@ -88,6 +93,7 @@ public class LevelInspector : MonoBehaviour
 
     public void StartCurrentLevel()
     {
+		Screen.showCursor = true;
         currentState = GameState.InGame;
         Debug.Log("Start level: " + currentLevelIndex);
         Application.LoadLevel(gameLevels[currentLevelIndex]);
@@ -95,6 +101,7 @@ public class LevelInspector : MonoBehaviour
 
     public void StartCurrentBriefing()
     {
+		Screen.showCursor = true;
         Debug.Log("Start breafing: " + currentLevelIndex);
         currentState = GameState.InGame;
         Application.LoadLevel(briefingLevel);
@@ -102,12 +109,14 @@ public class LevelInspector : MonoBehaviour
 
     public void LoadMainMenu()
     {
+		Screen.showCursor = true;
         gameObject.GetComponent<GameMenu>().enabled = false;
         Application.LoadLevel(mainLevel);
     }
 
     public void LoadFirstLaunchMenu()
     {
+		Screen.showCursor = true;
         gameObject.GetComponent<GameMenu>().enabled = false;
         Application.LoadLevel(firstLaunchLevel);
     }

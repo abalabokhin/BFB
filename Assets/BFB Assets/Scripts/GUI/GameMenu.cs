@@ -16,6 +16,7 @@ public class GameMenu : MonoBehaviour {
 		Time.timeScale = 0;
 		switch (levelInspector.currentState) {
 			case LevelInspector.GameState.InGame:
+				Screen.showCursor = false;
 				Time.timeScale = 1;
 				enabled = false;
 				break;

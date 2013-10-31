@@ -12,7 +12,7 @@ public class WeaponWrapper : MonoBehaviour
     public GameObject parentGameObject;
     private Weapon weapon;
     private LineRenderer laserLine;
-    private bool useAlternativeControls = false;
+    private bool useAlternativeControls = true;
 
     #endregion
 

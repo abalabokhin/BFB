@@ -128,8 +128,8 @@ namespace BFB.Models
         #region Fields
         private Guid m_gId;
         private string m_sName = "Fighter";
-        private float m_fMaxHealth = 1000f;
-        private float m_fMaxFuel = 200f;
+        private float m_fMaxHealth = 500f;
+        private float m_fMaxFuel = 300f;
         private float m_fFuelConsumptionToAccelerate = 5f;
         private float m_fFuelConsumptionToRotate = 5f;
         private float m_fAccelerationForce = 1000f;

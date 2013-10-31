@@ -8,6 +8,7 @@ public class StartScript : MonoBehaviour
 
     void Start()
     {
+		Screen.showCursor = true;
 		levelInspector = GlobalManagerInstance.GetLevelInspector();
 	}
 	

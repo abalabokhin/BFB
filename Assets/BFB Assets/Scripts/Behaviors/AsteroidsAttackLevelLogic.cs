@@ -20,6 +20,7 @@ public class AsteroidsAttackLevelLogic : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
+		Screen.showCursor  = false;
 		startTime = Time.time;
 		planet = GameObject.FindGameObjectWithTag(BFB.Cache.Tags.planet);
 	}

@@ -262,7 +262,7 @@ MonoBehaviour:
   spaceshipGameObject: {fileID: 2136899884}
   leftWeapon: {fileID: 1369314435}
   rightWeapon: {fileID: 1113028906}
-  lookSpeed: 300
+  lookSpeed: 150
 --- !u!114 &442518968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -668,7 +668,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400004, guid: 1e511a48cf121d84590e8bac513ff38f, type: 2}
       propertyPath: lookSpeed
-      value: 300
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 11400004, guid: 1e511a48cf121d84590e8bac513ff38f, type: 2}
       propertyPath: rightWeapon
@@ -956,6 +956,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1427018462}
   - 114: {fileID: 1427018463}
+  - 114: {fileID: 1427018464}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: Untagged
@@ -987,10 +988,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minimumDistanceFromPlanetToMeteors: 100
   maximumDistanceFromPlanetToMeteors: 500
-  dtInSecs: 5
+  dtInSecs: 3
   maxMeteorInitialForce: 50
   maxScalling: 3
   timeToSurvive: 100
+--- !u!114 &1427018464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1427018461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2f0bdcff33c94642a3a3a736ee157d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1514322182
 GameObject:
   m_ObjectHideFlags: 0

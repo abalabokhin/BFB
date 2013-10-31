@@ -19,7 +19,7 @@ public class MainMenuScript : MonoBehaviour
 		int elementDistance = 10;
 		int currentTop = 0;
 		
-        GUI.BeginGroup(new Rect(Screen.width - 125, Screen.height - 150, 80, levelInspector.levelAmount * (elementDistance + height)));
+        GUI.BeginGroup(new Rect(Screen.width - 125, Screen.height - 150, 80, (levelInspector.levelAmount + 1) * (elementDistance + height)));
 		
 		for (int i = 0; i < levelInspector.levelAmount; ++i) {
 			if (GUI.Button(new Rect(0, currentTop, 80, height), string.Format("Level {0}", i + 1)))
@@ -28,6 +28,11 @@ public class MainMenuScript : MonoBehaviour
         	}
 			currentTop += (height + elementDistance);
 		}
+		if (GUI.Button(new Rect(0, currentTop, 80, height), "Quit"))
+        {
+			Application.Quit();
+        }
+		
         GUI.EndGroup();
     }
 
