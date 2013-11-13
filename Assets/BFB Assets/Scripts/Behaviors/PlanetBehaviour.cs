@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PlanetBehaviour : MonoBehaviour
 {
-    float rotateForce = 200f;
+    public float rotateForce = 200f;
 
     void Start()
     {
