@@ -16,8 +16,12 @@ public class ExplosionDestroyer : MonoBehaviour {
 	void DestroyObject(GameObject collidedObject)
     {
 		/// make asteroid invisible
-		gameObject.GetComponentInChildren<MeshRenderer>().enabled = false;
+		Destroy(gameObject, 2f);
+		MeshRenderer renderer = gameObject.GetComponent<MeshRenderer>();
+		if (renderer == null)
+			renderer = gameObject.GetComponentInChildren<MeshRenderer>();
+		if (renderer != null)
+			renderer.enabled = false;
 		gameObject.GetComponent<Detonator>().enabled = true;
-        Destroy(gameObject, 2f);
     }
 }

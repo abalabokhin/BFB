@@ -18,6 +18,14 @@ public class AsteroidsAttackLevelLogic : MonoBehaviour {
 	public float timeToSurvive = 100;
 	private float startTime = 0;
 	
+	enum LevelState {
+		asteroidAttack,
+		bigAsteroid,
+		newHome
+	};
+	
+	LevelState state = LevelState.asteroidAttack;
+	
 	// Use this for initialization
 	void Start () {
 		Screen.showCursor  = false;
@@ -26,23 +34,39 @@ public class AsteroidsAttackLevelLogic : MonoBehaviour {
 	}
 	
 	void OnGUI() {
-		//if (GlobalManagerInstance.GetLevelInspector().currentState != LevelInspector.GameState.InGame)
-		//	return;
-		float stdW = 320;
-		float stdH = 30;
-		float currX = 10;
-		float currY = Screen.height - 30 - 10;
+		if (state == LevelState.asteroidAttack) {
 		
-		float secondsLeft = timeToSurvive + startTime - Time.time;
+			float stdW = 320;
+			float stdH = 30;
+			float currX = 10;
+			float currY = Screen.height - 30 - 10;
+			
+			float secondsLeft = timeToSurvive + startTime - Time.time;
+			
+			if (secondsLeft <= 0)
+			{
+				//Debug.Log (Environment.StackTrace);
+				//GlobalManagerInstance.GetLevelInspector().NextLevel();
+				//GameObject.FindGameObjectWithTag(BFB.Cache.Tags.player).SendMessage("WinLevel");
+				generateNewAsteroid(100, 1000);
+				state = LevelState.bigAsteroid;
+			}
+			
+			GUI.Label (new Rect (currX, currY, stdW, stdH), string.Format("Seconds left to survive {0}", secondsLeft));
+			
+		} else if (state == LevelState.bigAsteroid) {
+			if (planet == null)
+				state = LevelState.newHome;
+
+		} else if (state == LevelState.newHome) {
 		
-		if (secondsLeft <= 0)
-		{
-			//Debug.Log (Environment.StackTrace);
-			//GlobalManagerInstance.GetLevelInspector().NextLevel();
-			GameObject.FindGameObjectWithTag(BFB.Cache.Tags.player).SendMessage("WinLevel");
+			float stdW = 500;
+			float stdH = 30;
+			float currX = 10;
+			float currY = Screen.height - 30 - 10;
+			
+			GUI.Label (new Rect (currX, currY, stdW, stdH), "Now you are the only hope of humanity, try to find new home!");
 		}
-		
-		GUI.Label (new Rect (currX, currY, stdW, stdH), string.Format("Seconds left to survive {0}", secondsLeft));
 	}
 	
 	// Update is called once per frame
@@ -51,11 +75,18 @@ public class AsteroidsAttackLevelLogic : MonoBehaviour {
 	}
 	
 	void tryToGeneratenewAsteroid() {
+		if (state != LevelState.asteroidAttack)
+			return;
 		if (generatedAt + dtInSecs > Time.time)
 			return;
 			
 		generatedAt = Time.time;
 		
+		generateNewAsteroid(0, 1);
+	}
+	
+	void generateNewAsteroid(int size, int damageAmount) {
+
 		Vector3 planetPosition = planet.transform.position;
 		Vector3 meteorPosition = planetPosition;
 		while ((meteorPosition - planetPosition).magnitude < minimumDistanceFromPlanetToMeteors) {
@@ -67,10 +98,16 @@ public class AsteroidsAttackLevelLogic : MonoBehaviour {
 		
 		GameObject newAsteroid = Instantiate(Resources.Load("Asteroid1"), meteorPosition, Random.rotation) as GameObject;
 		
-		float meteorSize = Random.value * maxScalling;
+		float meteorSize = size;
+		if (meteorSize == 0)
+			meteorSize = Random.value * maxScalling;
+		
 		newAsteroid.transform.localScale += new Vector3(3, 3, 3);
 		newAsteroid.transform.localScale += new Vector3(meteorSize,  meteorSize, meteorSize);
 		newAsteroid.rigidbody.AddTorque(Random.insideUnitSphere * maxRotationForce);
 		newAsteroid.rigidbody.AddForce(Random.insideUnitSphere * maxMeteorInitialForce);
+		
+		newAsteroid.GetComponent<CollisionDamageDealer>().damageToDeal = damageAmount;
+		newAsteroid.GetComponent<CollisionDamageController>().health = damageAmount * 10;
 	}
 }

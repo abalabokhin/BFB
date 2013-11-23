@@ -58,7 +58,8 @@ public class WeaponWrapper : MonoBehaviour
                 Debug.Log("clicked on " + hitInfo.collider.tag);
                 if (hitInfo.collider.tag == Tags.asteroid)
                 {
-                    hitInfo.collider.gameObject.SendMessage("DestroyObject", gameObject, SendMessageOptions.DontRequireReceiver);
+					///dealDamage(int damage) {
+                    hitInfo.collider.gameObject.SendMessage("dealDamage", 10, SendMessageOptions.DontRequireReceiver);
                 }
             }
         }

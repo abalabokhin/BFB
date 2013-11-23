@@ -23,11 +23,15 @@ public class CollisionDamageController : MonoBehaviour {
 		CollisionDamageDealer damageDealer = other.gameObject.GetComponent<CollisionDamageDealer>();
         if (damageDealer != null)
         {
-            health -= damageDealer.damageToDeal;
-            if (health <= 0)
-            {
-                SendMessage("DestroyObject", other.gameObject, SendMessageOptions.DontRequireReceiver);
-            }
+			dealDamage(damageDealer.damageToDeal);
         }
     }
+	
+	private void dealDamage(int damage) {
+	    health -= damage;
+        if (health <= 0)
+        {
+            SendMessage("DestroyObject", gameObject, SendMessageOptions.DontRequireReceiver);
+        }
+	}
 }
