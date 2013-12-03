@@ -18,7 +18,7 @@ public class FirstLaunchScript : MonoBehaviour
     private void EnterName()
     {
         GUI.BeginGroup(new Rect(Screen.width / 2 - 100, Screen.height / 2 - 25, 400, 25));
-        profileName = GUI.TextField(new Rect(0, 0, 100, 25), profileName ?? "Neeq");
+        profileName = GUI.TextField(new Rect(0, 0, 100, 25), profileName ?? "Dr. Drizzy");
         if (GUI.Button(new Rect(110, 0, 90, 25), "Enter"))
         {
             if (!string.IsNullOrEmpty(profileName))

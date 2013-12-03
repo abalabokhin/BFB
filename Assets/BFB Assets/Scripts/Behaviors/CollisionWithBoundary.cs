@@ -6,7 +6,8 @@ public class CollisionWithBoundary : MonoBehaviour
 {
 	
 	//public GameObject player;
-	/*public*/ GameObject boundary;
+	/*public*/
+	GameObject boundary;
 	float timer = 20;
 	float countdown;
 	bool showText = false;
@@ -16,7 +17,7 @@ public class CollisionWithBoundary : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		boundary = GameObject.FindGameObjectWithTag(Tags.boundary);
+		boundary = GameObject.FindGameObjectWithTag (Tags.boundary);
 		countdown = timer;
 	}
 	
@@ -26,7 +27,7 @@ public class CollisionWithBoundary : MonoBehaviour
 		if (countdown <= 0) {
 			countdown = 0;
 			//Debug.Log ("DEAD");
-			SendMessage("DestroyObject", boundary, SendMessageOptions.DontRequireReceiver);
+			SendMessage ("DestroyObject", boundary, SendMessageOptions.DontRequireReceiver);
 		}
 		
 //		if(showText){
@@ -41,7 +42,7 @@ public class CollisionWithBoundary : MonoBehaviour
 	void KeepInBounds ()
 	{		
 		BoxCollider box = boundary.GetComponent<BoxCollider> ();
-		if (!box.bounds.Contains(transform.position)) {
+		if (!box.bounds.Contains (transform.position)) {
 			//Debug.Log ("Out of bounds");
 			countdown -= Time.deltaTime;
 			showText = true;

@@ -9,12 +9,16 @@ public class OpeningScript : MonoBehaviour
 	bool crawling = false;
 	bool part2 = false;
 	string creds = "";
+	private LevelInspector levelInspector = null;
 	public GameObject Earth;
 	public GameObject explosionPrefab;
+	public Camera mainCam;
 	
 	// Use this for initialization
 	void Start ()
 	{		
+		levelInspector = GlobalManagerInstance.GetLevelInspector ();
+		
 		crawling = true;
 		creds += "In the distant future . . . \n";
 		creds += " (well not really that distant)\n";
@@ -34,37 +38,46 @@ public class OpeningScript : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{		
-		if (!crawling && part2)
-			return;
+		MoveCam ();
+		
 		transform.Translate (Vector3.up * Time.deltaTime * speed);
 		
-		if (gameObject.transform.position.y > 2 && !part2) {
-			crawling = false;
-			explodeEarth ();
-			StartCoroutine (ExplosionScene (5.0f));
-			part2 = true;
-			transform.position = new Vector3(0, -1, 0);
+		if (gameObject.transform.position.y > 2.25 && !part2) {
+			ExplodeEarth ();
 		}
 		
-		if (gameObject.transform.position.y > 3.75 && part2) {
-			Application.LoadLevel("MainMenu");
+		if (gameObject.transform.position.y > 2 && part2) {
+			NextScene ();
 		}
 		
 		if (part2)
-			startSecondPart ();			
+			SaveHumanity ();			
 	}
 	
-	void explodeEarth ()
+	void ExplodeEarth ()
 	{
+		crawling = false;
 		Instantiate (explosionPrefab, Earth.transform.position, Earth.transform.rotation);
-		Destroy(Earth);
+		Destroy (Earth);
+		StartCoroutine (Timer (5.0f));
+		part2 = true;
+		transform.position = new Vector3 (0, -1, 0);
 	}
 	
-	void startSecondPart ()
+	void NextScene ()
+	{
+		if (string.IsNullOrEmpty (SessionCache.Cache.CurrentPlayer.Name)) {
+			levelInspector.LoadFirstLaunchMenu ();
+		} else { 
+			levelInspector.LoadBriefingMenu ();
+		}
+	}
+	
+	void SaveHumanity ()
 	{
 		crawling = true;
-		creds = "Against all odds, you managed \n";
-		creds += "to escape before the detonation. \n\n\n";
+		creds = "Yea.. Well, against all odds, you managed \n";
+		creds += "to escape before the detonation. \n\n";
 		creds += "Now, with your team, you\n";
 		creds += "must  navigate the universe in\n";
 		creds += "search of a new place to call \n";
@@ -74,8 +87,22 @@ public class OpeningScript : MonoBehaviour
 		gameObject.guiText.text = creds;
 	}
 	
-	IEnumerator ExplosionScene (float duration)
+	void MoveCam ()
+	{
+		if (mainCam.transform.position.z > -10) {
+			mainCam.transform.Translate (Vector3.back * Time.deltaTime * speed);
+		}
+	}
+	
+	IEnumerator Timer (float duration)
 	{
 		yield return new WaitForSeconds(duration);			
+	}
+	
+	private void OnGUI ()
+	{
+		if (GUI.Button (new Rect (50, 520, 100, 20), "Skip")) {
+			NextScene();
+		}
 	}
 }

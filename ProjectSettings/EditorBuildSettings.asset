@@ -8,6 +8,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/BFB Assets/Menus/Start/StartMenu.unity
   - enabled: 1
+    path: Assets/BFB Assets/Menus/Opening/OpeningMenu.unity
+  - enabled: 1
     path: Assets/BFB Assets/Menus/FirstLaunch/FirstLaunchMenu.unity
   - enabled: 1
     path: Assets/BFB Assets/Menus/Main/MainMenu.unity
