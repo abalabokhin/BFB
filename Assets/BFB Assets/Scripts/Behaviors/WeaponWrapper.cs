@@ -56,7 +56,7 @@ public class WeaponWrapper : MonoBehaviour
             if (Physics.Raycast(ray, out hitInfo))
             {
                 Debug.Log("clicked on " + hitInfo.collider.tag);
-                if (hitInfo.collider.tag == Tags.asteroid)
+                if (hitInfo.collider.tag == Tags.asteroid || hitInfo.collider.tag == Tags.enemyShip)
                 {
 					///dealDamage(int damage) {
                     hitInfo.collider.gameObject.SendMessage("dealDamage", 10, SendMessageOptions.DontRequireReceiver);
