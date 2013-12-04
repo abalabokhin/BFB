@@ -628,7 +628,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 126
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!4 &442518971
 Transform:
@@ -889,6 +889,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponObject: {fileID: 391044366}
   parentGameObject: {fileID: 739005190}
+  isPlayer: 0
 --- !u!4 &577457002
 Transform:
   m_ObjectHideFlags: 0
@@ -1205,7 +1206,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 5400000, guid: 1e511a48cf121d84590e8bac513ff38f, type: 2}
       propertyPath: m_Constraints
-      value: 126
+      value: 112
       objectReference: {fileID: 0}
     - target: {fileID: 11400004, guid: 1e511a48cf121d84590e8bac513ff38f, type: 2}
       propertyPath: lookSpeed
@@ -1501,6 +1502,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponObject: {fileID: 38033720}
   parentGameObject: {fileID: 739005190}
+  isPlayer: 0
 --- !u!1001 &1108033204
 Prefab:
   m_ObjectHideFlags: 0
@@ -1762,6 +1764,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponObject: {fileID: 1369314435}
   parentGameObject: {fileID: 739005190}
+  isPlayer: 1
 --- !u!120 &1171168167
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -2081,6 +2084,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponObject: {fileID: 1113028906}
   parentGameObject: {fileID: 739005190}
+  isPlayer: 1
 --- !u!120 &1596148794
 LineRenderer:
   m_ObjectHideFlags: 0

@@ -13,6 +13,7 @@ public class WeaponWrapper : MonoBehaviour
     private Weapon weapon;
     private LineRenderer laserLine;
     private bool useAlternativeControls = true;
+    public bool isPlayer = false;
 
     #endregion
 
@@ -31,10 +32,17 @@ public class WeaponWrapper : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        HandleShoot();
+        if (isPlayer)
+        {
+            HandlePlayerShoot();
+        }
+        else
+        {
+            HandleEnemyShoot();
+        }
     }
 
-    private void HandleShoot()
+    private void HandlePlayerShoot()
     {
         if (Input.GetMouseButtonDown(0))
         {
@@ -68,6 +76,10 @@ public class WeaponWrapper : MonoBehaviour
             laserLine.enabled = false;
             //rightLaser.enabled = false;
         }
+    }
+
+    private void HandleEnemyShoot()
+    {
     }
 
     #endregion

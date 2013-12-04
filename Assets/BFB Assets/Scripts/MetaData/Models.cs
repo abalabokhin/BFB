@@ -132,8 +132,8 @@ namespace BFB.Models
         private float m_fMaxFuel = 300f;
         private float m_fFuelConsumptionToAccelerate = 5f;
         private float m_fFuelConsumptionToRotate = 5f;
-        private float m_fAccelerationForce = 1000f;
-        private float m_fRotationSpeed = 100f;
+        private float m_fAccelerationForce = 100f;
+        private float m_fRotationSpeed = 80f;
         #endregion
     }
 

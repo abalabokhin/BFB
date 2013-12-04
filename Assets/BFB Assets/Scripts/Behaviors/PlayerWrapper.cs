@@ -62,7 +62,7 @@ public class PlayerWrapper : MonoBehaviour
 
     public void HandleShipMovement()
     {
-		int upDownDirection = 0;
+        int upDownDirection = 0;
         float hInput = Input.GetAxis("Horizontal");
         float vInput = Input.GetAxis("Vertical");
 
@@ -101,8 +101,8 @@ public class PlayerWrapper : MonoBehaviour
         dFuel += Math.Abs(hInput) * Time.deltaTime * FuelConsumptionToAccelerate;
         dFuel += Math.Abs(mouseX) * Time.deltaTime * FuelConsumptionToRotate;
         dFuel += Math.Abs(mouseY) * Time.deltaTime * FuelConsumptionToRotate;
-		
-		
+
+
         if (Fuel > 0)
         {
             TakeFuel(dFuel);
@@ -114,12 +114,12 @@ public class PlayerWrapper : MonoBehaviour
             gameObject.rigidbody.AddForce(forwardForce, ForceMode.Force);
             gameObject.rigidbody.AddForce(rightForce, ForceMode.Force);
 
-			if (dFuel > 0)
-            	bFlamesEnabled = true;
-        	
-			SetFlamesEnabled(bFlamesEnabled);
+            if (dFuel > 0)
+                bFlamesEnabled = true;
+
+            SetFlamesEnabled(bFlamesEnabled);
         }
-	}
+    }
 
     private void WinLevel()
     {
