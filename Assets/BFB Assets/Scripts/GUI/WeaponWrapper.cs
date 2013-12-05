@@ -14,6 +14,7 @@ public class WeaponWrapper : MonoBehaviour
     private LineRenderer laserLine;
     private bool useAlternativeControls = true;
     public bool isPlayer = false;
+	public AudioClip laserSound;
 
     #endregion
 
@@ -47,6 +48,7 @@ public class WeaponWrapper : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             laserLine.enabled = true;
+			audio.PlayOneShot(laserSound);
             //rightLaser.enabled = true;
         }
         if (Input.GetMouseButton(0))

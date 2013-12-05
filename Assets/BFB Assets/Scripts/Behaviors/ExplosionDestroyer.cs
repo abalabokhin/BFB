@@ -2,7 +2,8 @@
 using System.Collections;
 
 public class ExplosionDestroyer : MonoBehaviour {
-
+	
+	public AudioClip explosionSound;
 	// Use this for initialization
 	void Start () {
 	
@@ -22,6 +23,7 @@ public class ExplosionDestroyer : MonoBehaviour {
 			renderer = gameObject.GetComponentInChildren<MeshRenderer>();
 		if (renderer != null)
 			renderer.enabled = false;
+		audio.PlayOneShot(explosionSound);
 		gameObject.GetComponent<Detonator>().enabled = true;
     }
 }
