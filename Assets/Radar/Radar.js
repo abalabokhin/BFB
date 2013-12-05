@@ -83,8 +83,6 @@ function findAndDrawBlips(tag, texture, width, height){
  
     var distance = Mathf.Infinity; 
     var position = transform.position; 
-
-	Debug.Log(gos.length + ' with tag ' + tag);
  
     // Iterate through them and call drawBlip function
     for (var go : GameObject in gos)  { 

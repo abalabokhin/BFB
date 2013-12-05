@@ -3,6 +3,7 @@ using System.Collections;
 using System;
 using BFB.Models;
 using BFB.Cache;
+using System.Linq;
 
 public class WeaponWrapper : MonoBehaviour
 {
@@ -14,7 +15,8 @@ public class WeaponWrapper : MonoBehaviour
     private LineRenderer laserLine;
     private bool useAlternativeControls = true;
     public bool isPlayer = false;
-	public AudioClip laserSound;
+    public AudioClip laserSound;
+    public string[] targetTags = new string[] { Tags.asteroid, Tags.enemyShip };
 
     #endregion
 
@@ -33,13 +35,10 @@ public class WeaponWrapper : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        laserLine.enabled = false;
         if (isPlayer)
         {
             HandlePlayerShoot();
-        }
-        else
-        {
-            HandleEnemyShoot();
         }
     }
 
@@ -47,41 +46,52 @@ public class WeaponWrapper : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            laserLine.enabled = true;
-			audio.PlayOneShot(laserSound);
-            //rightLaser.enabled = true;
+            audio.PlayOneShot(laserSound);
         }
         if (Input.GetMouseButton(0))
         {
-            laserLine.SetPosition(0, weaponObject.transform.position);
-            //rightLaser.SetPosition(0, rightWeapon.transform.position);
+            FireForward(true);
+        }
+    }
+
+    public void FireForward(bool fromPlayer)
+    {
+        laserLine.enabled = true;
+        laserLine.SetPosition(0, weaponObject.transform.position);
+        if (fromPlayer == true)
+        {
             var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (useAlternativeControls)
             {
                 ray = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
             }
             laserLine.SetPosition(1, parentGameObject.camera.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, 10000)));
-            //rightLaser.SetPosition(1, ray.direction * 500);
             RaycastHit hitInfo;
             if (Physics.Raycast(ray, out hitInfo))
             {
-                Debug.Log("clicked on " + hitInfo.collider.tag);
-                if (hitInfo.collider.tag == Tags.asteroid || hitInfo.collider.tag == Tags.enemyShip)
+                if (targetTags.FirstOrDefault(oItem => oItem == hitInfo.collider.tag) != null)
                 {
-					///dealDamage(int damage) {
                     hitInfo.collider.gameObject.SendMessage("dealDamage", 10, SendMessageOptions.DontRequireReceiver);
                 }
             }
         }
-        if (Input.GetMouseButtonUp(0))
+        else
         {
-            laserLine.enabled = false;
-            //rightLaser.enabled = false;
+            GameObject player = GameObject.FindGameObjectWithTag(Tags.player);
+            if (player != null)
+            {
+                Ray ray = new Ray(parentGameObject.transform.position, player.transform.position);
+                laserLine.SetPosition(1, player.transform.position);
+                RaycastHit hitInfo;
+                if (Physics.Raycast(ray, out hitInfo))
+                {
+                    if (targetTags.FirstOrDefault(oItem => oItem == hitInfo.collider.tag) != null)
+                    {
+                        hitInfo.collider.gameObject.SendMessage("dealDamage", 1, SendMessageOptions.DontRequireReceiver);
+                    }
+                }
+            }
         }
-    }
-
-    private void HandleEnemyShoot()
-    {
     }
 
     #endregion

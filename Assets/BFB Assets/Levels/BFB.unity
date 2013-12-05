@@ -1127,7 +1127,7 @@ MonoBehaviour:
   planetTag: Planet
   asteroidTag: Asteroid
   enemyTag: EnemyShip
-  radarLocation: 0
+  radarLocation: 2
   mapCenterCustom: {x: 0, y: 0}
 --- !u!120 &1290328261
 LineRenderer:
