@@ -54,7 +54,7 @@ public class GameMenu : MonoBehaviour {
 	}
 
 	void createDestroyedMenu() {
-		createWelcomeString("You were close!");
+		createWelcomeString("Maybe next time!");
 		createButtonRestartLevel("Try Again?");
 		createButtonExit("Exit");
 		
