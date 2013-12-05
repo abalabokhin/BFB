@@ -14,8 +14,8 @@ public class Radar : MonoBehaviour
 	public Transform centerObject ;
 	public float mapScale = 0.3f;
 	public Vector2 mapCenter = new Vector2 (50, 50);
-	public string tagFilter = "Planet";
-	public float maxDist = 200;
+	public string tagFilter = Tags.asteroid;
+	public float maxDist = 2000;
  
 	void OnGUI ()
 	{
@@ -64,6 +64,8 @@ public class Radar : MonoBehaviour
  
 		bX = bX * mapScale; // scales down the x-coordinate by half so that the plot stays within our radar
 		bY = bY * mapScale; // scales down the y-coordinate by half so that the plot stays within our radar
+
+        Debug.Log(dist);
  
 		if (dist <= maxDist) { 
 			// this is the diameter of our largest radar circle
