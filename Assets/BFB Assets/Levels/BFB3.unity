@@ -1045,7 +1045,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shipName: {fileID: 0}
-  mainCam: {fileID: 739005190}
+  audioHandler: {fileID: 0}
 --- !u!64 &442518969
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1174,7 +1174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fee07c45ae732a46a6e6f818a892ecd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCam: {fileID: 739005190}
+  audioHandler: {fileID: 0}
 --- !u!120 &442518975
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -3834,7 +3834,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   peopleAlive: 5000000
-  dPeopleDead: 200000
+  dPeopleDead: 250000
 --- !u!114 &2068160431
 MonoBehaviour:
   m_ObjectHideFlags: 0
