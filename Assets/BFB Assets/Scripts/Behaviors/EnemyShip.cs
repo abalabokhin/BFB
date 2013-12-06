@@ -25,15 +25,10 @@ public class EnemyShip : MonoBehaviour
         GameObject player = GameObject.FindGameObjectWithTag(Tags.player);
         Vector3 direction = player.transform.position - transform.position;
         float distance = direction.magnitude;
+        gameObject.transform.LookAt(player.transform);
 
         if (distance <= minDistance && timeBetweenShotsLeft > 0 && shotLengthLeft > 0)
         {
-            Vector3 targetPoint;
-            Quaternion targetRotation;
-            targetPoint = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z) - transform.position;
-            targetRotation = Quaternion.LookRotation(-targetPoint, Vector3.up);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 2.0f);
-
             laserLeft.SendMessage("FireForward", false);
             //laserRight.SendMessage("FireForward", false);
 

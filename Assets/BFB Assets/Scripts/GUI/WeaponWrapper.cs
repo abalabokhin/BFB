@@ -82,14 +82,7 @@ public class WeaponWrapper : MonoBehaviour
             {
                 Ray ray = new Ray(parentGameObject.transform.position, player.transform.position);
                 laserLine.SetPosition(1, player.transform.position);
-                RaycastHit hitInfo;
-                if (Physics.Raycast(ray, out hitInfo))
-                {
-                    if (targetTags.FirstOrDefault(oItem => oItem == hitInfo.collider.tag) != null)
-                    {
-                        hitInfo.collider.gameObject.SendMessage("dealDamage", 1, SendMessageOptions.DontRequireReceiver);
-                    }
-                }
+                player.SendMessage("dealDamage", 1, SendMessageOptions.DontRequireReceiver);
             }
         }
     }
