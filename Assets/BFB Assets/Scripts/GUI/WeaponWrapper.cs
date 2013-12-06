@@ -16,7 +16,7 @@ public class WeaponWrapper : MonoBehaviour
     private bool useAlternativeControls = true;
     public bool isPlayer = false;
     public AudioClip laserSound;
-    public string[] targetTags = new string[] { Tags.asteroid, Tags.enemyShip };
+    string[] targetTags = new string[] { Tags.asteroid, Tags.enemyShip };
 
     #endregion
 
