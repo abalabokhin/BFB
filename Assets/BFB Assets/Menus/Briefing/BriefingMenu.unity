@@ -217,6 +217,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menuSkin: {fileID: 0}
   font: {fileID: 12800000, guid: 2d5bcbbfb3e37a84e9cbbd8a751fe3f8, type: 3}
+  audioHandler: {fileID: 1786316910}
 --- !u!1 &1786316910
 GameObject:
   m_ObjectHideFlags: 0
@@ -228,7 +229,7 @@ GameObject:
   - 114: {fileID: 1786316912}
   - 82: {fileID: 1786316911}
   m_Layer: 0
-  m_Name: MenuAudio
+  m_Name: AudioHandler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -6,7 +6,9 @@ using BFB.Cache;
 public class HUD : MonoBehaviour
 {
 	public GUIText shipName;
+	public GameObject audioHandler;
 	private int playClicks = 0;
+	private string text = "Mute";
 
 	// Use this for initialization
 	void Start ()
@@ -14,6 +16,10 @@ public class HUD : MonoBehaviour
 		if (shipName != null) {
 			shipName.text = gameObject.GetComponent<PlayerWrapper> ().Name;
 		}
+		
+		GameObject looseEnds = GameObject.FindGameObjectWithTag (Tags.audioHandler);
+		Destroy (looseEnds);
+		
 	}
 
 	// Update is called once per frame
@@ -29,7 +35,7 @@ public class HUD : MonoBehaviour
 		float currX = (Screen.width - stdW) / 2;
 		float currY = Screen.height - stdH;
 		GUI.BeginGroup (new Rect (currX, currY, stdW, stdH));
-		if (GUI.Button (new Rect (10, 0, 100, 20), "Mute")) {
+		if (GUI.Button (new Rect (10, 0, 100, 20), text)) {
 			playClicks++;
 			AudioPlays (playClicks);
 		}
@@ -41,10 +47,12 @@ public class HUD : MonoBehaviour
 	private void AudioPlays (int hits)
 	{
 		if (hits % 2 == 0) {
-			GetComponent<AudioSource> ().mute = false;
+			text = "Mute";
+			audioHandler.GetComponent<AudioSource> ().mute = false;
 		}
 		if (hits % 2 == 1) {
-			GetComponent<AudioSource> ().mute = true;
+			text = "Play";
+			audioHandler.GetComponent<AudioSource> ().mute = true;
 		}
 	}
 }

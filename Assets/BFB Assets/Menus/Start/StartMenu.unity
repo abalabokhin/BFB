@@ -138,7 +138,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_EditorClassIdentifier: 
   m_EditorClassIdentifier: 
-  m_EditorClassIdentifier: 
 --- !u!1 &273501903
 GameObject:
   m_ObjectHideFlags: 0
@@ -200,8 +199,8 @@ GameObject:
   - 114: {fileID: 583409561}
   - 82: {fileID: 583409560}
   m_Layer: 0
-  m_Name: MenuAudio
-  m_TagString: Untagged
+  m_Name: AudioHandler
+  m_TagString: AudioHandler
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -217,7 +216,7 @@ AudioSource:
   serializedVersion: 3
   m_audioClip: {fileID: 8300000, guid: 70bdb7b548c0da34ca1975561ee32187, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: .365999997
+  m_Volume: .128000006
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -391,7 +390,6 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c2aaddab6a8325642a7d9eca47626df2, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
   m_EditorClassIdentifier: 
   m_EditorClassIdentifier: 
   m_EditorClassIdentifier: 

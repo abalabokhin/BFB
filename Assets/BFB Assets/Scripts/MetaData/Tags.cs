@@ -13,5 +13,6 @@ namespace BFB.Cache
 		public static string asteroid = "Asteroid";
 		public static string player = "Player";
         public static string enemyShip = "EnemyShip";
+		public static string audioHandler = "AudioHandler";
     }
 }

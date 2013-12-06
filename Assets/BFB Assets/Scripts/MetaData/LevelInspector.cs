@@ -21,14 +21,14 @@ public class LevelInspector : MonoBehaviour
 		gameLevels = levelNumbers;
 	}
 
-	private int[] gameLevels = new int[] { 5, 6 };
+	private int[] gameLevels = new int[] { 5, 6};
 	private int briefingLevel = 4;
 	private int mainLevel = 3;
 	private int firstLaunchLevel = 2;
 	private int openingLevel = 1;
 	private int currentLevelIndex = 0;
 	private string[] levelBriefings = new string[] { "\nEarth is destroyed but you have found a planet suitable for life. \n\nUnfortunately, you notice asteroids damaging the planet, threatening to eliminate it entirely. \n\nSave this planet from the asteroid attack before it is too late.", 
-													 "Your journey continues" };
+													 "Your journey continues! \n\n A new planet needs your help. Defeat the enemies and destroy the asteroids before all hope is lost." };
 
 	void Update ()
 	{

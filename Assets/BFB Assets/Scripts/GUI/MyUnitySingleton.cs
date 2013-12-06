@@ -3,7 +3,7 @@ using System.Collections;
 
 public class MyUnitySingleton : MonoBehaviour
 {
-	private int playClicks= 0;
+	private int playClicks = 0;
 	private static MyUnitySingleton instance = null;
 
 	public static MyUnitySingleton Instance {
@@ -12,6 +12,7 @@ public class MyUnitySingleton : MonoBehaviour
 
 	void Awake ()
 	{
+		
 		if (instance != null && instance != this) {
 			Destroy (this.gameObject);
 			return;
@@ -41,6 +42,6 @@ public class MyUnitySingleton : MonoBehaviour
 	
 	private void OnGUI ()
 	{
-		MuteButton();
+			MuteButton ();
 	}
 }

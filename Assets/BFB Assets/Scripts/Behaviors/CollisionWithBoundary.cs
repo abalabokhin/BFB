@@ -12,6 +12,7 @@ public class CollisionWithBoundary : MonoBehaviour
 	float countdown;
 	bool showText = false;
 	string text = "";
+	public GameObject audioHandler;
 	//public BoxCollider boundS;
 	
 	// Use this for initialization
@@ -43,11 +44,18 @@ public class CollisionWithBoundary : MonoBehaviour
 	{		
 		BoxCollider box = boundary.GetComponent<BoxCollider> ();
 		if (!box.bounds.Contains (transform.position)) {
-			//Debug.Log ("Out of bounds");
+			if (!showText) {
+				audioHandler.GetComponent<AudioSource> ().mute = true;
+				GetComponent<AudioSource> ().Play ();
+			}
+			Debug.Log ("Out of bounds");
 			countdown -= Time.deltaTime;
 			showText = true;
 		} else {
 			//Debug.Log ("In bounds");
+			if (showText) {
+				audioHandler.GetComponent<AudioSource> ().Stop();
+			}
 			countdown = timer;
 			showText = false;
 		}
@@ -59,10 +67,12 @@ public class CollisionWithBoundary : MonoBehaviour
 		float stdH = 50;
 		float currX = (Screen.width - stdW) / 2;
 		float currY = (Screen.height - stdH) / 2;
-
+		
+		GUI.contentColor = Color.red;
 		GUI.Label (new Rect (currX, currY, stdW, stdH), text);
 		GUI.contentColor = Color.grey;
 		if (showText) {
+			GUI.skin.label.fontSize = 18;
 			text = "You've gone out of bounds! Turn around or die in ... ";
 			GUI.Label (new Rect (currX, currY, stdW, stdH), text + (int)Mathf.Round (countdown));
 		} else {

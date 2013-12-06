@@ -73,6 +73,7 @@ GameObject:
   - 114: {fileID: 11400012}
   - 82: {fileID: 8200000}
   - 120: {fileID: 12000000}
+  - 114: {fileID: 11400018}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -206,7 +207,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100006}
   m_LocalRotation: {x: -2.66261901e-09, y: .998143077, z: .060913559, w: -4.36302088e-08}
-  m_LocalPosition: {x: 118.60318, y: 0, z: 600.619873}
+  m_LocalPosition: {x: 118.60318, y: 0, z: 615.411499}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400008}
@@ -458,13 +459,13 @@ AudioSource:
   m_GameObject: {fileID: 100006}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: 4d20ef08b0adff848b3bcb78913a819a, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: .138999999
+  m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
-  Priority: 0
+  Priority: 128
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -676,7 +677,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100006}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 08f244e1e480b5e4daa3a6705715e416, type: 3}
   m_Name: 
@@ -704,6 +705,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fee07c45ae732a46a6e6f818a892ecd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  alertSound: {fileID: 0}
 --- !u!114 &11400014
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -719,6 +721,7 @@ MonoBehaviour:
   parentGameObject: {fileID: 100012}
   isPlayer: 1
   laserSound: {fileID: 0}
+  targetTags: []
 --- !u!114 &11400016
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -734,6 +737,30 @@ MonoBehaviour:
   parentGameObject: {fileID: 100012}
   isPlayer: 1
   laserSound: {fileID: 8300000, guid: 792aa9c1ba552f54790da19faf7af1bb, type: 3}
+  targetTags: []
+--- !u!114 &11400018
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e001f044dada842c5a54acd17cfc6dca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  planetBlip: {fileID: 2800000, guid: 4ade1bccf3e25aa41912d1574fb34342, type: 3}
+  asteroidBlip: {fileID: 2800000, guid: 4feb345e823dc41bcb0e357014dd19ae, type: 3}
+  enemyBlip: {fileID: 2800000, guid: a0f8d0a724c9248a3b7bb739024296b8, type: 3}
+  radarBG: {fileID: 2800000, guid: 90f6e78d754914387a3f36ed45e0e6e9, type: 3}
+  centerObject: {fileID: 400010}
+  mapScale: .25
+  mapSizePercent: 15
+  planetTag: Planet
+  asteroidTag: Asteroid
+  enemyTag: EnemyShip
+  radarLocation: 2
+  mapCenterCustom: {x: 0, y: 0}
 --- !u!120 &12000000
 LineRenderer:
   m_ObjectHideFlags: 1

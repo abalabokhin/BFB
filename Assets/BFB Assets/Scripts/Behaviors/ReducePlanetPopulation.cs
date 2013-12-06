@@ -3,7 +3,7 @@ using System.Collections;
 
 public class ReducePlanetPopulation : MonoBehaviour {
 	public int peopleAlive = 5000000;
-	public int dPeopleDead = 500000;
+	public int dPeopleDead = 200000;
 	
 	// Use this for initialization
 	void Start () {

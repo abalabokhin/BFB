@@ -217,8 +217,8 @@ GameObject:
   - 114: {fileID: 1695480509}
   - 82: {fileID: 1695480508}
   m_Layer: 0
-  m_Name: MenuAudio
-  m_TagString: Untagged
+  m_Name: AudioHandler
+  m_TagString: AudioHandler
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -234,7 +234,7 @@ AudioSource:
   serializedVersion: 3
   m_audioClip: {fileID: 8300000, guid: 70bdb7b548c0da34ca1975561ee32187, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: .365999997
+  m_Volume: .128000006
   m_Pitch: 1
   Loop: 1
   Mute: 0
